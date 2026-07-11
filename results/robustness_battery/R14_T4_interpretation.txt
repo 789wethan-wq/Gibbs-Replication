@@ -1,0 +1,1 @@
+0 of 5 constructions fail (|Z|<1.96, wrong sign). MARGINAL: 'DH-24m, DS-24m, T-norm' Z=1.116. MARGINAL: 'DH-60m, DS-36m FF3, T-norm [BASELINE]' Z=1.199. MARGINAL: 'DH-60m, DS-36m FF3, T-raw' Z=0.856. MARGINAL: 'DH-60m, DS-FF5, T-norm' Z=1.361. MARGINAL: 'DH-60m, DS-CAPM, T-norm' Z=1.508.

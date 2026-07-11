@@ -1,0 +1,10 @@
+Metric,Value
+OOS R² — Gibbs Constrained (vs Naive),0.0010
+OOS R² — Unconstrained (vs Naive),0.0010
+MSE — Gibbs Constrained,0.009177
+MSE — Unconstrained,0.009178
+MSE — Naive (historical mean),0.009187
+"DM statistic (C vs B, HLN-corrected)",-0.210
+DM p-value,0.833
+DM result,Fail to reject H0 (equal accuracy)
+OOS window,60m rolling; 287 test months

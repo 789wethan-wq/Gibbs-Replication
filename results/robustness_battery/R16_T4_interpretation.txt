@@ -1,0 +1,1 @@
+Under MAX control (proxy = |monthly ret|, Corr with DS_z = 0.33): T·ΔS t = 5.11 (p=0.000). Baseline T·ΔS t = 2.39. T·ΔS survives MAX control. CAVEAT: Daily per-stock returns unavailable in current Sharadar subscription; |monthly ret| used as MAX proxy (literature Corr(MAX, iVol) ≈ 0.78). Full MAX test requires SEP daily data.

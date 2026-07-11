@@ -1,0 +1,4 @@
+test,restriction,lr_stat,df,p,r2_full,r2_restricted,reject_H0_5pct,interpretation,test_num
+"LR: full vs Model B {DH,DS}",T·ΔS = 0,109.87152631007484,1,0.0,0.003348209881575692,0.0024855353542120318,True,T·ΔS significant beyond ΔH+ΔS,T5
+"LR: full vs Model C {DH,TxDS}",ΔS = 0,15.571013260516338,1,7.946352543408697e-05,0.003348209881575692,0.003225996874953063,True,ΔS significant beyond T·ΔS,T5
+LR: full vs ΔG single index,β_DH=β_TxDS (constrained),133.67434254122782,2,0.0,0.003348209881575692,0.0022985452064337997,True,Full model significantly better than ΔG alone,T5

@@ -1,0 +1,1 @@
+Under q-factor controls (ME, IA, ROE): β_ΔH t = 2.32 (significant at |t|>2), β_ΔS t = 4.97 (significant at |t|>2). Baseline (no q-controls): β_ΔH t=2.70, β_ΔS t=4.68.

@@ -1,0 +1,23 @@
+========================================================================
+A1 — PANEL-COUNT RECONCILIATION (R18 pipeline stages)
+========================================================================
+
+[stage 0] SF1-covered US domestic common (category/exchange/USD filter,
+          NO time-window restriction)            = 15,522
+[stage 1] ... with >=1 valid ARQ price observation = 15,461
+[stage 1b] ... with >=1 ARQ price INSIDE the T window (1995Q3-2023Q4) = 14,894
+[stage 2a] ... with >=1 valid consecutive-quarter return = 15,362
+[stage 2b] ... with >=8 quarterly return obs (R18 filter) = 12,750
+[stage 3] analysis panel (valid return AND valid ΔS, inside T window)
+          = 12,449 tickers, 434,016 ticker-quarters, 114 quarters (1995Q3..2023Q4)
+[stage 3b] ... with valid NEXT-quarter return (entropy est. panel) = 12,022  (420,712 obs)
+[stage 3c] ... also valid ΔH (Model B est. panel) = 10,699  (392,557 obs)
+
+[delisted] stage 0 universe: 11,178 of 15,522
+[delisted] stage 3 analysis panel: 8,937 of 12,449
+
+------------------------------------------------------------------------
+RECONCILIATION vs paper assertions
+  paper 15,522 raw SF1-covered US common:        stage 0 = 15,522  -> MATCH
+  paper 12,449 analysis panel:                   stage 3 = 12,449  -> MATCH
+  paper  8,937 delisted within analysis panel:   stage 3 = 8,937  -> MATCH

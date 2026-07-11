@@ -1,0 +1,5 @@
+subset,N,G,b_TxDS,t_TxDS,wald_chisq,p_cluster,significant_5pct,test
+Full sample (replication),126990,347,0.134569,2.4708,6.1046,0.013483,True,R14.2
+Excl. 2000–2009,86649,227,0.163595,2.1991,4.8361,0.02787,True,R14.2
+Excl. 2008–2009 (GFC only),118154,323,0.153425,2.1807,4.7556,0.029203,True,R14.2
+Excl. 2000–2002 (dot-com),116082,311,0.136357,2.482,6.1602,0.013066,True,R14.2

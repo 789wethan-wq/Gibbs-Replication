@@ -1,0 +1,57 @@
+====================================================================
+R23 — V21 BATTERY
+====================================================================
+
+=== TASK 1: Table 7 Model C Spec ===
+  R22 'Model C' code used x=['delta_h_z','T_delta_s'] (no raw ΔS) -> SUBSTITUTION spec
+  SUBSTITUTION (ΔH + T·ΔS):
+    β_ΔH    coef=+0.00577  FM t=+3.46
+    β_(T·ΔS) coef=-0.05856  FM t=-0.55
+  ENCOMPASSING (ΔH + ΔS + T·ΔS):
+    β_ΔH    coef=+0.00577  FM t=+3.46
+    β_ΔS    coef=+0.00006  FM t=+0.01
+    β_(T·ΔS) coef=+0.00022  FM t=+0.76
+  -> R22's -0.55 is the SUBSTITUTION spec. In the full universe ΔS is unpriced
+     (FM t≈0), and within a quarter T is constant so T·ΔS is collinear with ΔS;
+     thus BOTH FM specs give an insignificant interaction (substitution -0.55,
+     encompassing +0.76). FM cannot identify T-scaling here — validity
+     rests on the pooled Wald (uses cross-quarter T variation) + asymmetric test.
+
+=== TASK 2: T Variance Comparison ===
+  Full-sample T: mean=0.0417 SD=0.0208 N=347
+  Pre-2009  T:   mean=0.0382 SD=0.0139 N=168
+  Post-2009 T:   mean=0.0450 SD=0.0253 N=179
+  Pre-2009 HIGH-T quartile: mean=0.0565 SD=0.0135 N=42
+    range [0.0466, 0.1140]
+    SD as % of full-sample T SD:  64.7%
+    SD as % of post-2009  T SD:  53.3%
+    ratio (post-2009 SD / pre-2009 high-T SD): 1.9x
+  HONEST READ (the data only WEAKLY supports the low-T-variance story):
+  - The high-T quartile retains essentially ALL pre-2009 T dispersion
+    (SD 0.0135 vs 0.0139 for all pre-2009) and 53% of post-2009 SD — only
+    1.9x smaller, driven by the 2008 tail (range up to 0.114). So "T barely
+    varies within the quartile" is NOT accurate.
+  - The dominant driver of the insignificant within-high-T Wald is the small
+    MONTH COUNT (42 vs 179 post-2009), not flat T. Identifying power scales as
+    SD_T * sqrt(N_months): post-2009 = 0.0253*sqrt(179) = 0.339 vs pre-high-T =
+    0.0135*sqrt(42) = 0.088 -> ~3.9x less power, of which ~2.1x is sample size
+    and only ~1.9x is T-spread.
+  RECOMMENDED PAPER SENTENCE (do not overclaim flat T): "Within the 42-month
+  pre-2009 high-T quartile, identifying power for the interaction is ~3.9x lower
+  than the post-2009 window (SD_T*sqrt(N) = 0.088 vs 0.339), dominated by the
+  short window rather than by reduced T dispersion."
+
+=== TASK 3: Double-Clustering Monte Carlo ===
+  Q: under 12-month forward-fill of ΔH, is SE_double < SE_date expected?
+  [iid returns (no within-firm serial corr)] SE_double<SE_date in 54.0% of 1000 sims; median SE_double/SE_date=0.996
+  [mild within-firm reversal (AR1=-0.10, realistic monthly)] SE_double<SE_date in 96.9% of 1000 sims; median SE_double/SE_date=0.921
+  Actual data: SE_double=0.000375 < SE_date=0.000463 (ratio 0.81) for β_ΔH.
+  -> With iid returns the correction term (V_firm - V_intersection) has mean ~0,
+     so SE_double<SE_date occurs ~54% of the time by sampling alone; with
+     realistic short-term reversal it rises to ~97%. The ordering is EXPECTED,
+     not a computational error: double-clustering does not guarantee SE_double>=SE_date.
+
+=== BOTTOM LINE ===
+Task 1: R22 Model C = SUBSTITUTION. Sub t(T·ΔS)=-0.55, Enc t(T·ΔS)=+0.76 — both insig (FM can't identify; ΔS unpriced full-universe).
+Task 2: underpowered YES, but via SHORT WINDOW (42 mo), not flat T (T SD only 1.9x smaller, ~unchanged vs full pre-2009). Combined identifying power ~3.9x lower. Do NOT claim "T barely varies."
+Task 3: SE_double<SE_date in 54% (iid) / 97% (reversal) of sims — EXPECTED, not an error

@@ -1,0 +1,131 @@
+
+======================================================================
+PART 2 — CEILING TESTS (C01–C14)
+======================================================================
+
+--- C01: Unit-Ratio Power Analysis ---
+  Current ratio beta_TxDS / beta_dH = 116.5
+  Current N=118,014, T=335 months
+  Current CI: [-141.4, 21.7], width=163.1
+  At N=1,000/mo (~1.7x more stocks, SE shrinks 1.7x):
+    Expected CI width: 96.8
+    Expected CI: [-108.3, -11.4]
+    Excludes +1.0: True | Excludes -1.0: True
+    Unit-ratio test informative at N=3,000: True
+  At N=3,000/mo (~2.9x more stocks, SE shrinks 2.9x):
+    Expected CI width: 55.9
+    Expected CI: [-87.8, -31.9]
+    Excludes +1.0: True | Excludes -1.0: True
+    Unit-ratio test informative at N=3,000: True
+  INTERPRETATION: At N=3,000/mo the CI approximately [68.0, 7.4]
+  Full CRSP would shrink SE by ~2.9x; unit-ratio test still inconclusive at current t-stat levels.
+
+--- C02: H3 Power Analysis (High-T vs Low-T beta_DS ratio) ---
+  High-T: T=213 months, mean beta_DS=0.0055
+  Low-T:  T=134 months, mean beta_DS=0.0035
+  Ratio High/Low = 1.57 (paper claims 2.09)
+  Difference t = 1.06, SE_diff = 0.00187
+  Current power to detect 1.57x ratio: 18.4%
+  PAPER CLAIMS: ratio=2.09, difference p=0.465
+  For 80% power, need ~2994 months total (each regime) or ~5988 total months
+
+--- C03: Nonlinearity in T-Scaling ---
+  Linear T·ΔS                    β=+0.1215  t=+4.59
+  Quadratic T²·ΔS                β=+3.3953  t=+4.43
+  Log(T)·ΔS                      β=-0.0017  t=-4.54
+  Regime I(T>med)·ΔS             β=+0.0037  t=+3.48
+  Linear+Quadratic               β=+0.0051  t=+4.68
+  NOTE: If linear T-scaling t > quadratic/log, linear Gibbs form is favored.
+
+--- C04: T-Quintile Monotonicity Test ---
+  T-quintile 1: β_ΔS=+0.00309, t=+2.40
+  T-quintile 2: β_ΔS=+0.00338, t=+2.83
+  T-quintile 3: β_ΔS=+0.00223, t=+2.01
+  T-quintile 4: β_ΔS=+0.00491, t=+1.30
+  T-quintile 5: β_ΔS=+0.00986, t=+5.26
+  Monotonically increasing in T? False (H3 predicts YES)
+
+--- C05: Cross-Channel Restriction Test ---
+  β_ΔH ~ T: t = -1.08 (should be ~0 if Gibbs correct)
+  β_ΔS ~ T: t = +2.45 (should be significant if Gibbs correct)
+  STATUS ΔH~T (want insignificant): PASS
+  STATUS ΔS~T (want significant):   PASS
+
+--- C06: Alternative ΔH Window Sensitivity ---
+  Window=24mo: Corr(ΔH,ΔS)=-0.195, t(ΔH)=+0.53, t(ΔS)=+2.84
+  Window=36mo: Corr(ΔH,ΔS)=-0.285, t(ΔH)=+1.63, t(ΔS)=+3.07
+  Window=48mo: Corr(ΔH,ΔS)=-0.235, t(ΔH)=-0.18, t(ΔS)=+1.98
+  Window=60mo: Corr(ΔH,ΔS)=-0.334, t(ΔH)=-1.50, t(ΔS)=+0.92
+  Window=72mo: Corr(ΔH,ΔS)=-0.229, t(ΔH)=+0.61, t(ΔS)=+3.29
+
+--- C07: Alternative ΔS Measures ---
+  Total return vol (36mo rolling):
+    FM t(ΔH)=+2.68, t(ΔS)=+3.83
+    T-scaling Wald p=0.013
+  FF3 residual vol (current paper):
+    FM t(ΔH)=+2.70, t(ΔS)=+4.68
+    T-scaling Wald p=0.017
+  NOTE: CAPM/FF5 residual vol requires per-stock rolling regressions (not computed here)
+
+--- C08: Sector Concentration Test ---
+  Sectors found: {'Industrials': 58072, 'Financials': 48964, 'Consumer': 43824, 'Technology': 41662, 'Healthcare': 33592, 'Materials': 14422, 'Energy': 11276, 'Other': 965}
+  Technology           N=39,332 p=0.033 *
+  Healthcare           N=31,548 p=0.400 
+  Consumer             N=41,256 p=0.077 
+  Industrials          N=53,952 p=0.395 
+  Financials           N=46,876 p=0.607 
+  Energy               N= 9,864 p=0.127 
+  Materials            N=13,200 p=0.183 
+
+--- C09: Mechanism Test (iVol as short-cost proxy) ---
+  High-iVol (hard-to-short): N=58,929 Wald p=0.024 t_TxDS=2.25
+  Low-iVol (easy-to-short): N=59,085 Wald p=0.159 t_TxDS=-1.41
+  If T-scaling concentrates in high-iVol (p << 0.05) → consistent with arbitrage asymmetry
+
+--- C10: Placebo Tests (False Temperature Variables) ---
+  T_reversed          : Wald p=0.222 t_TxDS=+1.22
+  T_trend             : Wald p=0.620 t_TxDS=-0.50
+  T_actual            : Wald p=0.017 t_TxDS=+2.39
+  T_random (10 trials): 1/10 significant at 5%, mean p=0.442
+  INTERPRETATION: If actual T is the only significant version → strong falsification
+
+--- C11: Investor Sentiment Control ---
+  T·ΔS Wald p WITH sentiment control: 0.017
+  t(sentiment) = -0.25, t(sentiment×ΔS) = -0.48
+  NOTE: Baker-Wurgler (2006) sentiment requires external download; using 12mo cum market return as proxy
+  STATUS: T-scaling survives sentiment control
+
+--- C12: Expanding-Window FM (OOS signal performance) ---
+  OOS L/S signal profitable in 14/18 post-training years
+  Mean OOS monthly L/S return: 0.964%
+    2006: -0.086%
+    2007: +0.938%
+    2008: -0.804%
+    2009: +4.715%
+    2010: +1.833%
+    2011: -0.367%
+    2012: +0.884%
+    2013: +1.471%
+    2014: +0.668%
+    2015: -0.302%
+    2016: +1.406%
+    2017: +0.259%
+    2018: +0.815%
+    2019: +0.449%
+    2020: +3.327%
+    2021: +0.196%
+    2022: +0.938%
+    2023: +0.929%
+
+--- C13: Bootstrap CIs (1000 block bootstrap, block=12) ---
+  β_ΔH 95% CI: [+0.00045, +0.00164] — Excludes 0: True
+  β_ΔS 95% CI: [+0.00313, +0.00678] — Excludes 0: True
+  Wald p distribution: [0.004, 0.400]
+  % bootstrap samples with Wald p<0.05: 52.3%
+
+--- C14: Combined Strategy Performance ---
+  Pure ΔH (long Q1 stable GPM)            : mean=1.277%/mo, alpha=16.42%/yr (t=4.32), Sharpe=0.82, N=335
+  Pure ΔS (long Q5 high iVol)             : mean=2.049%/mo, alpha=26.30%/yr (t=5.62), Sharpe=1.02, N=335
+  Intersection (Q1 dH ∩ Q5 dS)            : mean=1.944%/mo, alpha=25.10%/yr (t=4.75), Sharpe=0.83, N=335
+  Avg N in intersection per month: 25.6
+  NOTE: Negative Corr(dH,dS)≈-0.26 means intersection is sparse

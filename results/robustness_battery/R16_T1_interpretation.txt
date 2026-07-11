@@ -1,0 +1,1 @@
+Does T·ΔS survive SYY mispricing control? YES — t-statistic = 2.37 after adding mispricing composite (p=0.018). Baseline t(T·ΔS) = 2.39. Adding the mispricing×T interaction yields t(T·ΔS) = 2.40, t(mip×T) = -1.37 — temperature amplification is distinct from generic mispricing amplification.

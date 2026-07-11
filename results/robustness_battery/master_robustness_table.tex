@@ -1,0 +1,611 @@
+\begin{longtable}{lllrrrrrrrl}
+\caption{Master Robustness Table} \label{tab:robustness} \\
+\toprule
+Panel & Specification & $\widehat{\beta}_{\Delta G}$ & $t$ & L/S ret & L/S $t$ & Vuong $Z$ & Vuong $p$ & $\Delta$AIC & $\beta_{\Delta S}$ ratio & Verdict \\
+\midrule
+\endfirsthead
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel A: Variable Construction Sensitivity}} \\
+Panel A & DH-24m & -0.005 & -3.992 & -0.011 & -3.434 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-36m & -0.005 & -3.732 & -0.012 & -3.299 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-48m & -0.004 & -3.392 & -0.011 & -3.077 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-60m & -0.004 & -2.985 & -0.009 & -2.850 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-72m & -0.003 & -3.081 & -0.009 & -2.916 & — & — & — & — & \textbf{PASS} \\
+Panel A & DS-24m & -0.004 & -3.627 & -0.011 & -3.260 & — & — & — & — & \textbf{PASS} \\
+Panel A & DS-36m & -0.004 & -3.518 & -0.011 & -3.219 & — & — & — & — & \textbf{PASS} \\
+Panel A & DS-48m & -0.004 & -3.376 & -0.010 & -3.042 & — & — & — & — & \textbf{PASS} \\
+Panel A & DS-60m & -0.003 & -2.999 & -0.009 & -2.828 & — & — & — & — & \textbf{PASS} \\
+Panel A & T-1m & -0.005 & -3.986 & -0.012 & -3.729 & 1.519 & 0.129 & 58.7 & — & \textbf{PASS} \\
+Panel A & T-3m & -0.005 & -3.981 & -0.012 & -3.699 & 2.253 & 0.024 & 62.7 & — & \textbf{PASS} \\
+Panel A & T-6m & -0.005 & -3.985 & -0.012 & -3.714 & 2.551 & 0.011 & 93.6 & — & \textbf{PASS} \\
+Panel A & T-12m & -0.005 & -3.984 & -0.012 & -3.719 & 2.682 & 0.007 & 97.0 & — & \textbf{PASS} \\
+Panel A & T-24m & -0.005 & -3.985 & -0.012 & -3.714 & 2.216 & 0.027 & 47.0 & — & \textbf{PASS} \\
+Panel A & T-EWMA & — & — & — & — & 1.701 & 0.089 & 61.5 & — & — \\
+Panel A & T-12m & — & — & — & — & 2.682 & 0.007 & 97.1 & — & — \\
+Panel A & DS-CAPM & -0.004 & -3.510 & -0.011 & -3.198 & 2.698 & 0.007 & 100.3 & — & \textbf{PASS} \\
+Panel A & DS-FF3 & -0.004 & -3.518 & -0.011 & -3.219 & 2.520 & 0.012 & 90.4 & — & \textbf{PASS} \\
+Panel A & DS-FF4 & -0.004 & -3.518 & -0.011 & -3.244 & 2.583 & 0.010 & 90.4 & — & \textbf{PASS} \\
+Panel A & DS-FF5 & -0.004 & -3.521 & -0.011 & -3.228 & 2.551 & 0.011 & 92.1 & — & \textbf{PASS} \\
+Panel A & DH-downside & -0.004 & -3.474 & -0.010 & -3.067 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-FF3res & -0.005 & -4.149 & -0.011 & -3.580 & — & — & — & — & \textbf{PASS} \\
+Panel A & DH-total (baseline) & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & \textbf{PASS} \\
+Panel A & wins-0pct & -0.003 & -2.865 & -0.009 & -2.872 & — & — & — & — & \textbf{PASS} \\
+Panel A & wins-0pct & -0.004 & -3.014 & -0.009 & -2.855 & — & — & — & — & \textbf{PASS} \\
+Panel A & wins-1pct & -0.004 & -2.985 & -0.009 & -2.850 & — & — & — & — & \textbf{PASS} \\
+Panel A & wins-2pct & -0.003 & -2.901 & -0.009 & -2.843 & — & — & — & — & \textbf{PASS} \\
+Panel A & wins-5pct & -0.003 & -2.796 & -0.009 & -2.847 & — & — & — & — & \textbf{PASS} \\
+Panel A & zscore & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & \textbf{PASS} \\
+Panel A & rank & -0.004 & -3.731 & -0.012 & -3.729 & — & — & — & — & \textbf{PASS} \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel B: Sample and Time Period Sensitivity}} \\
+Panel B & Rolling 1995-01–1999-12 & -0.007 & -2.100 & -0.020 & -2.460 & — & — & — & — & — \\
+Panel B & Rolling 1995-07–2000-06 & -0.007 & -1.831 & -0.019 & -1.874 & — & — & — & — & — \\
+Panel B & Rolling 1996-01–2000-12 & -0.008 & -1.835 & -0.022 & -2.021 & — & — & — & — & — \\
+Panel B & Rolling 1996-07–2001-06 & -0.007 & -1.643 & -0.019 & -1.706 & — & — & — & — & — \\
+Panel B & Rolling 1997-01–2001-12 & -0.007 & -1.685 & -0.019 & -1.728 & — & — & — & — & — \\
+Panel B & Rolling 1997-07–2002-06 & -0.006 & -1.176 & -0.014 & -1.148 & — & — & — & — & — \\
+Panel B & Rolling 1998-01–2002-12 & -0.006 & -1.379 & -0.017 & -1.380 & — & — & — & — & — \\
+Panel B & Rolling 1998-07–2003-06 & -0.008 & -1.682 & -0.020 & -1.647 & — & — & — & — & — \\
+Panel B & Rolling 1999-01–2003-12 & -0.007 & -1.521 & -0.018 & -1.487 & — & — & — & — & — \\
+Panel B & Rolling 1999-07–2004-06 & -0.006 & -1.228 & -0.014 & -1.218 & — & — & — & — & — \\
+Panel B & Rolling 2000-01–2004-12 & -0.003 & -0.995 & -0.009 & -0.981 & — & — & — & — & — \\
+Panel B & Rolling 2000-07–2005-06 & -0.003 & -0.933 & -0.007 & -0.898 & — & — & — & — & — \\
+Panel B & Rolling 2001-01–2005-12 & -0.004 & -1.430 & -0.010 & -1.449 & — & — & — & — & — \\
+Panel B & Rolling 2001-07–2006-06 & -0.004 & -1.401 & -0.009 & -1.375 & — & — & — & — & — \\
+Panel B & Rolling 2002-01–2006-12 & -0.004 & -1.532 & -0.009 & -1.341 & — & — & — & — & — \\
+Panel B & Rolling 2002-07–2007-06 & -0.006 & -3.296 & -0.015 & -2.853 & — & — & — & — & — \\
+Panel B & Rolling 2003-01–2007-12 & -0.005 & -2.692 & -0.012 & -2.275 & — & — & — & — & — \\
+Panel B & Rolling 2003-07–2008-06 & -0.004 & -2.864 & -0.008 & -2.312 & — & — & — & — & — \\
+Panel B & Rolling 2004-01–2008-12 & -0.002 & -1.262 & -0.003 & -0.478 & — & — & — & — & — \\
+Panel B & Rolling 2004-07–2009-06 & -0.005 & -2.059 & -0.011 & -1.430 & — & — & — & — & — \\
+Panel B & Rolling 2005-01–2009-12 & -0.006 & -2.048 & -0.013 & -1.503 & — & — & — & — & — \\
+Panel B & Rolling 2005-07–2010-06 & -0.006 & -1.958 & -0.012 & -1.447 & — & — & — & — & — \\
+Panel B & Rolling 2006-01–2010-12 & -0.006 & -1.896 & -0.013 & -1.529 & — & — & — & — & — \\
+Panel B & Rolling 2006-07–2011-06 & -0.005 & -1.854 & -0.014 & -1.593 & — & — & — & — & — \\
+Panel B & Rolling 2007-01–2011-12 & -0.005 & -1.498 & -0.013 & -1.327 & — & — & — & — & — \\
+Panel B & Rolling 2007-07–2012-06 & -0.004 & -1.112 & -0.009 & -0.963 & — & — & — & — & — \\
+Panel B & Rolling 2008-01–2012-12 & -0.005 & -1.496 & -0.013 & -1.346 & — & — & — & — & — \\
+Panel B & Rolling 2008-07–2013-06 & -0.005 & -1.575 & -0.013 & -1.417 & — & — & — & — & — \\
+Panel B & Rolling 2009-01–2013-12 & -0.007 & -2.217 & -0.019 & -2.299 & — & — & — & — & — \\
+Panel B & Rolling 2009-07–2014-06 & -0.004 & -2.171 & -0.012 & -2.180 & — & — & — & — & — \\
+Panel B & Rolling 2010-01–2014-12 & -0.003 & -1.531 & -0.008 & -1.609 & — & — & — & — & — \\
+Panel B & Rolling 2010-07–2015-06 & -0.003 & -1.551 & -0.008 & -1.607 & — & — & — & — & — \\
+Panel B & Rolling 2011-01–2015-12 & -0.001 & -0.391 & -0.002 & -0.395 & — & — & — & — & — \\
+Panel B & Rolling 2011-07–2016-06 & -0.002 & -1.111 & -0.005 & -0.929 & — & — & — & — & — \\
+Panel B & Rolling 2012-01–2016-12 & -0.003 & -1.647 & -0.007 & -1.424 & — & — & — & — & — \\
+Panel B & Rolling 2012-07–2017-06 & -0.003 & -2.043 & -0.008 & -1.771 & — & — & — & — & — \\
+Panel B & Rolling 2013-01–2017-12 & -0.003 & -1.855 & -0.006 & -1.542 & — & — & — & — & — \\
+Panel B & Rolling 2013-07–2018-06 & -0.003 & -1.904 & -0.007 & -1.585 & — & — & — & — & — \\
+Panel B & Rolling 2014-01–2018-12 & -0.002 & -1.531 & -0.004 & -0.916 & — & — & — & — & — \\
+Panel B & Rolling 2014-07–2019-06 & -0.002 & -1.512 & -0.003 & -0.798 & — & — & — & — & — \\
+Panel B & Rolling 2015-01–2019-12 & -0.003 & -1.799 & -0.004 & -0.995 & — & — & — & — & — \\
+Panel B & Rolling 2015-07–2020-06 & -0.004 & -2.071 & -0.006 & -1.272 & — & — & — & — & — \\
+Panel B & Rolling 2016-01–2020-12 & -0.007 & -3.485 & -0.014 & -2.619 & — & — & — & — & — \\
+Panel B & Rolling 2016-07–2021-06 & -0.006 & -2.991 & -0.014 & -2.331 & — & — & — & — & — \\
+Panel B & Rolling 2017-01–2021-12 & -0.006 & -2.818 & -0.012 & -1.979 & — & — & — & — & — \\
+Panel B & Rolling 2017-07–2022-06 & -0.006 & -2.701 & -0.012 & -1.765 & — & — & — & — & — \\
+Panel B & Rolling 2018-01–2022-12 & -0.006 & -2.759 & -0.013 & -1.878 & — & — & — & — & — \\
+Panel B & Rolling 2018-07–2023-06 & -0.006 & -2.841 & -0.014 & -2.087 & — & — & — & — & — \\
+Panel B & 1995-1999 & -0.007 & -2.100 & -0.020 & -2.460 & — & — & — & — & — \\
+Panel B & 2000-2004 & -0.003 & -0.995 & -0.009 & -0.981 & — & — & — & — & — \\
+Panel B & 2005-2009 & -0.006 & -2.048 & -0.013 & -1.503 & — & — & — & — & — \\
+Panel B & 2010-2014 & -0.003 & -1.531 & -0.008 & -1.609 & — & — & — & — & — \\
+Panel B & 2015-2019 & -0.003 & -1.799 & -0.004 & -0.995 & — & — & — & — & — \\
+Panel B & 2020-2023 & -0.007 & -2.805 & -0.018 & -2.430 & — & — & — & — & — \\
+Panel B & Baseline (no exclusion) & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & — \\
+Panel B & Exclude dot-com & -0.005 & -4.346 & -0.014 & -4.066 & — & — & — & — & — \\
+Panel B & Exclude GFC & -0.004 & -4.014 & -0.012 & -3.833 & — & — & — & — & — \\
+Panel B & Exclude COVID & -0.004 & -3.815 & -0.012 & -3.562 & — & — & — & — & — \\
+Panel B & Exclude all crises & -0.005 & -4.237 & -0.014 & -4.098 & — & — & — & — & — \\
+Panel B & Baseline (all months) & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & — \\
+Panel B & Exclude January & -0.004 & -3.944 & -0.011 & -3.512 & — & — & — & — & — \\
+Panel B & Full sample & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & — \\
+Panel B & Large cap proxy (low vol) & -0.006 & -4.029 & -0.018 & -4.123 & — & — & — & — & — \\
+Panel B & Mid cap proxy & -0.004 & -3.588 & -0.005 & -3.119 & — & — & — & — & — \\
+Panel B & Small cap proxy (high vol) & -0.005 & -3.481 & -0.005 & -3.292 & — & — & — & — & — \\
+Panel B & No sector FE (baseline) & -0.005 & -3.981 & -0.012 & -3.702 & — & — & — & — & — \\
+Panel B & Sector FE (not available — no sector mapping file) & — & — & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel C: Statistical Methodology}} \\
+Panel C & NW lags=3 & -0.005 & -3.979 & — & — & — & — & — & — & — \\
+Panel C & NW lags=6 & -0.005 & -3.981 & — & — & — & — & — & — & — \\
+Panel C & NW lags=9 & -0.005 & -3.946 & — & — & — & — & — & — & — \\
+Panel C & NW lags=12 & -0.005 & -3.978 & — & — & — & — & — & — & — \\
+Panel C & NW lags=18 & -0.005 & -4.163 & — & — & — & — & — & — & — \\
+Panel C & Winsorize 0.5\% & -0.005 & -3.981 & — & — & — & — & — & — & — \\
+Panel C & Winsorize 1.0\% & -0.005 & -3.972 & — & — & — & — & — & — & — \\
+Panel C & Winsorize 2.0\% & -0.005 & -3.983 & — & — & — & — & — & — & — \\
+Panel C & Winsorize 5.0\% & -0.006 & -3.928 & — & — & — & — & — & — & — \\
+Panel C & Pooled OLS (HC3) & — & — & — & — & — & — & — & — & — \\
+Panel C & Pooled OLS + Stock FE & — & — & — & — & — & — & — & — & — \\
+Panel C & OLS cluster-by-time & — & — & — & — & — & — & — & — & — \\
+Panel C & FM on percentile ranks & — & — & — & — & — & — & — & — & — \\
+Panel C & Logistic (predict top quintile) & — & — & — & — & — & — & — & — & — \\
+Panel C & WLS (1/vol weights) & — & — & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel D: Factor Controls}} \\
+Panel D & CAPM & — & — & — & — & — & — & — & — & — \\
+Panel D & FF3 & — & — & — & — & — & — & — & — & — \\
+Panel D & FF5 & — & — & — & — & — & — & — & — & — \\
+Panel D & FF5+UMD & — & — & — & — & — & — & — & — & — \\
+Panel D & Q4-factor & — & — & — & — & — & — & — & — & — \\
+Panel D & FM + market/SMB/HML betas & -0.004 & -5.157 & — & — & — & — & — & — & — \\
+Panel D & DG + reversal (t-1) & -0.004 & -3.718 & — & — & — & — & — & — & — \\
+Panel D & DG + momentum (12-2) & -0.004 & -3.825 & — & — & — & — & — & — & — \\
+Panel D & DG + reversal + momentum & -0.004 & -3.563 & — & — & — & — & — & — & — \\
+Panel D & DG within size-Q1 (vol proxy) & -0.004 & -2.680 & — & — & — & — & — & — & — \\
+Panel D & DG within size-Q2 (vol proxy) & -0.004 & -3.432 & — & — & — & — & — & — & — \\
+Panel D & DG within size-Q3 (vol proxy) & -0.005 & -4.608 & — & — & — & — & — & — & — \\
+Panel D & DG within size-Q4 (vol proxy) & -0.005 & -4.390 & — & — & — & — & — & — & — \\
+Panel D & DG within size-Q5 (vol proxy) & -0.005 & -3.319 & — & — & — & — & — & — & — \\
+Panel D & FM + CAPM beta control & -0.005 & -4.611 & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel E: Vuong Test Stress Tests}} \\
+Panel E & Full sample & — & — & — & — & -8.117 & 0.000 & -433.8 & — & — \\
+Panel E & 1995-2004 & — & — & — & — & 2.539 & 0.011 & 22.5 & — & — \\
+Panel E & 2005-2014 & — & — & — & — & -2.682 & 0.007 & -93.8 & — & — \\
+Panel E & 2015-2023 & — & — & — & — & -9.866 & 0.000 & -784.8 & — & — \\
+Panel E & Pre-GFC & — & — & — & — & 1.532 & 0.126 & 16.5 & — & — \\
+Panel E & Post-GFC & — & — & — & — & -11.344 & 0.000 & -732.3 & — & — \\
+Panel E & Constrained vs DH + DS (no T) & — & — & — & — & 2.708 & 0.007 & 94.3 & — & — \\
+Panel E & Constrained vs DH + DS + T separate & — & — & — & — & -8.117 & 0.000 & -433.8 & — & — \\
+Panel E & Constrained vs DH + T·DS + T as own & — & — & — & — & -8.813 & 0.000 & -528.5 & — & — \\
+Panel E & Constrained vs ΔS only & — & — & — & — & 3.273 & 0.001 & 113.9 & — & — \\
+Panel E & Constrained vs ΔH only & — & — & — & — & 2.971 & 0.003 & 117.2 & — & — \\
+Panel E & Rolling 1995-01–1999-12 & — & — & — & — & 2.095 & 0.036 & 25.6 & — & — \\
+Panel E & Rolling 1996-01–2000-12 & — & — & — & — & 0.193 & 0.847 & 3.0 & — & — \\
+Panel E & Rolling 1997-01–2001-12 & — & — & — & — & -0.352 & 0.725 & 1.0 & — & — \\
+Panel E & Rolling 1998-01–2002-12 & — & — & — & — & -2.604 & 0.009 & -18.6 & — & — \\
+Panel E & Rolling 1999-01–2003-12 & — & — & — & — & -3.207 & 0.001 & -37.6 & — & — \\
+Panel E & Rolling 2000-01–2004-12 & — & — & — & — & -0.935 & 0.350 & -4.9 & — & — \\
+Panel E & Rolling 2001-01–2005-12 & — & — & — & — & -0.174 & 0.862 & 0.7 & — & — \\
+Panel E & Rolling 2002-01–2006-12 & — & — & — & — & 0.065 & 0.948 & 2.7 & — & — \\
+Panel E & Rolling 2003-01–2007-12 & — & — & — & — & -6.542 & 0.000 & -209.1 & — & — \\
+Panel E & Rolling 2004-01–2008-12 & — & — & — & — & -7.907 & 0.000 & -666.2 & — & — \\
+Panel E & Rolling 2005-01–2009-12 & — & — & — & — & -4.164 & 0.000 & -115.6 & — & — \\
+Panel E & Rolling 2006-01–2010-12 & — & — & — & — & -4.662 & 0.000 & -145.1 & — & — \\
+Panel E & Rolling 2007-01–2011-12 & — & — & — & — & -6.150 & 0.000 & -230.0 & — & — \\
+Panel E & Rolling 2008-01–2012-12 & — & — & — & — & -4.636 & 0.000 & -152.6 & — & — \\
+Panel E & Rolling 2009-01–2013-12 & — & — & — & — & -5.684 & 0.000 & -250.0 & — & — \\
+Panel E & Rolling 2010-01–2014-12 & — & — & — & — & -4.697 & 0.000 & -66.0 & — & — \\
+Panel E & Rolling 2011-01–2015-12 & — & — & — & — & -3.099 & 0.002 & -29.5 & — & — \\
+Panel E & Rolling 2012-01–2016-12 & — & — & — & — & -1.592 & 0.111 & -7.9 & — & — \\
+Panel E & Rolling 2013-01–2017-12 & — & — & — & — & -0.562 & 0.574 & 1.0 & — & — \\
+Panel E & Rolling 2014-01–2018-12 & — & — & — & — & -3.160 & 0.002 & -40.4 & — & — \\
+Panel E & Rolling 2015-01–2019-12 & — & — & — & — & -4.338 & 0.000 & -109.0 & — & — \\
+Panel E & Rolling 2016-01–2020-12 & — & — & — & — & -6.818 & 0.000 & -528.8 & — & — \\
+Panel E & Rolling 2017-01–2021-12 & — & — & — & — & -7.461 & 0.000 & -772.0 & — & — \\
+Panel E & Rolling 2018-01–2022-12 & — & — & — & — & -8.745 & 0.000 & -1007.2 & — & — \\
+Panel E & Baseline T (market vol) & — & — & — & — & -8.117 & 0.000 & -433.8 & — & — \\
+Panel E & T = CS return dispersion & — & — & — & — & -5.336 & 0.000 & -171.7 & — & — \\
+Panel E & T = 12m realized vol & — & — & — & — & -2.163 & 0.031 & -61.0 & — & — \\
+Panel E & Full AIC/BIC decomposition & — & — & — & — & -8.117 & 0.000 & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel F: Regime Identification}} \\
+Panel F & Threshold median: High-T (disordered) & -0.007 & -3.444 & — & — & — & — & — & — & — \\
+Panel F & Threshold median: Low-T (ordered) & -0.002 & -2.235 & — & — & — & — & — & — & — \\
+Panel F & Threshold Q3: High-T (disordered) & -0.009 & -3.892 & — & — & — & — & — & — & — \\
+Panel F & Threshold Q3: Low-T (ordered) & -0.003 & -2.198 & — & — & — & — & — & — & — \\
+Panel F & Threshold Q1: High-T (disordered) & -0.005 & -3.164 & — & — & — & — & — & — & — \\
+Panel F & Threshold Q1: Low-T (ordered) & -0.003 & -3.640 & — & — & — & — & — & — & — \\
+Panel F & Markov High-T (disordered) & -0.006 & -3.119 & — & — & — & — & — & — & — \\
+Panel F & Markov Low-T (ordered) & -0.003 & -3.683 & — & — & — & — & — & — & — \\
+Panel F & DG + T & -0.005 & -3.977 & — & — & — & — & — & — & — \\
+Panel F & DG + T + DG×T & -2319798619.920 & -1.789 & — & — & — & — & — & — & — \\
+Panel F & DG×T alone & 0.000 & 0.408 & — & — & — & — & — & — & — \\
+Panel F & T window=12m & -0.005 & -3.966 & — & — & — & — & — & — & — \\
+Panel F & T window=24m & -0.005 & -3.993 & — & — & — & — & — & — & — \\
+Panel F & T window=36m & -0.005 & -3.986 & — & — & — & — & — & — & — \\
+Panel F & T window=60m & -0.005 & -3.980 & — & — & — & — & — & — & — \\
+Panel F & High-T (disordered) & — & — & -0.020 & -3.507 & — & — & — & — & — \\
+Panel F & Low-T (ordered) & — & — & -0.004 & -1.392 & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel G: Alternative Explanations}} \\
+Panel G & FM: DG + DS\_z (AHXZ control) & -0.003 & -1.539 & — & — & — & — & — & — & — \\
+Panel G & FM on DG residual (orthog to DS\_z) & -0.003 & -1.539 & — & — & — & — & — & — & — \\
+Panel G & DG + 12m vol & -0.002 & -1.767 & — & — & — & — & — & — & — \\
+Panel G & DG + ΔH (quality proxy) & — & -1.278 & — & — & — & — & — & — & — \\
+Panel G & DG + ΔH + ΔS & — & -1.563 & — & — & — & — & — & — & — \\
+Panel G & DH + DS (no DG) & — & — & — & — & — & — & — & — & — \\
+Panel G & DG + past\_ret (growth proxy) & -0.004 & -3.667 & — & — & — & — & — & — & — \\
+Panel G & OLS: ret ~ DG & — & — & — & — & — & — & — & — & — \\
+Panel G & OLS: ret ~ DH\_z & — & — & — & — & — & — & — & — & — \\
+Panel G & OLS: ret ~ DS\_z & — & — & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel H: Microstructure and Timing}} \\
+Panel H & After 0 bps TC & — & — & — & — & — & — & — & — & — \\
+Panel H & After 10 bps TC & — & — & — & — & — & — & — & — & — \\
+Panel H & After 20 bps TC & — & — & — & — & — & — & — & — & — \\
+Panel H & After 30 bps TC & — & — & — & — & — & — & — & — & — \\
+Panel H & After 50 bps TC & — & — & — & — & — & — & — & — & — \\
+Panel H & Baseline (t+1) & -0.005 & -3.981 & — & — & — & — & — & — & — \\
+Panel H & Skip-month (t+2) & -0.004 & -3.735 & — & — & — & — & — & — & — \\
+Panel H & 1m & -0.005 & -3.921 & — & — & — & — & — & — & — \\
+Panel H & 3m & -0.014 & -3.874 & — & — & — & — & — & — & — \\
+Panel H & 6m & -0.027 & -4.077 & — & — & — & — & — & — & — \\
+Panel H & 12m & -0.057 & -4.370 & — & — & — & — & — & — & — \\
+Panel H & Monthly portfolio turnover & — & — & — & — & — & — & — & — & — \\
+Panel H & Full sample & — & -3.981 & -0.012 & -3.702 & — & — & — & — & — \\
+Panel H & Liquid stocks (low vol 50\%) & — & -4.262 & -0.006 & -4.163 & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel I: Economic Significance}} \\
+Panel I & L/S (Q5-Q1) & — & — & — & — & — & — & — & — & — \\
+Panel I & Q1 (pure long) & — & — & — & — & — & — & — & — & — \\
+Panel I & Q2 (pure long) & — & — & — & — & — & — & — & — & — \\
+Panel I & Q3 (pure long) & — & — & — & — & — & — & — & — & — \\
+Panel I & Q4 (pure long) & — & — & — & — & — & — & — & — & — \\
+Panel I & Q5 (pure long) & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & nan & — & — & — & — & — & — & — & — & — \\
+Panel I & Market Q1 Bear & — & — & -0.016 & -2.197 & — & — & — & — & — \\
+Panel I & Market Q2 & — & — & -0.011 & -2.839 & — & — & — & — & — \\
+Panel I & Market Q3 & — & — & -0.003 & -0.740 & — & — & — & — & — \\
+Panel I & Market Q4 Bull & — & — & -0.018 & -2.639 & — & — & — & — & — \\
+Panel I & Q1/Q5 balance & — & — & — & — & — & — & — & — & — \\
+Panel I & Economic magnitude & -0.005 & — & — & — & — & — & — & — & — \\
+Panel I & Monthly IC (Spearman) & — & — & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel J: Multiple Testing Corrections}} \\
+Panel J & BHY-FM-primary & — & — & — & — & — & — & — & — & — \\
+Panel J & Bonferroni-primary & — & — & — & — & — & — & — & — & — \\
+Panel J & Bonferroni-N1000-conservative & — & — & — & — & — & — & — & — & — \\
+Panel J & HL2020-p0=0.33 & — & — & — & — & — & — & — & — & — \\
+Panel J & HL2020-p0=0.50 & — & — & — & — & — & — & — & — & — \\
+Panel J & HL2020-p0=0.10 & — & — & — & — & — & — & — & — & — \\
+\addlinespace
+\multicolumn{11}{l}{\textit{Panel K: Bootstrap Inference}} \\
+Panel K & bootstrap-FM-t & — & — & — & — & — & — & — & — & — \\
+Panel K & bootstrap-LS-mean & — & — & — & — & — & — & — & — & — \\
+Panel K & bootstrap-Vuong-Z & — & — & — & — & — & — & — & — & — \\
+\end{longtable}

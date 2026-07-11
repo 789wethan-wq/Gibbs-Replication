@@ -1,0 +1,7 @@
+test,spec,n_tests,n_sig_raw,n_sig_corrected,primary_t,primary_p_raw,primary_p_corrected,pass_fail,notes
+R10.1,BHY-FM-primary,244.0,159.0,115.0,-3.98,7e-05,0.00252,PASS,BHY FDR correction; 244 specs
+R10.2,Bonferroni-primary,244.0,159.0,60.0,-3.98,7e-05,0.01682,PASS,Bonf thresh=0.000205; N=1000 survives=False
+R10.2,Bonferroni-N1000-conservative,1000.0,,,-3.98,7e-05,0.06892,FAIL,conservative upper bound for total tests
+R10.3,HL2020-p0=0.33,,,,-3.98,7e-05,,PASS,posterior P(true|t=-3.98)=0.9852
+R10.3,HL2020-p0=0.50,,,,-3.98,7e-05,,PASS,posterior P(true|t=-3.98)=0.9926
+R10.3,HL2020-p0=0.10,,,,-3.98,7e-05,,PASS,posterior P(true|t=-3.98)=0.9368

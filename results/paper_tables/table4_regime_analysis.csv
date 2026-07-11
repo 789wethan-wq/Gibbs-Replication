@@ -1,0 +1,16 @@
+Metric,Value,Gibbs Prediction
+% months in High-T regime,61.4%,—
+Avg T (High-T regime),0.0520,—
+Avg T (Low-T regime),0.0125,—
+β_ΔH (Low-T),-0.0025 (t=-0.88),—
+β_ΔH (High-T),-0.0034 (t=-1.24),—
+β_ΔH ratio (High/Low),1.374,≈1.0 (stable)
+β_ΔS (Low-T),0.0012 (t=0.42),—
+β_ΔS (High-T),0.0025 (t=1.62),—
+β_ΔS ratio |High|/|Low|,2.089,>1.0 (amplified)
+β_ΔS diff t-stat,0.73,—
+β_ΔS diff p-value,0.465,—
+L/S Ann Ret Low-T (%),-9.3,—
+L/S Ann Ret High-T (%),-15.9,—
+L/S Sharpe Low-T,-0.89,—
+L/S Sharpe High-T,-0.76,Higher in High-T

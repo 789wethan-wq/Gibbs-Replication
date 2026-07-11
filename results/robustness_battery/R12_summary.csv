@@ -1,0 +1,7 @@
+,qmj_t,bab_t,status,nw_recommended,verdict,corr_DH_DG_pearson_monthly_mean,corr_DH_DG_spearman_monthly_mean,corr_DH_DG_pearson_pooled,corr_DH_DG_spearman_pooled,pearson_nw_t,n_months,max_dd_ls,trough_date_ls,max_dd_inverse,trough_date_inverse,recovery_date_inverse,n_tests,nw_auto
+T1_QMJ_BAB,-3.980452974841395,-3.9814259352192205,OK,,,,,,,,,,,,,,,
+T2_ACF,,,OK,auto,ACF extends to lag 33. Use automatic bandwidth NW.,,,,,,,,,,,,,
+T3_corr,,,OK,,,0.9998,0.9997,0.9998,0.9997,33317.7131,347,,,,,,,
+T4_drawdown,,,OK,,,,,,,,,-0.9919,2023-11,-0.3957,2002-08,2003-09,,
+T5_LR,,,OK,,,,,,,,,,,,,,3,
+T6_NW,,,OK,,,,,,,,,,,,,,,5

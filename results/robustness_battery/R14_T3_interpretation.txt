@@ -1,0 +1,1 @@
+The inverse L/S (long Q1 high-ΔG, short Q5 low-ΔG) earns 14.29%/yr with Sharpe 0.67. Return distribution is positively skewed (0.67) with excess kurtosis 3.10 (Jarque-Bera p=0.000— non-normal). Monthly VaR(5%) = -8.24%, CVaR(5%) = -11.07%.

@@ -1,0 +1,106 @@
+================================================================
+SURVIVORSHIP-FREE EVIDENCE — KEY NUMBERS  (Brief V16, workarounds #4 + #5)
+Generated: 2026-06-17
+================================================================
+
+CONTEXT
+  The SEP equity-price product is NOT entitled on this Sharadar key (sample
+  only; zero delisted coverage), so the monthly survivorship-free PRICE panel
+  specified in the brief could not be built. Two zero-cost substitutes were run
+  instead:
+    #4  R18 — SF1 quarterly survivorship-free panel (real delisted firms)
+    #5  R19 — synthetic delisting-bias bound on the primary 462-name panel
+  Both use data already on disk; no new downloads.
+
+----------------------------------------------------------------
+#4  SF1 QUARTERLY SURVIVORSHIP-FREE PANEL  (R18)
+----------------------------------------------------------------
+UNIVERSE
+  US domestic common, SF1-covered:        15,522 tickers (11,178 delisted)
+  Full-channel panel:                     N=392,557  tickers=10,699
+  Entropy panel:                          N=420,712  tickers=12,022
+  Avg stocks/quarter (full-channel):      3,505   [S&P500 sample: 366/mo]
+  Date range:                             1995Q3 .. 2023Q4
+  Tickers ending pre-2023Q3 (delisted):   8,092  (65% of panel)
+  ΔH_GPM coverage:                        93.2%   [S&P500 sample: 92.9%]
+  FREQUENCY:                              QUARTERLY (SF1 filing prices) — coarser
+                                          than the monthly AHXZ iVol spec.
+
+SEPARATION DIAGNOSTIC
+  Corr(ΔH_GPM, ΔS), full universe:        -0.276   [S&P500: -0.259]  -> STABLE
+
+PRIMARY RESULTS (Fama-MacBeth, quarterly, NW-4)
+  β_ΔG  (Model A):        t = +1.92   (was significant & negative in-sample)
+  β_ΔH  (Model B):        t = +3.46   [S&P500: +2.45]  -> STRONGER
+  β_ΔS  (Model B):        t = +0.02   [S&P500: +4.80]  -> PREMIUM VANISHES
+                          (decomposition: ~60% universe breadth, ~30% survivorship,
+                           ~8% frequency — see DIAG_Q1Q3.md)
+  β_(T·ΔS) (Model C):     t = -0.55   (FM, insignificant)
+  β_(T·ΔS) (Encompass):   t = +0.76   [S&P500: +2.39]  (FM, insignificant)
+
+T-SCALING — CLUSTER-ROBUST WALD (the brief's primary deliverable)
+  date-cluster:           Wald p = 0.0125   [S&P500: 0.017]  -> SURVIVES
+  double-cluster:         Wald p = 0.0127                     -> SURVIVES
+  (NB: FM and pooled-Wald estimators disagree on T·ΔS — same M12 split noted
+   in the 6/17 handoff. The Wald deliverable the brief asked for survives;
+   the FM cross-sectional estimator does not corroborate it.)
+
+ASYMMETRIC TEMPERATURE PREDICTION (§4.4 — the headline structural claim)
+  β_ΔH ~ T:   slope=-0.109,  t = -1.75   [paper: ~-1.08, T-independent]  -> HOLDS
+  β_ΔS ~ T:   slope=+0.493,  t = +3.64   [paper: ~+2.45, T-dependent]    -> STRONGER
+
+QUINTILE SORTS (Q5-Q1, quarterly)
+  Sort on ΔG (composite):        L/S = +0.9%/yr   t=+0.20   (flat)
+  Sort on ΔS (disorder/iVol):    L/S = -1.0%/yr   t=-0.20   (flat)
+  -> Unconditional disorder premium is GONE once delisted firms enter.
+
+----------------------------------------------------------------
+#5  DELISTING-BIAS BOUND  (R19, synthetic stress on 462-name panel)
+----------------------------------------------------------------
+  Baseline δ=0 reproduces the paper headline:
+    ΔG L/S = -14.3%/yr (t=-3.60)   [paper: -13.4%/yr, t=-3.70]
+    disorder (ΔS) L/S = +13.4%/yr (t=+3.93)
+
+  Disorder premium vs. monthly delisting rate of high-disorder survivors:
+    δ=0.0%/mo  ->  +13.4%/yr (t=+3.93)
+    δ=0.5%/mo  ->   +0.3%/yr (t=+0.10)
+    δ=1.0%/mo  ->   -9.0%/yr (t=-3.05)
+    δ=2.0%/mo  ->  -24.3%/yr (t=-5.64)
+  -> Premium fully eliminated at ~0.5-1%/mo delisting — within observed rates
+     for distressed/high-iVol deciles. This bounds the SURVIVORSHIP COMPONENT
+     (the decisive marginal driver that pushes the premium through zero); the
+     controlled decomposition (DIAG_Q1Q3.md) attributes the LARGER share of the
+     FM t(ΔS) collapse to universe breadth (non-generalization beyond the S&P500).
+
+================================================================
+BOTTOM LINE
+  Two independent checks agree the unconditional disorder premium collapses; a
+  CONTROLLED one-variable-at-a-time decomposition (DIAG_Q1Q3.md / DIAG_channels.md)
+  shows the collapse has TWO drivers, not one:
+   * The unconditional "disorder is rewarded" / ΔG sign-inversion premium is
+     driven by (i) UNIVERSE BREADTH — it is a large-cap S&P500 phenomenon that
+     does not generalize to the full US-common universe (~60% of the FM t(ΔS)
+     collapse), and (ii) SURVIVORSHIP among the mostly small-cap delisted tail
+     (~30%), which removes the remainder and pushes t through zero. Frequency is
+     immaterial (~8%). So the vanishing (R18 FM t=+0.02) / reversal (R19) is
+     survivorship + non-generalization, NOT a pure survivorship artifact.
+     (FM t(ΔS) ladder: +4.59 monthly-S&P500 -> +4.17 quarterly -> +1.28 full-
+     universe survivor -> -0.28 full-universe incl delisted.)
+   * The two STRUCTURAL results survive AND are shown robust by the same
+     decomposition: (a) the T·ΔS Wald test (p=0.013) and (b) the asymmetric
+     temperature prediction (β_ΔS~T: t=+3.11 S&P500 -> +3.64 corrected; breadth
+     strengthens it, survivorship neutral). The stability channel ΔH is robustly
+     positively priced at every rung (FM t: +2.70 S&P500 -> +3.46 corrected).
+     NB: the asymmetric-prediction estimator survives, but the FM cross-sectional
+     T·ΔS LEVEL coefficient collapses like ΔS (+4.59 -> -0.55) — the same
+     FM-vs-Wald estimator disagreement noted below and in the 6/17 handoff.
+   * Separation (Corr ΔH,ΔS=-0.28) and ΔH coverage (93%) are stable.
+
+  CAVEATS: quarterly (not monthly) iVol; SF1 deep-history delisted coverage
+  thins before ~2000 (Enron/Lehman/WorldCom absent from all entitled tables);
+  R19 is a counterfactual bound, not a point estimate. The SF1 quarterly panel
+  applies NO true Shumway delisting return (firms that go to zero simply stop
+  appearing; last return winsorized at the 1st pct), so the measured survivorship
+  share (~30%) is a LOWER BOUND and R19's synthetic stress is the upper bound.
+  A monthly, fully survivorship-free replication still requires SEP / CRSP access.
+================================================================

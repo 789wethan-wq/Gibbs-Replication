@@ -1,0 +1,76 @@
+================================================================
+REVISION BATTERY — VERDICTS  (R20 + R21)
+Generated 2026-06-17.  Scripts: robustness/R20_section44_hac.py, R21_revision_battery.py
+Full logs: results/revision/R20_section44_hac.txt, R21_revision_battery.txt
+================================================================
+
+[#1 — MOST URGENT] §4.4 ASYMMETRIC PREDICTION UNDER HAC  ->  SURVIVES
+  Why the OLS t was suspect: T is near-unit-root (AR1=0.97).
+  BUT the dependent series β_ΔS is essentially white noise (AR1=0.02),
+  so persistence-driven spuriousness was never the real risk.
+                         OLS t    HAC t (NW lag by BIC)   R²
+   S&P500  β_ΔS ~ T:     +2.45  -> +2.25 (p=0.024)        0.018
+   S&P500  β_ΔH ~ T:     -1.08  -> -0.69 (p=0.488)        0.003   (insig = correct)
+   Surv-free β_ΔS ~ T:   +2.38  -> +2.70 (p=0.007)        0.049
+   Surv-free β_ΔH ~ T:   -1.50  -> -1.51 (insig)          0.020
+  -> The asymmetry (ΔS loads on T, ΔH does not) holds under HAC in BOTH samples.
+  CAVEATS to disclose: (a) R² is small (2-5%) — statistically present, economically
+  modest; (b) first-difference t drops to +1.95 (S&P) / -0.16 (surv-free). FD is
+  arguably over-differencing an I(0) dependent, but it is the honest weak point.
+
+[#2] NUMERICAL-COINCIDENCE (the two "2.45"s)  ->  DEBUNKED (independent)
+  Stat#1 t(β_ΔH FM mean, NW-5) = +2.70 ; Stat#2 t(β_ΔS~T, HAC) = +2.25.
+  Computed consistently they are NOT even equal. Corr(β_ΔH_t,β_ΔS_t)=+0.07;
+  joint block-bootstrap Corr(stat#1,stat#2)=0.000 over 1000 draws.
+  -> Two distinct computations that happened to round to 2.45 in the paper.
+
+[#3] DIRECT FM INTERACTION  ->  RESOLVES FM-vs-WALD IN PAPER'S FAVOR
+  Within one month Corr(ΔS, ΔS×T)=1.0000 (T constant in the cross-section), so the
+  interaction is NOT identified in a cross-sectional FM — the FM's null on T·ΔS is a
+  non-identification artifact, not evidence against T-scaling.
+  Identified pooled-panel interaction, two-way clustered: d(ΔS×T) t=+2.49, p=0.013
+  (matches the Wald, and the survivorship-free Wald p=0.0127).
+
+[#5] TABLE 1 t(ΔS)=4.80 vs TABLE 4 t(ΔS)=0.92  ->  DIFFERENT ESTIMANDS
+  4.80 = LEVEL test "is ΔS priced?" (NW-5 t on 334 monthly slopes; reproduced 4.68;
+         within-regime it is +4.63 low-T / +3.46 high-T — significant either way).
+  0.92 = DIFFERENCE test "is ΔS priced DIFFERENTLY in high- vs low-T?" (two-sample
+         t on the regime gap; reproduced +0.69, paper 0.73). |ratio| high/low = 1.32.
+  The reviewer's "t is scale-invariant" is true but irrelevant: these are different
+  hypotheses on different N, not the same statistic in different units.
+
+[#6] R18 SURVIVORSHIP-FREE PANEL A (FM NW-4)
+   Model A  ΔG:    coef +0.00590  t +1.92
+   Model B  ΔH:    coef +0.00577  t +3.46   ΔS: +0.00009  t +0.02 (premium gone)
+   Model C  ΔH:    coef +0.00577  t +3.46   T·ΔS: -0.05856  t -0.55 (FM, not identified)
+
+[#7] HIGH-T POST-2009  ->  MIXED / GENUINE VULNERABILITY
+   T·ΔS Wald  full: t=+2.39 (p=0.017) | pre-2009: t=+0.37 (p=0.71) | post-2009: t=+2.45 (p=0.014)
+   -> The ENTIRE T·ΔS effect is post-2009. Within post-2009, β_ΔS is significant in
+      both regimes (low-T t=3.38, high-T t=3.60) but the regime gap is small.
+   -> HONEST READ: the T-scaling may be a post-GFC/QE-era structural feature as much
+      as a "temperature" effect. This is a real concern, not a clean win.
+
+[#8] OOS QUARTERLY, SURVIVORSHIP-CORRECTED  ->  DIRECTIONAL ONLY
+   74 OOS quarters: mean L/S +1.01%/q (+4.1%/yr); profitable 46/74 (62%);
+   profitable years 12/19; OOS t=+1.09 (NOT significant).
+   vs contaminated S&P 14/18 — profitability persists in sign but loses significance.
+
+[#4] BOOTSTRAP DISTRIBUTION of T·ΔS Wald  ->  SIGN ROBUST, SIGNIFICANCE FRAGILE
+   500 block-bootstraps (block=12m): mean t=+1.83, median p=0.061,
+   %(p<0.05)=43.2% [the bare "52.3%"], %(p<0.10)=67%, %(t>0)=99.4%,
+   t pctiles 5/50/95 = +0.82/+1.87/+2.71.   High-T support (H3) = 84.6%.
+   -> The SIGN is essentially certain (99.4%) and H3 direction holds 85%; but the
+      interaction sits right at the 0.05 margin (median p=0.061). Report the
+      distribution, not "52.3% significant." Histogram: outputs/figures/fig_bootstrap_TxDS.png
+
+================================================================
+BOTTOM LINE FOR THE REVISION
+  Survives:   §4.4 under HAC (the make-or-break); the 2.45 coincidence; the FM/Wald
+              split (resolved for the paper); the Table 1/4 "discrepancy" (explained).
+  Vulnerable: T·ΔS is entirely post-2009 (regime vs calendar), bootstrap significance
+              is marginal (~43% / median p=0.061), survivorship-free OOS is insignificant
+              (t=1.09), and §4.4's R² is small. None of these is fatal, but together they
+              argue for the reframed paper: lead with the robust conditional STRUCTURE
+              (T-scaling Wald + asymmetry), demote unconditional-premium / OOS claims.
+================================================================

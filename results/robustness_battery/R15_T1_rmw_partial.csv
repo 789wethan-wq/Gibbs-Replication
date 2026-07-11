@@ -1,0 +1,5 @@
+model,b_dH,t_dH,b_dS,t_dS,vif_dH,dH_sig_2,dS_sig_3,test
+Model B baseline,0.001075,2.3208,0.005135,4.9834,1.079,True,True,R15.1
+Model B + RMW,0.001075,2.3207,0.005135,4.9851,1.079,True,True,R15.1
+Model B + CMA,0.001075,2.3206,0.005135,4.9846,1.079,True,True,R15.1
+Model B + RMW + CMA,0.001075,2.32,0.005134,4.9853,1.079,True,True,R15.1

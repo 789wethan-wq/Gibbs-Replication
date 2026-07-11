@@ -1,0 +1,5 @@
+spec,b_dH,t_dH,b_dS,t_dS,dH_pos,dH_sig_2,dS_sig_3,test
+A: FM NW-5,0.001043,2.7026,0.005108,4.6752,True,True,True,R15.2
+B: Double-cluster (date×firm),0.001075,2.8692,0.005135,5.2338,True,True,True,R15.2
+C: Driscoll-Kraay (bw=12),0.001075,2.8082,0.005135,5.0896,True,True,True,R15.2
+"D: Annual (Dec only, NW-2)",0.000324,0.3104,0.012822,3.5536,True,False,True,R15.2

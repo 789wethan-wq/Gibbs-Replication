@@ -1,0 +1,91 @@
+================================================================
+C-SERIES ROBUSTNESS AUDIT  —  sparse-row & related construction bugs
+Scope: R17 ceiling tests C01–C14, cross-checked against R16 and the
+       main pipeline. Generated 2026-06-17.
+================================================================
+
+TRIGGER
+  C06's window-sensitivity t(ΔS)=+0.92 (Table 5) was traced to a sparse-row
+  construction bug. This audit checks every C-series test — and the other
+  robustness scripts — for the same and related defects.
+
+METHOD
+  Read each C-test's data construction. Flag three defect classes:
+   (1) SPARSE-ROW: storing each (entity, sub-key) as a separate one-column row,
+       then reading multiple columns from a single row during forward-fill;
+   (2) DUPLICATE-MERGE: merging an un-deduplicated reference table -> row blow-up;
+   (3) IMPROPER BOOTSTRAP: deduping resampled dates -> not a true block bootstrap.
+  Each flag was confirmed empirically (re-run deduped/fixed vs original).
+
+----------------------------------------------------------------
+FINDINGS (3 issues; 1 material, 1 cosmetic, 1 methodological)
+----------------------------------------------------------------
+
+[C06] SPARSE-ROW BUG — MATERIAL — already fixed (R22)
+  What: window-sensitivity stored each (filing, window) as a separate sparse
+        row; the forward-fill read all five window columns from one sparse row,
+        so ΔH_60 was populated only in the ~1-year sliver between a firm's 5th
+        and 6th annual filing.
+  Impact: reported t(ΔS)=+0.92 at the 60-month window.
+  Confirmed: SPARSE (old) 60mo -> N=64 months, t(ΔS)=+1.14 (≈0.92)
+             DENSE (fixed) 60mo -> N=298 months, t(ΔS)=+4.44
+             Corrected sweep: t(ΔS) = +4.54/+4.62/+4.66/+4.44/+3.85 (24..72mo)
+  Conclusion: t(ΔS) does NOT depend on the ΔH window; it is ~4.4–4.7 throughout,
+              consistent with Table 2 (+4.68). The "fragility" was an artifact.
+  ACTION: replace Table 5 with the corrected sweep (R22_v19_battery.txt).
+
+[C08] DUPLICATE-MERGE — COSMETIC — conclusions unaffected
+  What: m.merge(tickers[["ticker","sector"]], on stock_id) without dedup. The
+        TICKERS table has ~2 rows per ticker (SEP + SF1 entries), so the panel
+        doubled: 126,990 -> 252,777 (1.99x). Sector assignment is consistent
+        (0 tickers with conflicting sector), so only N is double-counted.
+  Impact on inference: NONE. wald_cluster clusters by DATE, and a date-clustered
+        cluster-robust SE is invariant to exact within-date duplication.
+  Confirmed (deduped vs duplicated, identical p):
+        Technology  p=0.033* (both)   Consumer   p=0.077 (both)
+        Energy      p=0.127 (both)    Financials p=0.607 (both)
+        Healthcare  p=0.400 (both)    Industrials p=0.395 (both)  Materials p=0.183
+  ACTION: dedup the merge so the reported N is correct; the "only Technology
+          significant (p=0.033)" conclusion stands as-is.
+
+[C13] IMPROPER BLOCK BOOTSTRAP — METHODOLOGICAL — affects the 52.3% figure
+  What: boot_sample = sub13[sub13["date"].isin(set(block_dates))]. The set()
+        drops duplicate dates, so each draw is a random ~62% SUBSET of dates
+        (216 of 347) with no repeats — subsampling, not a block bootstrap.
+  Impact: the reported "% bootstrap samples with Wald p<0.05 = 52.3%" is biased
+        by the improper resampling.
+  Confirmed: a proper block bootstrap (keep repeats, 1,000 samples, block=12)
+        gives %(p<0.05)=42.5%, median p=0.063, %(t>0)=99.5%, H3 dir=83.4%
+        (R22_v19_battery.txt / fig_bootstrap_TxDS_v2.png).
+  ACTION: replace the 52.3% with the proper-bootstrap distribution (42.5%).
+
+----------------------------------------------------------------
+CLEAN (no sparse-row / duplicate-merge / bootstrap defect)
+----------------------------------------------------------------
+  C01 power-scaling arithmetic       C02 regime β_ΔS power (groupby/OLS)
+  C03 nonlinearity (vectorized)      C04 T-quintile monotonicity (vectorized)
+  C05 cross-channel two-step (OLS)   C07 alt-ΔS total-vol (rolling transform)
+  C09 iVol median split              C10 placebo T (date->value maps)
+  C11 sentiment control (date merge) C12 expanding-window FM
+  C14 combined strategy quintiles
+
+OTHER SCRIPTS
+  R16_qf_revision.py — uses the CORRECT dense merge_asof (all signal columns
+    carried together per filing, line 169). No sparse-row bug. q-factor numbers
+    are sound on this dimension.
+  project/sharadar_pipeline.py — merge_asof PIT fundamentals build: correct.
+  R21_revision_battery.py:178 — the H3-fraction sub-loop used the same set()
+    dedup (gave 84.6%); superseded by R22's proper version (83.4%). Negligible.
+
+----------------------------------------------------------------
+BOTTOM LINE FOR THE REFEREE ROUND
+  Three issues, only ONE changes a substantive number:
+   * C06 (Table 5): +0.92 -> ~+4.4 stable across windows. REPLACE the table.
+                    This STRENGTHENS the paper (no window fragility).
+   * C13 (bootstrap): 52.3% -> 42.5% proper. Update the figure/sentence; the
+                    qualitative read (sign near-certain, significance marginal)
+                    is unchanged.
+   * C08 (sector): reported N was 2x too large; p-values and the Technology-only
+                    result are unaffected. Fix N for accuracy.
+  All other C-series tests and the q-factor/pipeline code are clean.
+================================================================

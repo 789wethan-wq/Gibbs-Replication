@@ -1,0 +1,7 @@
+Specification,DG_coef,DG_t,DH_z_coef,DH_z_t,DS_z_coef,DS_z_t,TxDS_coef,TxDS_t,const_coef,const_t,N_obs
+Model A — ΔG only,-0.0047***,(-3.98),,,,,,,0.0147***,(6.24),347
+Model A + FF5,-0.0047***,(-3.98),,,,,,,,,347
+Model B — Unconstrained,,,-0.0030,(-1.51),0.0020,(1.37),,,0.0147***,(6.24),347
+Model B + FF5,,,-0.0030,(-1.51),0.0020,(1.37),,,,,347
+Model C — Gibbs constrained,,,-0.0030,(-1.51),,,0.0603,(1.28),0.0147***,(6.24),347
+Model C + FF5,,,-0.0030,(-1.51),,,0.0603,(1.28),,,347

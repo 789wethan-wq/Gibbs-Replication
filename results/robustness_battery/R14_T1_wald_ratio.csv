@@ -1,0 +1,2 @@
+test,b_DH,b_TxDS,ratio,se_ratio_delta,ci_lo_95,ci_hi_95,excludes_neg1,wald_neg1_chisq,wald_neg1_p
+R14.1,-0.00225,0.134569,-59.8212,41.6053,-141.3676,21.7252,False,1.9988,0.157424

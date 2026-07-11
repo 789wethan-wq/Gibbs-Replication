@@ -1,0 +1,11 @@
+subset,N,G,b_TxDS,t_TxDS,wald_chisq,p_cluster,significant_5pct,model,test
+Full sample,118014,335,0.135353,2.3851,5.6886,0.017075,True,accounting ΔH,R15.3
+Excl. 2000–2009,78761,215,0.160784,2.0581,4.2357,0.039583,True,accounting ΔH,R15.3
+Excl. dot-com (2000–2002),107515,299,0.136772,2.3952,5.7372,0.016609,True,accounting ΔH,R15.3
+Excl. GFC (2008-07 – 2009-06),113695,323,0.136736,1.9235,3.6999,0.054414,False,accounting ΔH,R15.3
+Post-2009 only (≥2010),69917,167,0.146259,1.8344,3.365,0.066596,False,accounting ΔH,R15.3
+Full sample (replication),126990,347,0.134569,2.4708,6.1046,0.013483,True,price-based ΔH,R14.2
+Excl. 2000–2009,86649,227,0.163595,2.1991,4.8361,0.02787,True,price-based ΔH,R14.2
+Excl. 2008–2009 (GFC only),118154,323,0.153425,2.1807,4.7556,0.029203,True,price-based ΔH,R14.2
+Excl. 2000–2002 (dot-com),116082,311,0.136357,2.482,6.1602,0.013066,True,price-based ΔH,R14.2
+Post-2009 only (≥2010),71215,167,0.1411,1.8085,3.2708,0.070523,False,price-based ΔH,

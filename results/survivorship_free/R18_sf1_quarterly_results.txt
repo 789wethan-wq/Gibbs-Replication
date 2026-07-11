@@ -1,0 +1,92 @@
+================================================================
+R18 — SF1 QUARTERLY SURVIVORSHIP-FREE PANEL
+================================================================
+
+Universe (US dom common, SF1): 15,522 tickers (11,178 delisted)
+
+Loading SF1 ARQ price series...
+Quarterly return obs: 558,655 | tickers: 12,750 | quarters: 131
+
+Computing quarterly idiosyncratic volatility (12q rolling FF3)...
+ΔS obs: 469,405 | tickers: 12,750
+
+Building ΔH_GPM (rolling 60m GPM std) and sampling to quarter-end...
+ΔH_GPM quarterly obs: 967,187 | tickers: 13,316
+
+Assembling panel...
+
+Entropy panel:      N=420,712  tickers=12,022  avg/q=3723
+Full-channel panel: N=392,557  tickers=10,699  avg/q=3505
+Date range: 1995Q3 .. 2023Q4
+Tickers in full panel whose series ends pre-2023Q3: 8,092 (65%) — delisted/dropped mid-sample
+ΔH_GPM coverage within entropy panel: 93.2%
+
+----------------------------------------------------------------
+SEPARATION DIAGNOSTIC
+  Corr(ΔH_GPM, ΔS), full universe: -0.276   [S&P500 sample: -0.259]
+
+----------------------------------------------------------------
+FAMA-MACBETH (quarterly, NW-4)
+Model A — composite ΔG
+  β_ΔG                       β=+0.00590  t=+1.92  (Tq=111)
+Model B — decomposed ΔH + ΔS
+  β_ΔH                       β=+0.00577  t=+3.46  (Tq=111)
+  β_ΔS                       β=+0.00009  t=+0.02  (Tq=111)
+Model C — ΔH + T·ΔS
+  β_ΔH                       β=+0.00577  t=+3.46  (Tq=111)
+  β_(T·ΔS)                   β=-0.05856  t=-0.55  (Tq=111)
+Encompassing — ΔH + ΔS + T·ΔS
+  β_ΔH                       β=+0.00577  t=+3.46  (Tq=111)
+  β_ΔS                       β=+0.00006  t=+0.01  (Tq=111)
+  β_(T·ΔS)                   β=+0.00022  t=+0.76  (Tq=111)
+
+----------------------------------------------------------------
+CLUSTER-ROBUST WALD TEST (T·ΔS = 0)
+  date-cluster     β(T·ΔS)=+0.46539  t=+2.50  Wald p=0.0125   [S&P500: p=0.017]
+  double-cluster   β(T·ΔS)=+0.46539  t=+2.49  Wald p=0.0127   [S&P500: p=0.017]
+
+----------------------------------------------------------------
+ASYMMETRIC TEMPERATURE PREDICTION (§4.4)
+  β_ΔH ~ T     slope=-0.1093  t=-1.75
+  β_ΔS ~ T     slope=+0.4934  t=+3.64
+  (paper: ΔH T-independent t≈-1.08, ΔS T-dependent t≈+2.45)
+
+----------------------------------------------------------------
+QUINTILE SORTS  (Q5−Q1 long-short)
+  Sort on ΔG (composite)
+    Q1: +2.27%/q (+9.1%/yr ann)
+    Q2: +3.28%/q (+13.1%/yr ann)
+    Q3: +3.34%/q (+13.4%/yr ann)
+    Q4: +3.01%/q (+12.0%/yr ann)
+    Q5: +2.49%/q (+10.0%/yr ann)
+    L/S (Q5−Q1): +0.22%/q (+0.9%/yr)  t=+0.20  (Tq=112)
+  Sort on ΔS (disorder / iVol) — AHXZ premium
+    Q1: +2.27%/q (+9.1%/yr ann)
+    Q2: +2.87%/q (+11.5%/yr ann)
+    Q3: +3.39%/q (+13.6%/yr ann)
+    Q4: +3.26%/q (+13.1%/yr ann)
+    Q5: +2.01%/q (+8.0%/yr ann)
+    L/S (Q5−Q1): -0.25%/q (-1.0%/yr)  t=-0.20  (Tq=113)
+
+================================================================
+POST-HOC DECOMPOSITION NOTE  (added by DIAG_survivorship.py / DIAG_channels.py)
+================================================================
+The +4.80 -> +0.02 collapse in FM t(ΔS) is NOT a pure survivorship artifact.
+Controlled one-variable-at-a-time ladder (frequency/measure, then breadth, then
+survivorship; each toggle changes exactly one attribute):
+
+  FM t(ΔS):  +4.59 monthly-S&P500-survivor
+          -> +4.17 quarterly-S&P500-survivor      (frequency/measure  Δt -0.41, ~8%)
+          -> +1.28 quarterly-full-universe-survivor(breadth            Δt -2.89, ~59%)
+          -> -0.28 quarterly-full-universe-ALL     (survivorship       Δt -1.56, ~32%)
+
+  => breadth (non-generalization beyond the S&P500) is the LARGER driver;
+     survivorship is the decisive marginal toggle that pushes t through zero.
+     Survivorship share is a LOWER bound (no true Shumway delisting return here).
+
+Channel decomposition (DIAG_channels.md):
+  ΔH (quality):            FM t +2.70 -> +3.46   SURVIVES/STRENGTHENS all toggles
+  β_ΔS~T (asymmetric §4.4): t +3.11 -> +3.64      SURVIVES (breadth strengthens it)
+  FM T·ΔS (level coef):     t +4.59 -> -0.55      COLLAPSES like ΔS (breadth+surv.)
+                                                  (FM-vs-Wald estimator disagreement)
+================================================================

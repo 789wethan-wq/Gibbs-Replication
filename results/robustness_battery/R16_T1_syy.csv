@@ -1,0 +1,4 @@
+b_TxDS,t_TxDS,wald_chisq,p,n,G,model,b_mip,t_mip,b_mipT,t_mipT,test
+0.135353,2.3851,5.6886,0.017075,118014,335,Baseline (no mispricing control),,,,,R16.1
+0.134557,2.372,,0.01769,118014,335,+ mispricing_z control,-0.001637,-4.0998,,,R16.1
+0.136302,2.3956,,0.016591,118014,335,+ mispricing_z + mip×T interaction,-0.000445,-0.481,-0.027722,-1.3703,R16.1

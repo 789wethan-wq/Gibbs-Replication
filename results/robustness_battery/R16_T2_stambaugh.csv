@@ -1,0 +1,2 @@
+test,rho_T_ols,rho_T_adj,sigma_uv,sigma2_v,bias_hat,bias_pct,b_uncorr,t_uncorr,b_corrected,t_corrected,direction_holds,sig_holds,verdict
+R16.2,0.9725,0.9842,-8.3e-07,2.385e-05,-0.00040707,-150.21,0.000271,3.8862,0.000678,9.7235,True,True,Survives

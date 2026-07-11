@@ -1,0 +1,6 @@
+Criterion,Value,Verdict
+ΔAIC (B−C),+94.301,Constrained preferred
+ΔBIC (B−C),+94.301,Constrained preferred
+Vuong Z,+2.708,Reject H0 (models differ)
+Vuong p,0.007,Constrained significantly better
+Overall,,Gibbs constraint valid

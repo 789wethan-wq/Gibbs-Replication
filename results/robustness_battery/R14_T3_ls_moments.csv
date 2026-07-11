@@ -1,0 +1,3 @@
+series,n_months,mean_monthly,mean_annual,median_monthly,std_monthly,std_annual,skewness,excess_kurtosis,VaR_5pct,CVaR_5pct,max_gain,max_loss,jb_stat,jb_p,normal,test
+"L/S (long Q5, short Q1)",347,-0.011908,-0.1429,-0.010936,0.061658,0.2136,-0.6726,3.102,-0.114454,-0.162954,0.177861,-0.349231,159.5792,0.0,False,R14.3
+"Inverse L/S (long Q1, short Q5)",347,0.011908,0.1429,0.010936,0.061658,0.2136,0.6726,3.102,-0.082363,-0.110732,0.349231,-0.177861,159.5792,0.0,False,R14.3

@@ -1,0 +1,6 @@
+factor,R2_vs_FF5UMD,VIF,interpretation,added_factor,R2_base_FF5UMD,R2_extended,partial_R2,F_stat,test
+QMJ,0.6951,3.2795,low multicollinearity,,,,,,R13.2
+BAB,0.2633,1.3573,low multicollinearity,,,,,,R13.2
+,,,,QMJ,0.0179,0.0187,0.0008,0.921,R13.2
+,,,,BAB,0.0179,0.0195,0.0016,0.963,R13.2
+,,,,QMJ+BAB,0.0179,0.0199,0.002,0.858,R13.2

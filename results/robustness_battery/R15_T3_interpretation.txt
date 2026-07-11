@@ -1,0 +1,1 @@
+Accounting-based Wald p-value excluding 2000–2009: 0.040. Signal survives crisis exclusion (p<0.05). Full-sample p=0.017. Post-2009-only p=0.067. For comparison, price-based Wald excl. 2000–2009 p=0.02787.

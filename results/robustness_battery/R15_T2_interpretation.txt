@@ -1,0 +1,1 @@
+Under double-clustering (date × firm), β_ΔH t-statistic is 2.87 (significant at |t|>2). Under annual-only cross-sections (December), β_ΔH t-statistic is 0.31 (NOT significant at |t|>2). Driscoll-Kraay (bw=12) t(ΔH)=2.81. Serial dependence correction does materially affect the stability channel result.

@@ -1,0 +1,2 @@
+true_z,true_p,null_mean,null_sd,null_p5,null_p95,pct_null_neg,pct_below_true,empirical_p,percentile_rank_of_true,n_permutations
+2.7076,0.0068,-0.7721,1.4372,-2.2373,2.0096,71.1,98.7,0.013,98.7,1000

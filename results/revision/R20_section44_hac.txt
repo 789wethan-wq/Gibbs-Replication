@@ -1,0 +1,62 @@
+======================================================================
+R20 — §4.4 HAC BATTERY  /  numerical coincidence  /  direct FM interaction
+======================================================================
+
+######################################################################
+# SAMPLE 1 — S&P 500 monthly panel (paper §4.4)
+######################################################################
+
+Step-1 monthly betas: T=334 months (1996-02-29..2023-11-30)
+Persistence: AR1(T)=+0.97  AR1(β_ΔH)=+0.00  AR1(β_ΔS)=+0.02
+
+[1] STEP-2 ASYMMETRIC PREDICTION — OLS vs HAC(BIC) vs first-difference
+  β_ΔH ~ T   (want ~0)
+    slope=-0.0219  R²=0.003  n=334  AR1(y)=+0.00  eff.df≈333
+    OLS  t=-1.08 (p=0.282)   <- pre-correction
+    HAC  t=-0.69 (p=0.488)  [NW lag=1 by BIC]
+    ΔΔ   t=-0.96 (first-difference, stationarity check)
+  β_ΔS ~ T   (want significant)
+    slope=+0.1285  R²=0.018  n=334  AR1(y)=+0.02  eff.df≈319
+    OLS  t=+2.45 (p=0.015)   <- pre-correction
+    HAC  t=+2.25 (p=0.024)  [NW lag=1 by BIC]
+    ΔΔ   t=+1.95 (first-difference, stationarity check)
+
+  VERDICT (S&P): β_ΔS~T survives HAC? YES (HAC t=+2.25); survives first-difference? NO (t=+1.95)
+
+[2] NUMERICAL-COINCIDENCE TEST — is t(β_ΔH FM)=2.45 the same number as t(β_ΔS~T)=2.45?
+    Statistic #1  t(β_ΔH FM mean, NW-5)      = +2.7026
+    Statistic #2  t(β_ΔS ~ T, HAC)           = +2.2529
+    Corr(β_ΔH_t, β_ΔS_t) input series        = +0.071
+    Corr(β_ΔS_t, T_t)                         = +0.133
+    Joint block-bootstrap Corr(stat#1, stat#2) over 1000 draws = +0.000
+    -> two statistics are INDEPENDENT (|corr|≈0); the matching 2.45 is a
+       coincidence of two distinct computations, not a duplicated number.
+
+[3] DIRECT FM INTERACTION — why the cross-sectional FM cannot carry ΔS×T
+    Within one month, Corr(ΔS, ΔS×T) = 1.0000  (=1.00: T constant in the cross-section,
+    so ΔS×T is a rescaling of ΔS and the interaction is NOT identified in FM).
+    Pooled panel  r = a + b·ΔH + c·ΔS + d·(ΔS×T),  two-way clustered:
+      d (ΔS×T) = +0.13535   t = +2.49   Wald p = 0.0128
+    -> The interaction IS identified across months (pooled), NOT within (FM).
+       This is exactly why the Wald test and the cross-sectional FM disagree.
+
+######################################################################
+# SAMPLE 2 — R18 survivorship-free quarterly panel
+######################################################################
+
+Step-1 quarterly betas: T=111 quarters
+Persistence: AR1(T)=+0.85  AR1(β_ΔS)=+0.07
+
+[1q] STEP-2 ASYMMETRIC PREDICTION (survivorship-free) — OLS vs HAC vs ΔΔ
+  β_ΔH ~ T
+    slope=-0.1093  R²=0.020  n=111  AR1(y)=+0.05  eff.df≈100
+    OLS  t=-1.50 (p=0.137)   <- pre-correction
+    HAC  t=-1.51 (p=0.130)  [NW lag=1 by BIC]
+    ΔΔ   t=+1.07 (first-difference, stationarity check)
+  β_ΔS ~ T
+    slope=+0.4934  R²=0.049  n=111  AR1(y)=+0.07  eff.df≈96
+    OLS  t=+2.38 (p=0.019)   <- pre-correction
+    HAC  t=+2.70 (p=0.007)  [NW lag=1 by BIC]
+    ΔΔ   t=-0.16 (first-difference, stationarity check)
+
+  VERDICT (survivorship-free): β_ΔS~T survives HAC? YES (HAC t=+2.70); first-diff NO (t=-0.16)

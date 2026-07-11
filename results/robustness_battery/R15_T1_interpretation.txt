@@ -1,0 +1,1 @@
+Does β_ΔH survive standalone RMW control? YES — pooled-OLS t(β_ΔH) moves from 2.32 (baseline) to 2.32 after adding RMW_t. VIF of ΔH_GPM against RMW: 1.08. Note: in FM cross-sections RMW_t is constant within each month and is absorbed by the intercept, leaving FM β_ΔH unchanged. The pooled test is the operative robustness check.

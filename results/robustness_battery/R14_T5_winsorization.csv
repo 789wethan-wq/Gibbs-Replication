@@ -1,0 +1,2 @@
+test,method,code_reference,baseline_fm_t_DG,difference_from_rerun,look_ahead_bias
+R14.5,within-month (b) — look-ahead-free,01b_stock_variables.py: groupby(date).transform(winsorize),-3.9806,0.0,False

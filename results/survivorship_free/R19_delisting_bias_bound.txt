@@ -1,0 +1,54 @@
+================================================================
+R19 — DELISTING-BIAS BOUND (synthetic stress test)
+================================================================
+
+Primary panel: N=126,990  tickers=462  months=347  (1995-01-31..2023-11-30)
+Headline sign-inversion sort variable: DG (price-based Gibbs score)
+Distress proxy for delisting: high disorder = high DS_z (entropy)
+
+----------------------------------------------------------------
+  δ/mo     dr | ΔG L/S %/yr      t |  FM t(ΔG) | ΔS(disorder) L/S      t
+----------------------------------------------------------------
+ 0.000      — |      -14.29  -3.60 |     -4.01 |           +13.36  +3.93
+ 0.005  -0.40 |       -3.74  -1.02 |     -2.09 |            +0.30  +0.10
+ 0.010  -0.40 |       +2.58  +0.72 |     -0.52 |            -9.01  -3.05
+ 0.020  -0.40 |      +15.80  +3.33 |     +1.99 |           -24.34  -5.64
+ 0.050  -0.40 |      +50.72  +6.69 |     +3.95 |           -76.10  -9.47
+ 0.020  -0.30 |      +15.43  +4.06 |     +2.69 |           -19.75  -5.69
+ 0.020  -0.55 |      +31.59  +7.48 |     +4.88 |           -41.03 -11.00
+----------------------------------------------------------------
+
+INTERPRETATION
+  Survivor-only (δ=0) reproduces the paper headline:
+    ΔG L/S = -14.3%/yr (t=-3.60)   [paper: -13.4%/yr, t=-3.70]
+    disorder (ΔS) L/S = +13.4%/yr (t=+3.93)
+
+  Under synthetic delisting of the most-distressed survivors, the
+  disorder premium does NOT attenuate gently — it collapses and REVERSES:
+    δ= 0.0%/mo  →  disorder L/S =  +13.4%/yr (t=+3.93)
+    δ= 0.5%/mo  →  disorder L/S =   +0.3%/yr (t=+0.10)
+    δ= 1.0%/mo  →  disorder L/S =   -9.0%/yr (t=-3.05)
+    δ= 2.0%/mo  →  disorder L/S =  -24.3%/yr (t=-5.64)
+    δ= 5.0%/mo  →  disorder L/S =  -76.1%/yr (t=-9.47)
+
+  → The +13.4%/yr premium is fully eliminated at a delisting rate of
+    only ~1.0%/mo among high-disorder firms — well within
+    empirically observed rates for distressed / high-iVol deciles
+    (~0.4-1%/mo). This bounds the SURVIVORSHIP COMPONENT of the
+    unconditional disorder premium: it is the decisive marginal driver
+    that pushes the premium through zero, but NOT the whole story.
+
+  This agrees with R18 (actual delisted firms), where the ΔS premium
+  vanishes outright (FM t = +0.02). The controlled one-variable-at-a-time
+  decomposition (robustness/DIAG_survivorship.py -> DIAG_Q1Q3.md) splits
+  that collapse: ~60% is UNIVERSE BREADTH (the premium is a large-cap
+  S&P500 result that does not generalize to the full US-common universe),
+  ~30% is survivorship among the mostly small-cap delisted tail, ~8% is
+  frequency. So the honest framing is 'survivorship + non-generalization',
+  not a pure survivorship artifact. Because the SF1 quarterly panel applies
+  no true Shumway delisting return, the ~30% survivorship share is a LOWER
+  BOUND and this synthetic stress test is the complementary upper bound.
+
+  CAVEAT: synthetic stress on survivors bounds the bias direction and
+  magnitude; it is not a point estimate. The empirical point estimate
+  (real delisted firms) is in R18_sf1_quarterly_results.txt.

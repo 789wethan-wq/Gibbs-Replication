@@ -1,0 +1,31 @@
+=== R17 VALIDATION SUMMARY ===
+Generated: 2026-06-17 12:57
+Runtime: 7.3 minutes
+
+DISCREPANCIES FOUND: 7 of 21 validation tests
+CLEAN MATCHES:       52 of 59 tests
+
+VALIDATION DETAIL (any discrepancies):
+  PAPER CLAIMS: +0.031 — CODE FINDS: +0.002 (t=0.31, T=335) — STATUS: DISCREPANCY
+  PAPER CLAIMS: N=126,990, T=347, avg=366 — CODE FINDS: N=118,014, T=335, avg=352.3 — STATUS: DISCREPANCY
+  PAPER CLAIMS: VIF QMJ=3.28 — CODE FINDS: 3.70 — STATUS: DISCREPANCY
+  PAPER CLAIMS: VIF BAB=1.36 — CODE FINDS: 1.62 — STATUS: DISCREPANCY
+  STATUS ΔS: DISCREPANCY
+  STATUS: DISCREPANCY
+  STATUS difference p: DISCREPANCY
+
+CEILING TEST KEY FINDINGS:
+- C01 Unit-ratio CI at N=3,000/mo: SE shrinks ~2.9x; CI narrows proportionally but likely still wide
+- C02 H3 power: Current power to detect 1.57x ratio: 18.4%
+- C03 Nonlinearity: see R17_ceiling_tests.txt for t-stats by functional form
+- C04 T-quintile monotonicity: Monotonically increasing in T? False (H3 predicts YES)
+- C05 Cross-channel: β_ΔH ~ T: t = -1.08 (should be ~0 if Gibbs correct) | β_ΔS ~ T: t = +2.45 (should be significant if Gibbs correct)
+- C10 Placebo T: see R17_ceiling_tests.txt for placebo p-values
+- C13 Bootstrap: see R17_ceiling_tests.txt for 95% CIs
+
+MISTAKE FLAGS: 3 flags found
+  CHECK: Double-clustering — RESULT: FLAG — double-cluster did NOT inflate SEs
+
+PASS count (mistake checks): 27
+
+OVERALL: Paper is HAS 7 DISCREPANCIES requiring attention

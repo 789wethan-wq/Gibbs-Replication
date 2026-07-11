@@ -1,0 +1,5 @@
+model,b_dH,t_dH,b_dS,t_dS,b_TxDS,t_TxDS,b_dH_gpm_z,b_DS_z,b_max_proxy_z,t_dH_gpm_z,t_DS_z,t_max_proxy_z,b_MAX,t_MAX,p_TxDS,wald_chisq,p,n,G,test
+FM baseline,0.001043,2.7026,0.005108,4.6752,,,,,,,,,,,,,,,,R16.4
+Model B + MAX proxy,0.001075,2.3198,0.005132,5.2615,0.005132,5.2615,0.001075,0.005132,8e-06,2.3198,5.2615,0.0124,,,,,,,,R16.4
+Model C (T·ΔS) + MAX proxy,0.001142,2.5455,,,0.123136,5.11,,,,,,,-6.3e-05,-0.0938,0.0,,,,,R16.4
+Encompassing baseline,,,,,0.135353,2.3851,,,,,,,,,,5.6886,0.017075,118014.0,335.0,R16.4

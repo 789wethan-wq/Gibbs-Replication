@@ -1,0 +1,3 @@
+test,restriction,lr_standard,p_standard,wald_cluster,p_cluster,se_inflation,verdict
+R13.4,T·ΔS=0,109.872,0.0,6.105,0.013483,4.243,significant
+R13.4,ΔS=0,15.571,7.9e-05,1.223,0.268685,3.568,NOT significant at 5%

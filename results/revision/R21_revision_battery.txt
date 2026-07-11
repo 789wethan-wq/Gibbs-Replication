@@ -1,0 +1,55 @@
+======================================================================
+R21 — REVISION BATTERY (tasks 4-8)
+======================================================================
+
+######################################################################
+# [5] Table 1 t(ΔS)=+4.80  vs  Table 4 t(ΔS)=+0.92 — spec diff
+######################################################################
+  (A) FM Model B, NW-5, full sample:        t(ΔS) = +4.68   (n_months=334)
+  (B) FM Model B within low-T regime:        t(ΔS) = +4.63   (n_months=121)
+  (B) FM Model B within high-T regime:        t(ΔS) = +3.46   (n_months=213)
+  (C) FM Model B aggregated ANNUALLY:        t(ΔS) = +5.20   (n_years=28)
+  Likely resolution: 4.80 = NW-5 t on 334 MONTHLY cross-sectional slopes
+  (high N -> high power); 0.92 = a LOW-FREQUENCY / regime-restricted t on
+  far fewer obs. t IS scale-invariant, but it is NOT sample/spec-invariant:
+  the two numbers use different N and conditioning, not different units.
+
+######################################################################
+# [6] R18 survivorship-free panel — Panel A (Models A/B/C, FM NW-4)
+######################################################################
+  Model                            coef   t (NW-4)    Tq
+  A: ΔG                        +0.00590      +1.92   111
+  B: ΔH                        +0.00577      +3.46   111
+  B: ΔS                        +0.00009      +0.02      
+  C: ΔH                        +0.00577      +3.46   111
+  C: T·ΔS                      -0.05856      -0.55      
+
+######################################################################
+# [7] High-T post-2009 — disentangle T-regime from calendar period
+######################################################################
+  T·ΔS Wald — FULL sample   : β=+0.1354  t=+2.39  p=0.0171  (N=118,014)
+  T·ΔS Wald — pre-2009      : β=+0.0397  t=+0.37  p=0.7135  (N=43,728)
+  T·ΔS Wald — post-2009     : β=+0.1578  t=+2.45  p=0.0142  (N=74,286)
+  β_ΔS post-2009 low-T   : t=+3.38 (n_months=57)
+  β_ΔS post-2009 high-T  : t=+3.60 (n_months=122)
+  -> If T·ΔS still significant post-2009 AND high-T differs from low-T within
+     the post-2009 window, the effect is the T-regime, not a calendar artifact.
+
+######################################################################
+# [8] OOS quarterly, survivorship-corrected (vs 14/18 contaminated)
+######################################################################
+  OOS quarters: 74  mean L/S = +1.01%/q (+4.1%/yr)
+  Profitable quarters: 46/74 (62%)
+  Profitable years:    12/19   [contaminated S&P: 14/18]
+  OOS L/S t-stat: +1.09
+
+######################################################################
+# [4] Bootstrap distribution of T·ΔS Wald (reframe bare 52.3%)
+######################################################################
+  T·ΔS Wald over 500 block-bootstraps (block=12m):
+    mean t=+1.83  median p=0.061
+    %(p<0.05) = 43.2%   [the bare '52.3%']
+    %(p<0.10) = 67.0%   %(t>0) = 99.4%
+    t percentiles 5/50/95 = +0.82/+1.87/+2.71
+  High-T support fraction (|β_ΔS,high|>|β_ΔS,low|): 84.6%  (H3)
+  Saved histogram: ../outputs/figures/fig_bootstrap_TxDS.png

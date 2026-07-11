@@ -1,0 +1,6 @@
+spec,fm_t_DG,fm_coef_DG,note,fm_coef_TxDS,fm_t_TxDS,vuong_z,vuong_p,delta_aic,test
+Baseline (standard T),-3.9805727303986296,-0.004658261473091343,,,,,,,R13.1
+Model A (expanding T),-2.989270646167937,-0.0035109980655790617,,,,,,,R13.1
+Model B: DH+DS (T-independent),-1.5071802434788009,-0.0030279581937945315,DH coefficient shown,,,,,,R13.1
+Model C (expanding T): DH+T_exp·DS,-1.4287731998037088,,,-0.005289931735066825,-0.8265380817753173,,,,R13.1
+Vuong (expanding T): constrained vs unconstrained,,,,,,-6.598179951950104,4.162359346082667e-11,-304.05370117892744,R13.1

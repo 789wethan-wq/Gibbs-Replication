@@ -1,0 +1,3 @@
+,N,R²,Adj R²,AIC,BIC,Log-L
+Model B (Unconstrained),126990,0.0025,0.0025,-232822.7,-232793.5,116414.4
+Model C (Gibbs-Constrained),126990,0.0032,0.0032,-232917.0,-232887.8,116461.5

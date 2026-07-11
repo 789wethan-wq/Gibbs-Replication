@@ -1,0 +1,1 @@
+Excluding 2000–2009, T·ΔS cluster-robust Wald p=0.028 (significant at 5%). Full-sample p=0.013. The T·ΔS effect is not confined to the crisis decade; it holds outside it as well. Excluding only 2008–2009 yields p=0.029, indicating the GFC contributes more to the result.

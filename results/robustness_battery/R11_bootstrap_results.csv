@@ -1,0 +1,4 @@
+test,spec,statistic,actual_value,boot_mean,boot_ci_lo,boot_ci_hi,boot_p_val,boot_skew,n_boot,pass_fail,notes
+R11.1,bootstrap-FM-t,FM_t,-3.9806,-3.1933,-0.0063,-0.0029,0.0,-0.1351,500,PASS,CI contains zero: False
+R11.2,bootstrap-LS-mean,LS_mean,-0.0119,-0.0114,-0.018,-0.0052,0.0,-0.2442,500,PASS,"skew=-0.24, kurt=0.18"
+R11.3,bootstrap-Vuong-Z,Vuong_Z,2.7076,2.6745,0.6804,4.0749,0.012,-1.1347,500,PASS,actual Vuong p=0.0068

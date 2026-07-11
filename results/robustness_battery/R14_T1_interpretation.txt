@@ -1,0 +1,1 @@
+The cluster-robust 95% CI for β_TxDS/β_DH is [-141.37, 21.73], which includes the Gibbs-predicted value of −1. The Wald test of H0: ratio=−1 yields χ²=2.0 (p=0.1574), not rejecting the exact constraint. The estimated ratio -59.82 indicates T·ΔS dominates ΔH in this specification, consistent with the sign inversion but departing from the unit-ratio restriction.

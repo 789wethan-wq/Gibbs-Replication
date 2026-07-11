@@ -1,0 +1,1 @@
+Bias-corrected T·ΔS: uncorrected t = 3.89, bias-corrected t = 9.72. T AR(1) = 0.972; bias correction = -4.07e-04 (-150.2% of the point estimate). Survives — direction preserved, |t|>2.0 after correction.

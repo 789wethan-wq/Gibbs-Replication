@@ -1,0 +1,10 @@
+metric,value
+Total specifications,576
+H1 PASS rate (sign correct),100.0%
+H1 PASS rate (|t| > 2.5),46.1%
+H2 PASS rate (Vuong Z > 0),38.0%
+H2 PASS rate (Vuong p < 0.05),80.0%
+H3 PASS rate (beta_DS ratio > 1.0),NA
+H1 VERDICT,SUPPORTED
+H2 VERDICT,WEAK
+H3 VERDICT,WEAK
