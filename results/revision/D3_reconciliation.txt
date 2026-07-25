@@ -1,0 +1,35 @@
+D3 — Reconciling +1.03 (2x2, D1a) against +0.58 (Table 12) for the top-500,
+no-survival-requirement cell
+=====================================================================
+
+Ran all four combinations of {lagged cap, contemporaneous cap} x {2x2-rig
+construction, Table-12-ladder-rig construction} as four SEPARATE processes
+(distinct PIDs 11068/11071/11074/11079), each rebuilding the panel from
+parquet fresh and hashing its own design matrix.
+
+RESULT:
+  cap=lag,     rig=2x2:      t(dS)=+1.0270  N=52,310  hash=b61e63fe...
+  cap=lag,     rig=table12:  t(dS)=+1.0270  N=52,310  hash=b61e63fe...  (IDENTICAL hash to above)
+  cap=contemp, rig=2x2:      t(dS)=+0.5823  N=52,261  hash=4b7491fa...
+  cap=contemp, rig=table12:  t(dS)=+0.5823  N=52,261  hash=4b7491fa...  (IDENTICAL hash to above)
+
+The rig (2x2-script construction vs Table-12-ladder-script construction) is
+CONFIRMED to make no difference whatsoever -- both produce byte-identical
+design matrices at each cap timing (same rank-then-subset order, same
+within-subset re-standardization, same min_cs=20 canonical FM floor). The
+entire +1.03-vs-+0.58 gap is attributable to cap timing alone:
+  lagged (t-1) cap:      t(dS) = +1.0270  -> rounds to the 2x2's reported +1.03
+  contemporaneous cap:   t(dS) = +0.5823  -> rounds to Table 12's reported +0.58
+  gap = +0.4447 t-units, matching the manuscript's own "up to 0.45 t-units"
+  claim almost exactly.
+
+RECONCILIATION SENTENCE (ready to insert):
+"The top-500/no-survival cell's t(ΔS) differs between the 2×2 exhibit
+(+1.03) and Table 12 (+0.58) because the two use different capitalization
+timing for the size cut — lagged (t−1) cap in the 2×2, contemporaneous cap
+in Table 12 — a difference of +0.44 t-units that we verified accounts for
+the entire gap (both use an otherwise identical construction, confirmed via
+byte-identical design-matrix hashes); per D4.4/ground rule 4, lagged cap is
+the corrected-panel default and should be treated as the primary figure
+going forward, with Table 12 updated to lagged cap for internal consistency
+or explicitly labeled as contemporaneous if kept as a robustness contrast."

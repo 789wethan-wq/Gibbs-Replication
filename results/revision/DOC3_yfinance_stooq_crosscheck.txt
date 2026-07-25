@@ -1,0 +1,30 @@
+==============================================================================
+DOC query 3 — yfinance vs Stooq cross-check, random 50-name sample (probe of 5)
+==============================================================================
+Universe: 463 SP500 tickers (yfinance-derived, cached locally)
+Full random sample drawn (seed=20250725, n=50, for the record): [np.str_('NWS'), np.str_('EG'), np.str_('TT'), np.str_('MCD'), np.str_('MA'), np.str_('MOS'), np.str_('ED'), np.str_('AON'), np.str_('ADI'), np.str_('ETSY'), np.str_('BLK'), np.str_('DG'), np.str_('ABBV'), np.str_('APH'), np.str_('KHC'), np.str_('SWK'), np.str_('CLX'), np.str_('JCI'), np.str_('DGX'), np.str_('KDP'), np.str_('INCY'), np.str_('ANET'), np.str_('RL'), np.str_('PSX'), np.str_('ETN'), np.str_('FDX'), np.str_('ALGN'), np.str_('CPRT'), np.str_('STE'), np.str_('UNH'), np.str_('MO'), np.str_('TDG'), np.str_('USB'), np.str_('MET'), np.str_('EMN'), np.str_('GNRC'), np.str_('CMI'), np.str_('A'), np.str_('ELV'), np.str_('CVS'), np.str_('CVX'), np.str_('BALL'), np.str_('WHR'), np.str_('CL'), np.str_('ACGL'), np.str_('IFF'), np.str_('CFG'), np.str_('LHX'), np.str_('TTWO'), np.str_('ATO')]
+Probing the first 5 of these against Stooq to confirm the gate is systematic:
+  [1/5] NWS: Stooq returned a JS proof-of-work challenge page, not CSV data
+  [2/5] EG: Stooq returned a JS proof-of-work challenge page, not CSV data
+  [3/5] TT: Stooq returned a JS proof-of-work challenge page, not CSV data
+  [4/5] MCD: Stooq returned a JS proof-of-work challenge page, not CSV data
+  [5/5] MA: Stooq returned a JS proof-of-work challenge page, not CSV data
+
+==============================================================================
+SUMMARY
+==============================================================================
+Probed: 5 of the 50-name sample. Fetched successfully: 0 (0%)
+Blocked by Stooq's JS proof-of-work challenge: 5 / 5
+
+FINDING: Stooq's free CSV endpoint is uniformly bot-gated for this sample --
+this is a platform-level access change, not a per-ticker data issue, so the
+remaining 45 names in the drawn sample were not probed (would predictably fail
+the same way). Combined with SEP's confirmed non-entitlement (E2), NO free
+independently-sourced second price feed is reachable from this environment.
+RECOMMENDATION for the manuscript: either (a) note this limitation explicitly
+rather than claim a cross-check was performed, (b) obtain a paid/keyed data
+source (Tiingo, Alpha Vantage, Polygon, EOD Historical Data) if this
+verification is required for publication, or (c) substitute a WITHIN-source
+consistency check (e.g. yfinance split/dividend-adjustment spot-checks against
+publicly documented corporate actions for a few well-known names) with the
+caveat that it is not an independent second source.

@@ -147,10 +147,43 @@ Imposes k-year continuous-survival conditioning (k ∈ {0, 5, 10, 15, 20, 25, 27
 | Table 6 — Survivorship Correction, Key Results (R18 Full-Universe SF1 Panel) | `code/robustness/R18_sf1_quarterly_survfree.py` + `R19_delisting_bias_bound.py` | `results/survivorship_free/R18_sf1_quarterly_results.txt`, `R19_delisting_bias_bound.txt` |
 | Table 7 — Full-Universe FM Regressions, R18 Survivorship-Corrected Quarterly | `code/robustness/R22_v19_battery.py` (TASK 2) | `results/revision/R22_v19_battery.txt` |
 | Table 8 — Entropy Premium as a Function of Required Survival Length | `code/robustness/R25_post_review_experiments.py` (E1) | `results/revision/R25_post_review.txt`, `derived-data/e1_survival_conditioning_summary.csv` |
+| Table 8b — Survival Ladder on Ormos–Zibriczky's Actual Return-Distribution Entropy (Faithful Fixed-Grid Shannon), with Size-Orthogonalized Control (M9) | `code/robustness/M9b_oz_entropy_fixedgrid.py` (entropy ladder) + `M9_M2_entropy_size_orthogonalized.py` (size control) | `results/revision/M9b_oz_entropy_fixedgrid.txt`, `M9_M2_entropy_size_orthogonalized.txt` |
+| Table 9 — Constant-Measurement Test, t(ΔS) by Estimator × Frequency (M1) | `code/robustness/M1_sp500_quarterly_ds.py` (FM cells) + `M1b_estimator_reconciliation.py` (2×2 estimator grid) | `results/revision/M1_sp500_quarterly.txt`, `M1b_estimator_reconciliation.txt` |
+| Table 10 — Size-Orthogonalized Test, Survivorship-Free by Size Cut (M2) | `code/robustness/M2_size_orthogonalized.py` | `results/revision/M2_size_orthogonalized.txt` |
+| §4.6 OOS — S&P 500 monthly panel (+0.964%/mo, 14/18 yrs, 120-mo expanding) | `code/robustness/R17_comprehensive_validation.py` (C12 ceiling test); re-audited by `R25_post_review_experiments.py` (V1) | `results/robustness_battery/R17_ceiling_tests.txt`, `results/revision/R25_post_review.txt` |
+| §4.6 OOS — full-universe survivorship-corrected quarterly panel (+1.01%/q, 12/19 yrs, t=+1.09, composite ΔG) | `code/robustness/OOS_R18_provenance.py` (reproduces R21 section [8]) | `results/revision/OOS_R18_provenance.txt` |
 | §4.4 HAC asymmetric prediction (β_ΔS ~ T) | `code/robustness/R20_section44_hac.py` | `results/revision/R20_section44_hac.txt` |
+| S1 Table — Price-based composite portfolio sort (Section 4.1, superseded) | `code/project/03_portfolio_sorts.py` | `results/paper_tables/table1_portfolio_sorts.csv` |
+| S2 Table — Full 576-specification robustness battery | `code/robustness/R01–R11_*.py` (master build: `master_robustness_table.py`) | `derived-data/master_robustness_table.csv` |
 | Panel-count reconciliation (§3.1) | `code/robustness/A1_panel_count_reconciliation.py` | `results/revision/A1_panel_count_reconciliation.txt` |
+| Table 10 firm-count reconciliation (3,807 / 3,723 / 3,505) | `code/robustness/T10_RECON.py` | `results/revision/T10_RECON.txt` |
+| Block 1 — Model C lock (ΔH + T·ΔS, full-rank verify) | `code/robustness/MC_LOCK.py` | `results/revision/MC_LOCK.txt` |
 | Market temperature T construction | `code/project/data_pipeline.py` | `data/market_temperature.parquet` |
 | SF1 panel (ΔH_GPM, accounting variables) | `code/project/sharadar_pipeline.py` | `data/merged_with_accounting.parquet` |
+| Code-path integrity check (cold, separate-process re-estimation) | `code/robustness/R24_coldproc_sp500.py` + `R24_coldproc_fulluniv.py` + `R24_coldproc_datefe_{sp500,fulluniv}.py` + `R24_compare.py` | `results/revision/R24_coldproc_verification.txt` |
+| Formal cross-panel ΔS coefficient difference test (annualization, stacked interaction, block bootstrap, FM-paired difference) | `code/robustness/R25_cross_panel_diff.py` | `results/revision/R25_cross_panel_diff.txt` |
+| Reliability-stratified estimation (highest-reliability tercile/decile, EIV correction) | `code/robustness/R26_build_reliability.py` (data build) + `R26_reliability_stratified.py` | `results/revision/R26_reliability_stratified.txt` |
+| Financial-firm exclusion (SIC 6000–6999) | `code/robustness/R27_financial_exclusion.py` | `results/revision/R27_financial_exclusion.txt` |
+| Size × survival 2×2 (survival-conditioning vs. size, decomposed) | `code/robustness/R28_size_survival_2x2.py` | `results/revision/R28_size_survival_2x2.txt` |
+| D1a — 2×2 exhibit with SEs (four separate-process cells) | `code/robustness/D1a_2x2_cell.py` (run once per cell: FB_noSurv/FB_surv/LC_noSurv/LC_surv) | `results/revision/D1a_2x2_cells.txt`, `D1a_cell_*.json` |
+| D1b — Formal pooled triple-interaction test (ΔS×Surv×Large) | `code/robustness/D1b_triple_interaction.py` | `results/revision/D1b_triple_interaction.txt` |
+| D2 — Reliability × size 3×2 grid, size held fixed within top-3 lagged-cap deciles | `code/robustness/D2_reliability_x_size.py` | `results/revision/D2_reliability_x_size.txt` |
+| D3 — Reconciliation of the top-500/no-survival cell's +1.03 (2×2) vs +0.58 (size-ladder) discrepancy | `code/robustness/D3_cell.py` (run per cap-timing × rig combination) | `results/revision/D3_reconciliation.txt`, `D3_cell_*.json` |
+| D4 — Cross-panel difference test, assembled table (fresh re-verification of R25) | `code/robustness/D4_crosspanel_table.py` | `results/revision/D4_crosspanel_table.txt` |
+| D5 — Financials-exclusion table (fresh re-verification of R27, with SIC field confirmation) | `code/robustness/D5_financials_table.py` | `results/revision/D5_financials_table.txt` |
+| D6 — Mirror-image ΔH check across all Table-12 size cuts under 27-year survival | `code/robustness/D6_mirror_image_dH.py` | `results/revision/D6_mirror_image_dH.txt` |
+| Documentation queries: Markov filtered-vs-smoothed, delisting-reason proxies, yfinance/Stooq cross-check, OOS specification-selection scope | `code/robustness/DOC1_markov_filtered_vs_smoothed.py`, `DOC2_delisting_reason_split.py`, `DOC3_yfinance_stooq_crosscheck.py` | `results/revision/DOC1_markov_filtered_vs_smoothed.txt`, `DOC2_delisting_reason_split.txt`, `DOC3_yfinance_stooq_crosscheck.txt`, `DOC4_oos_scope.txt` |
+
+**Table-numbering caveat (D1–D6 rows above).** The manuscript's table numbers
+have been renumbered across drafting rounds (a prior round moved to a
+sequential 1–12 scheme; this table-mapping section above predates that pass
+and still uses an older numbering in places, e.g. Table 4 = Markov regime
+here vs. Table 4 = placebo battery in the renumbered scheme). The D1–D6 rows
+are therefore labeled by their **deliverable ID** (D1a, D1b, D2, ...) rather
+than a manuscript table number, since the final V34 table numbers were not
+available when this section was written — map D1–D6 to their eventual table
+numbers when the manuscript's numbering is finalized, rather than assuming
+the numbering above is current for the OLDER rows too.
 
 **Label disambiguation.** The paper's Section 4.8 uses paper-internal experiment labels (R18/R19/R20). Paper-R20 — the survival-conditioning demonstration behind **Table 8** — is implemented in the script `R25_post_review_experiments.py` (experiment E1). The separately named script `R20_section44_hac.py` is a different analysis: the paper's **Section 4.4** HAC test. Script filenames follow the repository's chronological R-numbering, not the paper's labels.
 
@@ -219,12 +252,14 @@ Imposes k-year continuous-survival conditioning (k ∈ {0, 5, 10, 15, 20, 25, 27
 
 ### License
 
-Code is released under the MIT License (see `LICENSE`). The license covers the code in this repository only; access to and use of the underlying datasets are governed by the respective providers' terms (Nasdaq Data Link/Sharadar, Yahoo Finance, Ken French Data Library, global-q.org, AQR).
+**Code license:** the code in this repository (everything under `code/`) is released under the MIT License (see `LICENSE`). This license covers the code only.
+
+**Data license — separate and more restrictive:** the raw Sharadar SF1 fundamentals data used to construct the panels is **not included and not redistributed** in this repository or in the archived Zenodo deposit. SF1 is a licensed, paid Nasdaq Data Link product; access requires a subscription obtained independently by the researcher on the same terms as any other subscriber (see Data Sources above). The `derived-data/` directory contains only cross-sectional aggregates derived from SF1 (regression coefficients, portfolio-mean returns, and summary panels) — no firm-level SF1 fields (prices, fundamentals, tickers-with-financials) are redistributed anywhere in this repository or deposit. Yahoo Finance, Ken French Data Library, global-q.org, and AQR data are used under their respective free-access terms; see Data Sources above.
 
 ---
 
 ### Citation
 
-If you use this code, please cite:
+Machine-readable citation metadata is provided in `CITATION.cff` and `.zenodo.json`. If you use this code, please cite:
 
-> Wuang, E. (2026). Thermodynamic Non-Equilibrium and the Cross-Section of Equity Returns: A Gibbs Free Energy Decomposition. Working paper.
+> Wuang, E. (2026). Thermodynamic Non-Equilibrium and the Cross-Section of Equity Returns: A Gibbs Free Energy Decomposition. Working paper. Replication package: https://github.com/789wethan-wq/Gibbs-Replication

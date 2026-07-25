@@ -1,0 +1,46 @@
+Survival-conditioned universe (k=27y): 336 tickers, avg 328.3 firms/qtr
+
+========================================================================================
+D6 — t(ΔH) under 27-year survival requirement, by size cut (lagged cap)
+========================================================================================
+
+[Full breadth]
+  N=36,402  tickers=336  avg firms/qtr=327.9  date_range=1996Q1..2023Q3  design_shape=(36402, 3)  hash=2fb959007b94
+  t(dH)=-0.0438  coef(dH)=-0.000055  SE(dH)=0.001265  quarters=111
+  t(dS)=+3.2289  coef(dS)=+0.009865  SE(dS)=0.003055
+
+[Top quintile (20%, full-univ rank)]
+  N=20,244  tickers=259  avg firms/qtr=182.4  date_range=1996Q1..2023Q3  design_shape=(20244, 3)  hash=4fc6075f48a1
+  t(dH)=+2.0266  coef(dH)=+0.002587  SE(dH)=0.001277  quarters=111
+  t(dS)=+1.9247  coef(dS)=+0.005500  SE(dS)=0.002858
+
+[Top decile (10%, full-univ rank)]
+  N=13,525  tickers=190  avg firms/qtr=121.8  date_range=1996Q1..2023Q3  design_shape=(13525, 3)  hash=b6560d97fc92
+  t(dH)=+2.0777  coef(dH)=+0.002889  SE(dH)=0.001390  quarters=111
+  t(dS)=+1.8557  coef(dS)=+0.004663  SE(dS)=0.002513
+
+[Top-500 (fixed count)]
+  N=16,961  tickers=303  avg firms/qtr=152.8  date_range=1996Q1..2023Q3  design_shape=(16961, 3)  hash=88de7ae9759d
+  t(dH)=+2.5473  coef(dH)=+0.003559  SE(dH)=0.001397  quarters=111
+  t(dS)=+2.3165  coef(dS)=+0.006488  SE(dS)=0.002801
+
+[Top-150 (fixed count)]
+  N=7,513  tickers=152  avg firms/qtr=67.7  date_range=1996Q1..2023Q3  design_shape=(7513, 3)  hash=a7b508537ad6
+  t(dH)=+2.0298  coef(dH)=+0.003094  SE(dH)=0.001524  quarters=111
+  t(dS)=+1.4628  coef(dS)=+0.003838  SE(dS)=0.002623
+
+========================================================================================
+D6 SUMMARY TABLE
+========================================================================================
+Size cut                                  t(dH)    coef(dH)    SE(dH)         N  avg n/q
+Full breadth                              -0.04   -0.000055  0.001265    36,402    327.9
+Top quintile (20%, full-univ rank)        +2.03   +0.002587  0.001277    20,244    182.4
+Top decile (10%, full-univ rank)          +2.08   +0.002889  0.001390    13,525    121.8
+Top-500 (fixed count)                     +2.55   +0.003559  0.001397    16,961    152.8
+Top-150 (fixed count)                     +2.03   +0.003094  0.001524     7,513     67.7
+
+Mirror-image check: §4.8 states stability 'decays in mirror image' under
+survival conditioning (full-breadth t(ΔH): +3.46 -> -0.04). This table shows
+whether that direction holds, reverses, or is mixed at each size cut --
+this is the qualifier needed to state the sentence correctly rather than
+only at full breadth.

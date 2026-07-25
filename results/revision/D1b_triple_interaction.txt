@@ -1,0 +1,62 @@
+==============================================================================
+D1b — Formal pooled triple-interaction test
+==============================================================================
+
+Surv_i: 336 of 12,449 firms ever reach a 27-year (108-quarter) consecutive run somewhere in their full history (firm-level flag applied to ALL of that firm's observations, including pre-run ones).
+Large_{i,t}: 55,535 of 434,016 firm-quarter rows flagged top-500 by lagged cap (rows with no lagged-cap coverage are coded Large=0, not dropped).
+
+Pooled regression sample: N=392,557  tickers=10,699  avg firms/qtr=3505.0  quarters=112  date_range=1995Q4..2023Q3
+design shape=(392557, 15)  SHA-1=3b07fdb92a685159efbb191c92ab37792f89b788  pid=10664
+
+clusters(firm,quarter)=(10699,112)
+
+term                    coef          SE        t        p
+const              +0.035370    0.010477   +3.376   0.0007
+ds_z               -0.003009    0.004111   -0.732   0.4643
+dh_z               +0.006228    0.001553   +4.011   0.0001
+Surv               +0.014128    0.004370   +3.233   0.0012
+Large              -0.002539    0.006543   -0.388   0.6980
+DSxSurv            +0.017014    0.004247   +4.007   0.0001
+DSxLarge           +0.010412    0.005353   +1.945   0.0518
+SurvxLarge         +0.004468    0.007881   +0.567   0.5707
+DSxSurvxLarge      -0.000748    0.006948   -0.108   0.9143
+Mkt_RF             -0.220002    0.180898   -1.216   0.2239
+SMB                -0.425149    0.239897   -1.772   0.0764
+HML                -0.580246    0.261936   -2.215   0.0267
+RMW                -0.253497    0.250344   -1.013   0.3113
+CMA                +0.772486    0.343418   +2.249   0.0245
+Mom                -0.343319    0.133603   -2.570   0.0102
+
+==============================================================================
+The four DeltaS terms (quantity of interest):
+==============================================================================
+  DS_z (main, FB x no-Surv baseline slope)         coef=-0.003009  SE=0.004111  t=-0.7318  p=0.4643
+  DS_z x Surv (survival effect on the DS slope)     coef=+0.017014  SE=0.004247  t=+4.0065  p=0.0001
+  DS_z x Large (size effect on the DS slope)        coef=+0.010412  SE=0.005353  t=+1.9451  p=0.0518
+  DS_z x Surv x Large (TRIPLE, quantity of interest) coef=-0.000748  SE=0.006948  t=-0.1076  p=0.9143
+
+Interpretation: the triple interaction tests whether the survival
+effect on the DS slope (DS_z x Surv) itself differs between large-cap and
+full-breadth firms. A significant, opposite-signed triple term would
+confirm the D1a/R28 pattern (survival effect weaker in large-cap: +1.29
+vs +3.21 in t-units) formally rather than by eyeballing two t-stats.
+
+==============================================================================
+Implied cell-specific DS_z slopes (linear combinations, delta-method SE)
+vs. D1a's actual per-cell FM coefficients -- QUANTIFYING THE GAP
+==============================================================================
+cell          D1b implied coef    D1b SE  D1b implied t   D1a actual coef  gap (D1b-D1a)
+FB_noSurv            -0.003009  0.004111         -0.732         +0.000087      -0.003096
+FB_surv              +0.014005  0.004889         +2.865         +0.009865      +0.004140
+LC_noSurv            +0.007403  0.007394         +1.001         +0.004186      +0.003217
+LC_surv              +0.023669  0.007248         +3.265         +0.006488      +0.017181
+
+Gap is expected and reported, not corrected: D1a re-standardizes ds_z/dh_z
+WITHIN each conditioned sub-panel (z-scoring recomputed on the cell's own
+cross-section each quarter); D1b's ds_z is z-scored ONCE on the full
+unconditioned panel and never re-standardized within the Surv/Large
+subgroups. The two are testing related but distinct quantities -- D1a asks
+'what is the DS slope when ΔS is re-standardized to the conditioned
+sample's own cross-section', D1b asks 'what is the DS slope, holding the
+full-panel standardization fixed, as a firm crosses into the Surv/Large
+subgroups'. Per spec, no attempt is made to force these into agreement.

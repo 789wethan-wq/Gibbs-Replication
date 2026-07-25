@@ -1,0 +1,109 @@
+seed = 20250725 (used nowhere with actual randomness in this script; stated per ground rule 6 for completeness)
+==============================================================================
+D2 (0) — rebuild split-half observations with LAGGED-cap decile assignment
+==============================================================================
+Loaded R26 split-half pool: N=420,850 full-12-quarter-window observations, 11,014 tickers, range 1996Q3..2026Q2
+After merging LAGGED cap and dropping missing: N=420,850
+
+Decile boundaries (lagged cap), top-3 deciles selected = [8, 9, 10] (largest):
+  decile  1: N= 42,085  medCap=$      10.5M  range=[$0.0M, $22.2M]
+  decile  2: N= 42,085  medCap=$      37.6M  range=[$22.2M, $58.2M]
+  decile  3: N= 42,085  medCap=$      85.7M  range=[$58.2M, $124.1M]
+  decile  4: N= 42,085  medCap=$     176.5M  range=[$124.1M, $246.9M]
+  decile  5: N= 42,085  medCap=$     340.0M  range=[$246.9M, $467.7M]
+  decile  6: N= 42,085  medCap=$     644.0M  range=[$467.7M, $882.3M]
+  decile  7: N= 42,085  medCap=$   1,222.0M  range=[$882.3M, $1,700.8M]
+  decile  8: N= 42,085  medCap=$   2,422.7M  range=[$1,700.9M, $3,510.5M]
+  decile  9: N= 42,085  medCap=$   5,480.2M  range=[$3,510.5M, $9,844.8M]
+  decile 10: N= 42,085  medCap=$  22,807.5M  range=[$9,845.2M, $4,752,108.0M]
+
+==============================================================================
+D2 (1) — within-decile split by |ds_odd - ds_even| (per-observation noise proxy)
+==============================================================================
+
+Proxy validity check: corr(abs_diff, DeltaS level) = 0.691 (confounded, NOT used); corr(rel_diff, DeltaS level) = 0.027 (scale-free, USED as the split variable below).
+
+Decile 8: N=42,085, median relative |ds_odd-ds_even|/level = 0.5604
+  high_reliability_half : N=21,043  raw corr=+0.8386  SB-reliability=0.9122  medCap=$2,423.4M
+  low_reliability_half  : N=21,042  raw corr=+0.0831  SB-reliability=0.1534  medCap=$2,422.2M
+
+Decile 9: N=42,085, median relative |ds_odd-ds_even|/level = 0.5528
+  high_reliability_half : N=21,043  raw corr=+0.8378  SB-reliability=0.9117  medCap=$5,469.7M
+  low_reliability_half  : N=21,042  raw corr=+0.0955  SB-reliability=0.1743  medCap=$5,487.5M
+
+Decile 10: N=42,085, median relative |ds_odd-ds_even|/level = 0.5497
+  high_reliability_half : N=21,043  raw corr=+0.8393  SB-reliability=0.9126  medCap=$22,717.5M
+  low_reliability_half  : N=21,042  raw corr=+0.0844  SB-reliability=0.1556  medCap=$22,884.8M
+
+Within-decile reliability gap (high-half minus low-half):
+  decile 8: high=0.9122  low=0.1534  gap=+0.7588  -> SPLIT HAS POWER (gap>=0.10)
+  decile 9: high=0.9117  low=0.1743  gap=+0.7374  -> SPLIT HAS POWER (gap>=0.10)
+  decile 10: high=0.9126  low=0.1556  gap=+0.7570  -> SPLIT HAS POWER (gap>=0.10)
+
+==============================================================================
+D2 (2) — FM t(ΔS) in each of the 6 cells (corrected panel, delisted retained,
+no survival requirement, within-quarter cross-sectional z-scoring)
+==============================================================================
+
+[decile 8 | high_reliability_half] 
+  measured reliability=0.9122  N=18,598  avg firms/qtr=172.2  date_range=1996Q4..2023Q3  design_hash=b29ea2f845bc
+  t(dS)=+0.8609  coef(dS)=+0.002852  SE(dS)=0.003313  quarters=106
+  t(dH)=+3.7417  coef(dH)=+0.004517  SE(dH)=0.001207
+
+[decile 8 | low_reliability_half] 
+  measured reliability=0.1534  N=18,548  avg firms/qtr=171.7  date_range=1996Q4..2023Q3  design_hash=2c394f6f96c2
+  t(dS)=+0.4758  coef(dS)=+0.001761  SE(dS)=0.003700  quarters=104
+  t(dH)=+2.0172  coef(dH)=+0.003547  SE(dH)=0.001758
+
+[decile 9 | high_reliability_half] 
+  measured reliability=0.9117  N=18,283  avg firms/qtr=169.3  date_range=1996Q4..2023Q3  design_hash=f72e2843743c
+  t(dS)=-0.2491  coef(dS)=-0.000994  SE(dS)=0.003991  quarters=108
+  t(dH)=+0.9762  coef(dH)=+0.001758  SE(dH)=0.001801
+
+[decile 9 | low_reliability_half] 
+  measured reliability=0.1743  N=18,108  avg firms/qtr=167.7  date_range=1996Q4..2023Q3  design_hash=694d7fd1445a
+  t(dS)=+0.2557  coef(dS)=+0.001147  SE(dS)=0.004485  quarters=108
+  t(dH)=+2.1361  coef(dH)=+0.003162  SE(dH)=0.001480
+
+[decile 10 | high_reliability_half] 
+  measured reliability=0.9126  N=17,650  avg firms/qtr=163.4  date_range=1996Q4..2023Q3  design_hash=e1992c18741e
+  t(dS)=+1.2153  coef(dS)=+0.006314  SE(dS)=0.005195  quarters=108
+  t(dH)=+2.5547  coef(dH)=+0.005906  SE(dH)=0.002312
+
+[decile 10 | low_reliability_half] 
+  measured reliability=0.1556  N=17,698  avg firms/qtr=163.9  date_range=1996Q4..2023Q3  design_hash=cd65c170c17e
+  t(dS)=+1.1800  coef(dS)=+0.003924  SE(dS)=0.003326  quarters=108
+  t(dH)=+0.4733  coef(dH)=+0.000977  SE(dH)=0.002065
+
+==============================================================================
+D2 SUMMARY — 3x2 grid
+==============================================================================
+Decile  Half                    Reliability      t(dS)    coef(dS)         N  avg n/q  informative
+8       high_reliability_half   0.912           +0.861   +0.002852    18,598    172.2          YES
+8       low_reliability_half    0.153           +0.476   +0.001761    18,548    171.7          YES
+9       high_reliability_half   0.912           -0.249   -0.000994    18,283    169.3          YES
+9       low_reliability_half    0.174           +0.256   +0.001147    18,108    167.7          YES
+10      high_reliability_half   0.913           +1.215   +0.006314    17,650    163.4          YES
+10      low_reliability_half    0.156           +1.180   +0.003924    17,698    163.9          YES
+
+6 of 6 cells have a within-decile reliability gap >= 0.10.
+
+All six splits are informative -- reliability varies from ~0.15 to ~0.91 within
+each decile (a far larger range than the manuscript's original 0.530-vs-0.533
+tercile/decile contrast), while median cap is essentially UNCHANGED across the
+high/low reliability halves within each decile (e.g. decile 8: $2,423.4M vs
+$2,422.2M) -- confirming size is genuinely held fixed this time, unlike the
+withdrawn contrast that varied both together.
+
+CLEAN FINDING: t(ΔS) does NOT track reliability at fixed size. All six cells
+are insignificant (|t| <= 1.22, range -0.25 to +1.22), and the direction is
+inconsistent across deciles -- decile 8's high-reliability half has a HIGHER
+t(ΔS) than its low-reliability half (+0.86 vs +0.48, direction the attenuation
+story predicts), decile 9's has a LOWER one (-0.25 vs +0.26, the opposite), and
+decile 10's are essentially indistinguishable (+1.22 vs +1.18). If measurement-
+error attenuation explained the collapse, t(ΔS) should rise systematically and
+substantially across this ~0.76-point reliability range within every decile; it
+does not, in any decile. This is a materially stronger test than the withdrawn
+tercile/decile contrast (which never separated reliability from size at all) and
+closes the question the manuscript left open: at fixed size, reliability
+variation this large does not rescue the entropy premium.

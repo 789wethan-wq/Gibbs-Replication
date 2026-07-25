@@ -1,0 +1,54 @@
+==============================================================================
+R26 (0) — Measuring reliability directly (group-pooled, not per-firm)
+==============================================================================
+Split-half observation pool: N=420,850, tickers=11,014
+Overall pooled reliability (all observations, one group): raw corr=0.3188  SB-corrected=0.4835
+
+Terciles of contemporaneous market cap (grouping mechanism only; selection below is by MEASURED reliability, not assumed size rank):
+  group  1: N=140,284  corr=+0.223  SB-reliability=0.365  medCap=$43.4M
+  group  2: N=140,283  corr=+0.299  SB-reliability=0.460  medCap=$474.2M
+  group  3: N=140,283  corr=+0.361  SB-reliability=0.530  medCap=$4,744.5M
+
+Deciles of contemporaneous market cap (grouping mechanism only; selection below is by MEASURED reliability, not assumed size rank):
+  group  1: N= 42,085  corr=+0.137  SB-reliability=0.241  medCap=$10.1M
+  group  2: N= 42,085  corr=+0.227  SB-reliability=0.370  medCap=$37.1M
+  group  3: N= 42,085  corr=+0.276  SB-reliability=0.433  medCap=$85.7M
+  group  4: N= 42,085  corr=+0.271  SB-reliability=0.426  medCap=$177.7M
+  group  5: N= 42,085  corr=+0.290  SB-reliability=0.449  medCap=$343.8M
+  group  6: N= 42,085  corr=+0.296  SB-reliability=0.457  medCap=$653.9M
+  group  7: N= 42,085  corr=+0.319  SB-reliability=0.484  medCap=$1,243.9M
+  group  8: N= 42,085  corr=+0.337  SB-reliability=0.504  medCap=$2,465.3M
+  group  9: N= 42,085  corr=+0.353  SB-reliability=0.522  medCap=$5,587.0M
+  group 10: N= 42,085  corr=+0.363  SB-reliability=0.533  medCap=$23,225.6M
+
+Highest-reliability tercile = group 3 (reliability=0.530)
+Highest-reliability decile  = group 10 (reliability=0.533)
+(Both happen to be the largest-cap group in this dataset -- D2 already
+ established reliability rises monotonically with size here. The selection
+ criterion applied below is the measured reliability value, reported above,
+ not an assumption that size is the right proxy.)
+
+==============================================================================
+R26 (1)-(2) — FM t(ΔS) restricted to the highest-reliability tercile / decile
+(corrected panel, delisted firms retained, NO survival requirement applied anywhere)
+==============================================================================
+Analysis panel (full, unconditioned): N=434,016, tickers=12,449, quarters=114
+
+[Highest-reliability TERCILE]  cap threshold=$1,384.3M  measured reliability=0.530
+  FM Model B: t(dS)=+0.331  coef(dS)=+0.001405  t(dH)=+3.070  N=126,331  avg firms/qtr=1138.1  quarters(dS)=111
+  Quintile L/S: +1.38%/yr  t=+0.362  T_quarters=112
+
+[Highest-reliability DECILE]  cap threshold=$10,029.0M  measured reliability=0.533
+  FM Model B: t(dS)=+1.056  coef(dS)=+0.004531  t(dH)=+2.175  N=36,170  avg firms/qtr=325.9  quarters(dS)=111
+  Quintile L/S: +4.14%/yr  t=+1.053  T_quarters=112
+
+==============================================================================
+R26 (3) — Errors-in-variables correction (full, unconditioned panel)
+==============================================================================
+Raw (unconditioned, full panel) FM ΔS: coef=+0.000087  SE=0.004818  t=+0.0181  N=392,557
+Overall split-half reliability (denominator) = 0.4835
+EIV-corrected (coef / reliability): coef=+0.000181  SE=0.009965  t=+0.0181  (t is UNCHANGED under this linear rescaling by construction: both coef and SE scale by 1/reliability)
+Interpretation: EIV correction rescales the ECONOMIC MAGNITUDE of the implied
+error-free coefficient upward by ~1/reliability (here, roughly 2.07x); it does not and cannot, under this simple scalar-attenuation
+model, change statistical significance -- that would require accounting for the
+sampling uncertainty of the reliability estimate itself (not attempted here).

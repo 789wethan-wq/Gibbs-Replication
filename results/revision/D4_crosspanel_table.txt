@@ -1,0 +1,33 @@
+Row 1 input: SP500 monthly Model B DS_z: coef=+0.005183 SE=0.001104 t=+4.6951 N=118,014 T=335 range=1996-01-31..2023-11-30
+Row 2 input: FullUniv quarterly Model B delta_s_z: coef=+0.000087 SE=0.004814 t=+0.0181 N=392,557 T=111 range=1995Q3..2023Q4
+
+Annualized SP500:    +6.219%/yr per SD, SE=1.325pp -> reported as +6.22%/yr in manuscript, this run: +6.22%/yr
+Annualized FullUniv: +0.035%/yr per SD, SE=1.926pp -> reported as +0.035%/yr in manuscript, this run: +0.035%/yr
+
+Harmonization cost: SP500 raw monthly t(dS)=+4.6951 -> harmonized quarterly t(dS)=+4.3868 (manuscript: +4.70 -> +4.39)
+
+Quarter-matched series correlation: rho(beta_sp, beta_fu) = +0.4246 over 111 common quarters (manuscript: rho=+0.42)
+Variance-reduction check: var(diff)/[var(sp)+var(fu)] = 0.5860  -> variance REDUCED by 41.4% relative to independence (manuscript: 58.6%; note this equals 1-var_diff/var_indep, which for the special
+case cov=rho*sd_sp*sd_fu simplifies toward but is NOT algebraically identical to 1-rho [1-rho = 57.5% -- close to 41.4% here because var_sp and var_fu are of similar
+order, but '1-rho' is an approximation, not an identity; both numbers reported for transparency].
+
+FM-family paired difference (fresh): mean=-0.014897 t=-5.1935 95% CI=(-0.020520, -0.009275)  (manuscript: t=-5.19, CI -0.0205 to -0.0093)
+
+Stacked pooled-OLS two-way-clustered (fresh): coef=-0.017311 SE=0.004207 t=-4.1144 95% CI=(-0.025557, -0.009064)  (manuscript: t=-4.11, CI -0.0256 to -0.0091)
+Block bootstrap (fresh, block=1 quarter, resample WITH replacement, 500 draws, seed=20250725): 95% CI=(-0.025912, -0.007957)  (manuscript: -0.0259 to -0.0080)
+
+========================================================================================
+D4 FINAL TABLE
+========================================================================================
+Row                                                       This run          Manuscript
+Annualized b(DS), biased(SP) panel, /SD                 +6.219%/yr (SE 1.325pp)  +6.22%/yr
+Annualized b(DS), corrected(FU) panel, /SD              +0.035%/yr (SE 1.926pp)  +0.035%/yr
+Stacked 2way-clustered difference, t                       -4.1144               -4.11
+  95% CI                                        (-0.0256, -0.0091)  (-0.0256, -0.0091)
+Block-bootstrap 95% CI                          (-0.0259, -0.0080)  (-0.0259, -0.0080)
+FM-family paired difference, t                             -5.1935               -5.19
+  95% CI                                        (-0.0205, -0.0093)  (-0.0205, -0.0093)
+Quarter-matched series correlation, rho                    +0.4246               +0.42
+Variance-reduction factor (var_diff/indep)                   58.6%               58.6%
+Harmonization cost, FM t(dS) monthly                       +4.6951               +4.70
+  -> quarterly                                             +4.3868               +4.39

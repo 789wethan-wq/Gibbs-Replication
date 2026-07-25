@@ -1,0 +1,84 @@
+==============================================================================
+R25 (1) — Annualizing the raw ΔS coefficients
+==============================================================================
+SP500 monthly  Model B: mean coef(DS_z) = +0.005183/month  NW-0 t = +4.6951  (N=118,014, T=335 months)
+FullUniv quarterly Model B: mean coef(delta_s_z) = +0.000087/quarter  NW-4 t = +0.0181  (N=392,557, T=111 quarters, min_cs=20)
+
+Annualization convention: both DS_z/delta_s_z regressors are already
+cross-sectionally z-scored WITHIN period (unit SD), so the FM coefficient
+is directly '(average) return spread per 1 SD of ΔS, at the observation
+frequency'. At these magnitudes (<1%/period) simple linear scaling and
+geometric compounding differ by <2% of the annualized value, so we report
+simple linear annualization (x12 monthly, x4 quarterly) as primary, with
+the compounding alternative alongside for transparency.
+SP500:    annualized coef (linear x12)   = +0.06219/yr = +6.219%/yr   (geometric compounding: +6.400%/yr)
+FullUniv: annualized coef (linear x4)    = +0.00035/yr = +0.035%/yr   (geometric compounding: +0.035%/yr)
+Annualized coefficient ratio (SP/FU)     = 178.05x
+NB: annualizing the COEFFICIENT is not the same as annualizing the t-stat;
+the t-stat is a function of the coefficient's sampling variance across
+periods, not of the coefficient's magnitude, and does not rescale by n.
+The t=+4.70 -> +0.02 comparison is a comparison of two t-stats, which is
+exactly the reasoning the stacked test below replaces with a single CI on
+a difference.
+
+==============================================================================
+R25 (4) — Harmonizing SP500 to quarterly frequency, and what it costs
+==============================================================================
+SP500 monthly panel (raw):        N=118,014, 335 months, 457 firms
+SP500 harmonized-to-quarterly:    N=39,183, 111 quarters, 457 firms
+(row count falls ~1/3 as expected from monthly->quarterly resampling, plus
+ additional loss from requiring 3 consecutive forward monthly returns)
+SP500 harmonized-quarterly Model B: mean coef(DS_z) = +0.014985/quarter  NW-4 t = +4.3868  (T=111 quarters)
+  vs raw monthly: coef=+0.005183/month t(NW-0)=+4.6951
+  Harmonization cost: quarterly resampling collapses ~3x fewer independent
+  cross-sections (111 vs 335), which is the main driver of any t-stat change.
+
+==============================================================================
+R25 (2) — Stacked panel test: ret ~ DS + D_FU + D_FU*DS + dH, two-way clustered
+==============================================================================
+Stacked panel: N=431,740  (SP500-quarterly N=39,183, FullUniv N=392,557)
+Distinct firms (union of both, by ticker string) = 10,700, distinct quarters = 112
+design shape=(431740, 5), clusters(firm,quarter)=(10700,112)
+  const    coef=+0.042052  SE=0.008634  t=+4.8705  p=0.0000
+  dS       coef=+0.015619  SE=0.002894  t=+5.3972  p=0.0000
+  dH       coef=+0.006075  SE=0.001432  t=+4.2422  p=0.0000
+  D_FU     coef=-0.016123  SE=0.011032  t=-1.4615  p=0.1439
+  DxDS     coef=-0.017311  SE=0.004207  t=-4.1144  p=0.0000
+
+D_FU x DeltaS_z (the panel-difference test): coef=-0.017311  SE=0.004207  t=-4.1144  p=0.0000  95% CI=(-0.025557, -0.009064)
+Note the sign: DxDS = (beta_FU - beta_SP) at harmonized quarterly frequency;
+beta_SP(harmonized quarterly, from same stacked regression) = coef(dS) = +0.015619
+beta_FU(harmonized quarterly)                                        = -0.001692
+
+==============================================================================
+R25 (2b) — Reconciliation: pooled-OLS vs FM-average weighting
+==============================================================================
+The stacked test above is POOLED OLS (implicitly N-weighted: quarters with
+more firms count more). The manuscript's own '+4.70 -> +0.02' headline is
+FAMA-MACBETH (equal-weighted across quarters, then NW-averaged). These are
+different estimators and can disagree when cross-section size varies a lot
+over time -- which it does here (FU panel firm count grows from a few
+hundred to several thousand). Concretely:
+  FU-only, pooled OLS (uncontrolled for FM weighting): coef(dS) = -0.001596
+  FU-only, Fama-MacBeth (equal-quarter-weighted, from R25(1))   = +0.000087
+  -> sign flips between the two estimators for the FU panel alone. This is
+  a real feature of the data (pooled OLS is dominated by the many-firm
+  later quarters; FM equal-weights every quarter regardless of firm count),
+  not an error. To keep the difference test in the SAME estimator family as
+  the manuscript's headline, we also run a FM-consistent version below:
+  align the two already-computed per-quarter coefficient series (SP500
+  harmonized-quarterly Model B DS_z, from R25(4); FullUniv Model B
+  delta_s_z, from R25(1)) on their common quarters, take the per-quarter
+  DIFFERENCE, and NW-test whether its mean is zero.
+  common quarters with both coefficient estimates = 111
+  FM-consistent mean(beta_FU - beta_SP) = -0.014897/quarter  NW-4 t = -5.1935  p = 0.0000
+  95% CI (FM-consistent) = (-0.020520, -0.009275)
+
+==============================================================================
+R25 (3) — Block bootstrap on the pooled-OLS difference (resample whole quarters)
+==============================================================================
+Block bootstrap (resampling whole quarters, 500 reps, seed=20250725):
+  mean(boot DxDS)=-0.017369  SD=0.004515
+  95% percentile CI = (-0.025912, -0.007957)
+  analytic 95% CI   = (-0.025557, -0.009064)
+  fraction of boot draws with same sign as point estimate = 1.000

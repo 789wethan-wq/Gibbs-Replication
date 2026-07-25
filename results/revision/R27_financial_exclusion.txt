@@ -1,0 +1,28 @@
+==============================================================================
+R27 — Financial-firm exclusion (SIC 6000-6999)
+==============================================================================
+Ticker-level SIC coverage: 22,358 tickers, 6,762 flagged financial (30.2%)
+sicsector breakdown of flagged financial tickers: {'Finance Insurance And Real Estate': 6762}
+
+------------------------------------------------------------------------------
+SP500 monthly panel (Model B: dH_gpm_z + DS_z)
+------------------------------------------------------------------------------
+SP500 rows with no SIC match: 965 / 126,990 (3 tickers)
+WITH financials   : t(dH)=+2.606  t(dS)=+4.695  N=118,014  avg firms/month=352.3  months=335
+EX-financials      : t(dH)=+2.776  t(dS)=+4.723  N=94,544  avg firms/month=282.2  months=335
+Firms excluded: 88 of 457 (19.3%)
+
+------------------------------------------------------------------------------
+Full-universe quarterly panel (Model B: delta_h_z + delta_s_z)
+------------------------------------------------------------------------------
+FullUniv rows with no SIC match: 13 / 434,016 (2 tickers)
+WITH financials   : t(dH)=+3.461  t(dS)=+0.018  N=392,557  avg firms/quarter=3505.0  quarters=112
+EX-financials      : t(dH)=+3.660  t(dS)=-0.254  N=299,631  avg firms/quarter=2675.3  quarters=112
+Firms excluded: 2374 of 10699 (22.2%)
+
+Note: unmatched-SIC rows (ticker not in sharadar_tickers SIC table) are
+RETAINED in both 'with' and 'ex' financials rows (only rows explicitly
+flagged is_financial==True are dropped in the 'ex' row) -- so the 24.7%
+figure in the spec should be checked against the matched-only base rate.
+Financial-firm share of matched SP500 tickers: 19.3%
+Financial-firm share of matched FullUniv tickers: 22.2%

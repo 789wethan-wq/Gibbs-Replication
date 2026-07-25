@@ -1,4 +1,4 @@
-"""03_portfolio_sorts.py — Table 1: Quintile sorts on ΔG across 25 FF portfolios."""
+"""03_portfolio_sorts.py — S1 Table: Price-based composite portfolio sort (superseded ΔG, Section 4.1)."""
 import numpy as np
 import pandas as pd
 import os
@@ -98,7 +98,7 @@ def main():
 
     with open(f"{OUT_T}/table1_portfolio_sorts.tex", "w") as f:
         f.write("\\begin{table}[htbp]\n\\centering\n")
-        f.write("\\caption{Quintile Portfolio Sorts on Gibbs Score $\\Delta G$}\n")
+        f.write("\\caption{S1 Table. Price-based composite portfolio sort. Quintile portfolio returns and FF5+UMD alphas for the superseded price-based $\\Delta G$ construction discussed in Section 4.1.}\n")
         f.write("\\label{tab:sorts}\n")
         f.write(table1.to_latex(escape=False))
         f.write("\\end{table}\n")
@@ -117,11 +117,11 @@ def main():
         for q, q2 in zip(["Q1","Q2","Q3","Q4"], ["Q2","Q3","Q4","Q5"])
     ) else "not strictly monotone"
 
-    interp = f"""Table 1 presents returns to quintile portfolios sorted monthly on the Gibbs score ΔG across the 25 Fama-French Size × B/M portfolios over the 1990–2023 sample period.
+    interp = f"""The S1 Table presents returns to quintile portfolios sorted monthly on the price-based Gibbs score ΔG across the S&P 500 price panel (Section 4.1, superseded construction).
 
 The quintile return pattern is {mono} from Q1 (lowest ΔG, most disordered, least stable) to Q5 (highest ΔG, most thermodynamically favorable). The long-short portfolio (Q5 minus Q1) earns an average monthly return of {ls.mean()*100:.2f}%, corresponding to an annualized return of {ann_ls*100:.1f}% with an annualized Sharpe ratio of {ls_sharpe:.2f}. The Sharpe ratio compares {"favorably" if ls_sharpe > 0.4 else "modestly"} to the historically documented Sharpe ratios for the HML factor of approximately 0.3–0.4 and momentum of approximately 0.5–0.6 (Fama and French, 2015).
 
-The FF5+UMD alpha for the long-short portfolio is {ls_alpha*100:.2f}% per month (t-statistic = {ls_t:.2f}), indicating {"meaningful" if abs(ls_t) > 2.0 else "limited"} abnormal returns after controlling for the five Fama-French factors and momentum. With respect to Hypothesis H1, the Newey-West t-statistic on the long-short return series is {ls_tstat:.2f}, which {"exceeds" if abs(ls_tstat) >= 3.0 else "falls below"} the Harvey, Liu, and Zhu (2016) multiple-testing hurdle of 3.0. {"This provides statistical support for H1." if abs(ls_tstat) >= 3.0 else "As such, H1 is not supported at the 3.0 hurdle, and the result should be interpreted cautiously in light of the limited cross-section of 25 portfolios, which constrains statistical power."}
+The FF5+UMD alpha for the long-short portfolio is {ls_alpha*100:.2f}% per month (t-statistic = {ls_t:.2f}), indicating {"meaningful" if abs(ls_t) > 2.0 else "limited"} abnormal returns after controlling for the five Fama-French factors and momentum. With respect to Hypothesis H1, the Newey-West t-statistic on the long-short return series is {ls_tstat:.2f}, which {"exceeds" if abs(ls_tstat) >= 3.0 else "falls below"} the Harvey, Liu, and Zhu (2016) multiple-testing hurdle of 3.0. {"This provides statistical support for H1." if abs(ls_tstat) >= 3.0 else "As such, H1 is not supported at the 3.0 hurdle, and the result should be interpreted cautiously."}
 
 The maximum drawdown of the long-short strategy is {drawdown*100:.1f}%, with a win rate of {win_rate:.1f}% of months. The strategy's resilience — or lack thereof — during stress periods reflects the regime-dependence explored in Table 4.
 """

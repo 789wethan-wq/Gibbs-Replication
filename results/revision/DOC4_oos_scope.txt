@@ -1,0 +1,17 @@
+Documentation query 4 — OOS scope (one-sentence confirmation for §4.6)
+=========================================================================
+Checked: robustness/master_robustness_table.py and robustness/build_SI.py
+(S2 Table, "the complete 576-specification grid of tested variants
+(constructions, window lengths, T normalizations, and standard-error
+methods)"). This grid is estimated over the FULL sample for every variant —
+it is a full-sample sensitivity/robustness sweep, not a sequential or
+expanding-window search — so the 576 specifications were indeed selected
+and evaluated with full-sample knowledge.
+
+Confirmed one-sentence statement for §4.6: "The 576-specification robustness
+battery underlying this multiple-testing disclosure (Section 4.7, S2 Table)
+was constructed and evaluated using the full sample; consequently, the
+expanding-window out-of-sample test above is out-of-sample with respect to
+the ESTIMATED PARAMETERS at each step, but not with respect to MODEL
+SELECTION, since the functional form being tested out-of-sample was chosen
+after seeing the full-sample robustness grid."

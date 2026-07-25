@@ -1,0 +1,27 @@
+========================================================================================
+D5 — Financials exclusion (SIC 6000-6999)
+========================================================================================
+SIC field used: sharadar_tickers.parquet column 'siccode' (SF1 rows), cross-checked against 'sicsector' text label.
+Cross-check: 100.0% of siccode-flagged financials also carry sicsector='Finance Insurance And Real Estate' (should be ~100%).
+
+[Corrected(R18) WITH financials] N=392,557 tickers=10,699 avg firms/qtr=3505.0 date_range=1995Q4..2023Q3 design_shape=(392557, 3) hash=872dd066c1a8
+  t(dH)=+3.461  t(dS)=+0.018  quarters=111
+
+[Corrected(R18) EX financials] N=299,631 tickers=8,325 avg firms/qtr=2675.3 date_range=1995Q4..2023Q3 design_shape=(299631, 3) hash=f1f87120b0be
+  t(dH)=+3.660  t(dS)=-0.254  quarters=111
+
+[Monthly(SP500) WITH financials] N=118,014 tickers=457 avg firms/month=352.3 date_range=1996-01-31..2023-11-30 design_shape=(118014, 3) hash=9d1dec99f5ed
+  t(dH)=+2.606  t(dS)=+4.695  quarters/months=335
+
+[Monthly(SP500) EX financials] N=94,544 tickers=369 avg firms/month=282.2 date_range=1996-01-31..2023-11-30 design_shape=(94544, 3) hash=c4c32dc8aa1b
+  t(dH)=+2.776  t(dS)=+4.723  quarters/months=335
+
+========================================================================================
+D5 FINAL TABLE
+========================================================================================
+Panel                  t(dH) incl. t(dH) excl. t(dS) incl. t(dS) excl.   N excl.
+Corrected (R18)              +3.46       +3.66       +0.02       -0.25   299,631
+Monthly (S&P 500)            +2.61       +2.78       +4.70       +4.72    94,544
+
+Financial-firm share of matched tickers, FullUniv: 22.2% (manuscript §3.1: 22.2%)
+Financial-firm share of matched tickers, SP500:     19.3% (manuscript §3.1: 19.3%)

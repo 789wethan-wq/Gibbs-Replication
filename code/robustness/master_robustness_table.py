@@ -102,7 +102,7 @@ def format_latex_table(df, panel_col="panel", float_cols=None, out_path=None):
 
     lines = []
     lines.append(r"\begin{longtable}{lllrrrrrrrl}")
-    lines.append(r"\caption{Master Robustness Table} \label{tab:robustness} \\")
+    lines.append(r"\caption{S2 Table. Full robustness battery. The complete 576-specification grid of tested variants (constructions, window lengths, $T$ normalizations, and standard-error methods) with FM $t$-statistics and Wald $p$-values, summarized in Section 4.7.} \label{tab:robustness} \\")
     lines.append(r"\toprule")
     lines.append(r"Panel & Specification & "
                  r"$\widehat{\beta}_{\Delta G}$ & $t$ & "

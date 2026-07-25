@@ -1,0 +1,27 @@
+==============================================================================
+DOC query 2 — delisting reason split, analysis-panel delistings
+==============================================================================
+Analysis-panel tickers: 12,449
+Delisted (isdelisted=Y) within analysis panel: 8,937
+
+Proxy (a) — relatedtickers populated (successor-symbol link):
+  4,593 of 8,937 (51.4%)
+
+Proxy (b) — terminal-quarter return (last reported ARQ price vs prior)...
+  Terminal-return computable for 8,937 of 8,937 delisted tickers
+  Terminal-return distribution: p10=-52.00%  p25=-14.81%  median=+1.72%  p75=+22.09%  p90=+51.83%
+  Terminal return <= -50% (failure-like): 980 (11.0% of tickers with computable terminal return)
+  Terminal return > -10% (flat/positive, M&A/reorg-like): 6,434 (72.0%)
+  Terminal return in (-50%, -10%] (ambiguous): 1,523 (17.0%)
+
+Cross-tab (proxy a vs proxy b, tickers with both proxies available):
+  relatedtickers=Y & failure_like=Y (disagreement): 726
+  relatedtickers=Y & ma_like=Y (agreement):          2,932
+  relatedtickers=N & failure_like=Y (agreement):      254
+  relatedtickers=N & ma_like=Y (ambiguous, no linkage but non-negative exit): 3,502
+
+Caveat (unchanged from the manuscript's existing footnote): the 0.482%/month
+delisting-return proxy used elsewhere in the paper already carries an M&A
+caveat; this 72% figure describes ALL delistings (any reason) and should not
+be read as 72% performance failures. Best-available point estimate from proxy
+(b): roughly 11% of delistings look failure-like by terminal return, roughly 72% look M&A/reorg-like, with neither proxy authoritative.

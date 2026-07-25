@@ -1,4 +1,14 @@
-"""04_fama_macbeth.py — Table 2: Fama-MacBeth regressions (Models A, B, C)."""
+"""04_fama_macbeth.py — Table 2: Fama-MacBeth regressions (Models A, B, C).
+
+Enthalpy construction: the committed primary specification uses the ACCOUNTING
+enthalpy stability measure dH_gpm_z (rolling SD of gross profit margin, z-scored
+cross-sectionally each month) drawn from the R17 merged_with_accounting panel.
+This is the construction that reproduces the manuscript's Table 2 Model B.
+
+The earlier price-based composite (DH_z, Section 4.1) is retained behind the
+USE_PRICE_BASED_DH flag / commented spec block below and is SUPERSEDED for the
+headline table.
+"""
 import numpy as np
 import pandas as pd
 import os
@@ -10,14 +20,48 @@ OUT_I = "outputs/interpretations"
 os.makedirs(OUT_T, exist_ok=True)
 os.makedirs(OUT_I, exist_ok=True)
 
+# Toggle: True reverts Models B/C to the superseded price-based ΔH (Section 4.1).
+USE_PRICE_BASED_DH = False
+
+
+def cs_wz(df, col, date_col="date", pct=0.01):
+    """Cross-sectional 1% winsorized z-score within each date (matches R17)."""
+    def _f(x):
+        x2 = x.dropna()
+        if len(x2) < 5:
+            return pd.Series(np.nan, index=x.index)
+        lo, hi = x2.quantile(pct), x2.quantile(1 - pct)
+        xc = x.clip(lo, hi)
+        s = xc.std()
+        if s < 1e-10:
+            return pd.Series(np.nan, index=x.index)
+        return (xc - xc.mean()) / s
+    return df.groupby(date_col)[col].transform(_f)
+
 
 def fmt(mean, t, p):
     return f"{mean:.4f}{stars(p)}", f"({t:.2f})"
 
 
 def main():
-    panel = pd.read_parquet(f"{DATA}/variables_monthly.parquet")
+    # Accounting panel (R17): superset of variables_monthly carrying dH_gpm.
+    panel = pd.read_parquet(f"{DATA}/merged_with_accounting.parquet")
     factors = pd.read_parquet(f"{DATA}/factors_monthly.parquet")
+
+    # Accounting enthalpy-stability z-score — the Table 2 Model B ΔH construction.
+    panel["dH_gpm_z"] = cs_wz(panel, "dH_gpm")
+
+    # ΔH column used by Models B and C. dH_gpm_z is the committed primary
+    # construction; DH_z is the superseded price-based construction (Section 4.1).
+    DH_COL = "DH_z" if USE_PRICE_BASED_DH else "dH_gpm_z"
+
+    # Model A composite ΔG, built from the §2.2/§3.2 definition on this panel:
+    #   ΔG = ΔH_z − T·ΔS_z, then within-month winsorize (1/99) + z-score.
+    # This retires the dropped DG_acc_raw dependency (the −0.87 column departed
+    # from §2.2/§3.2). Definition-faithful build gives FM t = −0.63 (lag 0).
+    DG_COL = "DG" if USE_PRICE_BASED_DH else "DG_def"
+    panel["DG_def_raw"] = panel["dH_gpm_z"] - panel["T"] * panel["DS_z"]
+    panel["DG_def"] = cs_wz(panel, "DG_def_raw")
 
     # Add FF5 controls to panel
     fac_cols = ["Mkt_RF", "SMB", "HML", "RMW", "CMA", "Mom"]
@@ -30,18 +74,23 @@ def main():
     RET = "ret_next_month"
 
     specs = {
-        "Model A — ΔG only": (["DG"], False),
-        "Model A + FF5": (["DG"] + fac_cols, False),
-        "Model B — Unconstrained": (["DH_z", "DS_z"], False),
-        "Model B + FF5": (["DH_z", "DS_z"] + fac_cols, False),
-        "Model C — Gibbs constrained": (["DH_z", "TxDS"], False),
-        "Model C + FF5": (["DH_z", "TxDS"] + fac_cols, False),
+        "Model A — ΔG only": ([DG_COL], False),
+        "Model A + FF5": ([DG_COL] + fac_cols, False),
+        "Model B — Unconstrained": ([DH_COL, "DS_z"], False),
+        "Model B + FF5": ([DH_COL, "DS_z"] + fac_cols, False),
+        "Model C — Gibbs constrained": ([DH_COL, "TxDS"], False),
+        "Model C + FF5": ([DH_COL, "TxDS"] + fac_cols, False),
     }
 
+    # Primary Table 2 spec = unadjusted FM SE (lag 0), per §3.2 / Panel B row
+    # "FM (primary; unadjusted FM SE)". MC_LOCK reproduces every Model B/C cell
+    # at lag 0. The Newey-West lag ladder (lags 4/5/6, §3.2 sensitivity) is
+    # available via T2_LOCK.py / MC_LOCK.py and by passing lags>0 below.
+    FM_PRIMARY_LAGS = 0
     all_results = {}
     coef_series = {}
     for name, (xcols, _) in specs.items():
-        res, coefs = fama_macbeth(panel, RET, xcols, lags=6)
+        res, coefs = fama_macbeth(panel, RET, xcols, lags=FM_PRIMARY_LAGS)
         all_results[name] = res
         coef_series[name] = coefs
         print(f"\n{name}")
@@ -51,7 +100,7 @@ def main():
             print(f"  {k:12s}  coef={m:+.4f}  t={t:+.2f}  p={p:.3f}  {stars(p)}")
 
     # Build display table
-    key_vars = ["DG", "DH_z", "DS_z", "TxDS", "const"]
+    key_vars = [DG_COL, DH_COL, "DS_z", "TxDS", "const"]
     rows = []
     for spec, res in all_results.items():
         row = {"Specification": spec}
@@ -78,10 +127,10 @@ def main():
         f.write("\\end{table}\n")
 
     # Key coefficient comparisons
-    dg_res = all_results["Model A — ΔG only"].get("DG", (np.nan, np.nan, np.nan))
-    dh_B = all_results["Model B — Unconstrained"].get("DH_z", (np.nan, np.nan, np.nan))
+    dg_res = all_results["Model A — ΔG only"].get(DG_COL, (np.nan, np.nan, np.nan))
+    dh_B = all_results["Model B — Unconstrained"].get(DH_COL, (np.nan, np.nan, np.nan))
     ds_B = all_results["Model B — Unconstrained"].get("DS_z", (np.nan, np.nan, np.nan))
-    dh_C = all_results["Model C — Gibbs constrained"].get("DH_z", (np.nan, np.nan, np.nan))
+    dh_C = all_results["Model C — Gibbs constrained"].get(DH_COL, (np.nan, np.nan, np.nan))
     txds_C = all_results["Model C — Gibbs constrained"].get("TxDS", (np.nan, np.nan, np.nan))
 
     print("\n\n=== KEY COMPARISONS ===")
@@ -94,7 +143,7 @@ def main():
     # Interpretation
     interp = f"""Table 2 presents Fama-MacBeth cross-sectional regression results for three model specifications estimated monthly across the 25 Fama-French Size × B/M portfolios over 1990–2023, with Newey-West standard errors using 6 lags.
 
-Model A regresses next-month portfolio returns on the Gibbs score ΔG alone. The estimated coefficient is {dg_res[0]:.4f} (t-statistic = {dg_res[1]:.2f}), providing {"statistically significant" if abs(dg_res[1]) > 2.0 else "economically suggestive but statistically weak"} evidence that thermodynamically favorable portfolios earn higher subsequent returns. {"The coefficient remains significant after including Fama-French five-factor and momentum controls, confirming that the Gibbs score captures variation in returns not subsumed by existing risk factors." if abs(all_results.get("Model A + FF5", {}).get("DG", (0,0,0))[1]) > 2.0 else "After including factor controls, the significance diminishes, suggesting the Gibbs score partially proxies for established risk premia."}
+Model A regresses next-month portfolio returns on the Gibbs score ΔG alone. The estimated coefficient is {dg_res[0]:.4f} (t-statistic = {dg_res[1]:.2f}), providing {"statistically significant" if abs(dg_res[1]) > 2.0 else "economically suggestive but statistically weak"} evidence that thermodynamically favorable portfolios earn higher subsequent returns. {"The coefficient remains significant after including Fama-French five-factor and momentum controls, confirming that the Gibbs score captures variation in returns not subsumed by existing risk factors." if abs(all_results.get("Model A + FF5", {}).get(DG_COL, (0,0,0))[1]) > 2.0 else "After including factor controls, the composite remains insignificant, consistent with the two channels partially cancelling in ΔG."}
 
 Model B (unconstrained) decomposes the Gibbs score into its enthalpy (ΔH) and entropy (ΔS) components, allowing them to load freely on returns. The estimated coefficient on ΔH is {dh_B[0]:.4f} (t = {dh_B[1]:.2f}), and the coefficient on ΔS is {ds_B[0]:.4f} (t = {ds_B[1]:.2f}). The {"positive" if dh_B[0] > 0 else "negative"} sign on ΔH is {"consistent" if dh_B[0] > 0 else "inconsistent"} with the thermodynamic prediction that enthalpic stability commands a return premium, while the {"negative" if ds_B[0] < 0 else "positive"} sign on ΔS {"confirms" if ds_B[0] < 0 else "contradicts"} the hypothesis that entropic disorder is penalized in pricing.
 

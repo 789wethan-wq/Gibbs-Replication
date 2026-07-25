@@ -1,0 +1,69 @@
+==============================================================================
+R28 — Size x survival 2x2 (corrected panel, universe & frequency held fixed)
+==============================================================================
+
+Survival conditioning: keep observations inside runs of >= 27 years (108 consecutive quarters), per firm.
+Large-cap cut: top-500 firms/quarter by LAGGED (t-1) market cap, per D4.4.
+Cross-sectional z-scores for ΔH/ΔS are recomputed WITHIN each conditioned
+cell (the conditioned/cut panel is treated as its own universe, exactly as
+in R25_post_review E1 and D4.4).
+
+top-500 flag set on 55,535 of 434,016 full-panel rows (computed against the FULL-universe quarterly cross-section, before any survival filter)
+
+------------------------------------------------------------------------------
+CELL (1,1): Full breadth, NO survival requirement
+------------------------------------------------------------------------------
+
+[Full breadth x No-survival-requirement]
+  N_obs(FM)=392,557  N_tickers=12,449  avg firms/qtr=3505.0  T_quarters=111  med.cap=$401.1M
+  t(ΔS)=+0.018  coef(ΔS)=+0.000087  t(ΔH)=+3.458
+  Quintile L/S=-1.02%/yr  t=-0.200  T_quarters(L/S)=113
+
+------------------------------------------------------------------------------
+CELL (1,2): Full breadth, survival-conditioned k=27y
+------------------------------------------------------------------------------
+
+[Full breadth x Survival-conditioned(k=27)]
+  N_obs(FM)=36,402  N_tickers=336  avg firms/qtr=327.9  T_quarters=111  med.cap=$4,082.3M
+  t(ΔS)=+3.229  coef(ΔS)=+0.009865  t(ΔH)=-0.044
+  Quintile L/S=+10.97%/yr  t=+3.154  T_quarters(L/S)=112
+
+------------------------------------------------------------------------------
+CELL (2,1): Large-cap (top-500, lagged cap), NO survival requirement
+------------------------------------------------------------------------------
+
+[Large-cap(top500) x No-survival-requirement]
+  N_obs(FM)=52,310  N_tickers=1,930  avg firms/qtr=467.1  T_quarters=111  med.cap=$14,348.9M
+  t(ΔS)=+1.027  coef(ΔS)=+0.004186  t(ΔH)=+1.897
+  Quintile L/S=+3.78%/yr  t=+1.017  T_quarters(L/S)=113
+
+------------------------------------------------------------------------------
+CELL (2,2): Large-cap (top-500, lagged cap), survival-conditioned k=27y
+------------------------------------------------------------------------------
+
+[Large-cap(top500) x Survival-conditioned(k=27)]
+  N_obs(FM)=16,961  N_tickers=336  avg firms/qtr=152.8  T_quarters=111  med.cap=$17,417.1M
+  t(ΔS)=+2.316  coef(ΔS)=+0.006488  t(ΔH)=+2.547
+  Quintile L/S=+6.26%/yr  t=+2.051  T_quarters(L/S)=112
+
+(Diagnostic: of the 37,424 survival-conditioned rows, 17,737 (47.4%) also carry the full-universe top-500 flag -- this is the actual binding overlap, not a post-hoc-shrunk rank.)
+
+==============================================================================
+R28 SUMMARY TABLE
+==============================================================================
+Cell                              t(dS)    t(dH)   L/S%/yr         N  avg n/q   medCap$M
+Full breadth x No-survival-requirement   +0.018   +3.458     -1.02   392,557   3505.0      401.1
+Full breadth x Survival-conditioned(k=27)   +3.229   -0.044    +10.97    36,402    327.9    4,082.3
+Large-cap(top500) x No-survival-requirement   +1.027   +1.897     +3.78    52,310    467.1   14,348.9
+Large-cap(top500) x Survival-conditioned(k=27)   +2.316   +2.547     +6.26    16,961    152.8   17,417.1
+
+==============================================================================
+R28 DECOMPOSITION — does survival conditioning move t(ΔS) within BOTH size
+strata, and does size move it within BOTH survival strata?
+==============================================================================
+Survival effect on t(ΔS), within full-breadth: +3.211 (+0.02 -> +3.23)
+Survival effect on t(ΔS), within large-cap:    +1.289 (+1.03 -> +2.32)
+Size effect on t(ΔS), within no-survival-req:  +1.009 (+0.02 -> +1.03)
+Size effect on t(ΔS), within survival-cond:    -0.912 (+3.23 -> +2.32)
+
+VERDICT: survival conditioning moves t(ΔS) sharply within BOTH size strata; size moves it comparatively little within BOTH survival strata -> survivorship attribution is the dominant channel, cleanly separated from size (Majors 1/3/6).

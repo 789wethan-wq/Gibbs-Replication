@@ -1,0 +1,33 @@
+{
+  "title": "Thermodynamic Non-Equilibrium and the Cross-Section of Equity Returns: A Gibbs Free Energy Decomposition — Replication Package",
+  "description": "Replication code and derived-data aggregates for a study showing that the apparent positive relationship between idiosyncratic volatility (entropy) and returns in large-cap equity panels is a survivorship artifact, using a survivorship-corrected full-universe panel of 12,449 firms constructed from Sharadar SF1. Raw third-party fundamental data (Sharadar SF1) are not redistributed in this deposit; the derived-data directory contains only cross-sectional aggregates (regression coefficients, portfolio-mean returns, and summary panels). See README.md for full data-access terms and a table-to-script mapping.",
+  "creators": [
+    {
+      "name": "Wuang, Ethan",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": [
+    "cross-sectional returns",
+    "idiosyncratic volatility",
+    "survivorship bias",
+    "quality premium",
+    "gross profit margin stability",
+    "market temperature",
+    "Fama-MacBeth",
+    "thermodynamic analogy",
+    "asset pricing",
+    "replication package"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/789wethan-wq/Gibbs-Replication",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "ORCID for the creator is not on file in this repository; add via the Zenodo web UI before publishing if available."
+}

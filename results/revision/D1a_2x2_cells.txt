@@ -1,0 +1,37 @@
+D1a — 2x2 cells with SEs (survival x top-500 lagged-cap size cut)
+=====================================================================
+Each cell run as a SEPARATE OS process (D1a_2x2_cell.py {cell_name}), fresh
+panel load, own design-matrix hash. Corrected panel (R18 full-universe SF1
+quarterly), delisted retained, within-quarter cross-sectional z-scoring,
+FM Newey-West lag 4, min-cross-section floor 20 (canonical).
+
+cell=FB_noSurv  pid=10514
+  N=392,557  tickers=10,699  avg firms/qtr=3505.0  quarters=111  date_range=1995Q4..2023Q3
+  design shape=(392557, 3)  SHA-1=e7a2c3251face753554a67a513a3bfd279853bbc
+  t(dS)=+0.0181  coef(dS)=+0.000087  SE(dS)=0.004818
+  t(dH)=+3.4579  coef(dH)=+0.005769  SE(dH)=0.001668
+  -> matches manuscript +0.02 / +3.46
+
+cell=FB_surv (k=27y)  pid=10518
+  N=36,402  tickers=336  avg firms/qtr=327.9  quarters=111  date_range=1996Q1..2023Q3
+  design shape=(36402, 3)  SHA-1=2fb959007b94b3fee1fc36de9830dd18ef55558d
+  t(dS)=+3.2289  coef(dS)=+0.009865  SE(dS)=0.003055
+  t(dH)=-0.0438  coef(dH)=-0.000055  SE(dH)=0.001265
+  -> matches manuscript +3.23 / -0.04
+
+cell=LC_noSurv (top-500, lagged cap)  pid=10521
+  N=52,310  tickers=1,697  avg firms/qtr=467.1  quarters=111  date_range=1995Q4..2023Q3
+  design shape=(52310, 3)  SHA-1=b61e63fe0bcfa1ad8b9dd3ac2507388ec299a75a
+  t(dS)=+1.0270  coef(dS)=+0.004186  SE(dS)=0.004076
+  t(dH)=+1.8965  coef(dH)=+0.002403  SE(dH)=0.001267
+  -> matches manuscript +1.03 / +1.90
+
+cell=LC_surv (top-500, lagged cap, k=27y)  pid=10526
+  N=16,961  tickers=303  avg firms/qtr=152.8  quarters=111  date_range=1996Q1..2023Q3
+  design shape=(16961, 3)  SHA-1=88de7ae9759de70cef524be21d7474c075916928
+  t(dS)=+2.3165  coef(dS)=+0.006488  SE(dS)=0.002801
+  t(dH)=+2.5473  coef(dH)=+0.003559  SE(dH)=0.001397
+  -> matches manuscript +2.32 / +2.55
+
+All four cells reproduce the manuscript's stated t-statistics; no discrepancy
+flagged. Raw per-cell JSON provenance: D1a_cell_{FB_noSurv,FB_surv,LC_noSurv,LC_surv}.json
