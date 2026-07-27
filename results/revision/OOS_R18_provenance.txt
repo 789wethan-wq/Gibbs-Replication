@@ -1,0 +1,12 @@
+========================================================================
+[OOS-R18] (a) EXACT R21 section [8] reproduction — composite ΔG
+========================================================================
+  mean L/S %/q=+1.01, ann=+4.1%, pos years=12/19, pos quarters=46/74, OOS t=+1.09
+  first OOS quarter=2005Q2, training minimum=12 quarters (burn-in=first third, split at 2005Q1)
+  MANUSCRIPT §4.6 CLAIMS: +1.01%/q (+4.1%/yr), 12/19 yrs, 46/74 q, t=+1.09
+
+========================================================================
+[OOS-R18] (b) Manuscript-stated Model-B design — ΔH_z+ΔS_z expanding window
+========================================================================
+  mean L/S %/q=+0.83, ann=+3.3%, pos years=11/19, pos quarters=42/74, OOS t=+1.09
+  first OOS quarter=2005Q2, training minimum=12 quarters

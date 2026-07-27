@@ -1,0 +1,51 @@
+================================================================================================
+I1 — S6 Table: supplementary coverage table for the catastrophic delistings checked in H2
+================================================================================================
+
+Panel object: data/merged_sf1_quarterly_survfree.parquet
+  shape=(434016, 13)  SHA-1(content)=9a5afce44e4ff61fe3d9706455c078832388668e
+  tickers=12,449  quarters=114  range=1995Q3..2023Q4
+
+Model B FM design matrix (Table 9 / R18's N=392,557 estimation sample):
+  shape=(392557, 3)  SHA-1=872dd066c1a8e9bc585693f6669968d9b7a79c4c
+  Matches H1's already-verified delta=0 anchor hash (872dd066c1a8e9bc585693f6669968d9b7a79c4c): YES -- MATCH
+
+Roster: 22 rows (H2's headline 3 + MCI, requested explicitly in this spec even though H2's own summary quoted a '21' total that did not include MCI as a distinct row -- noted here for transparency rather than silently forced to 21 by dropping a name) + the 18-name extended set.
+
+------------------------------------------------------------------------------------------------
+INTEGRITY CHECK 2: any of the roster NOT in the R18 analysis panel? (reported plainly either way)
+------------------------------------------------------------------------------------------------
+Rows checked: 22.  In R18 panel: 21.  NOT in panel: 1.
+
+Names NOT in the R18 analysis panel (reported as found, not smoothed over):
+  - MCI (WorldCom post-scandal reorg entity) (MCIP): fails R18's >=8-consecutive-gap-quarterly-return filter (7 valid returns from 8 filed quarters)
+
+No internal inconsistency between set-membership and direct row-count found.
+
+================================================================================================
+S6 TABLE — data
+================================================================================================
+| Company | Ticker as queried in earlier drafts | Ticker as present in SF1 | permaticker | First DATEKEY | Last DATEKEY | Quarters in SF1 | Quarters in R18 panel | In R18 panel? | If no, reason |
+|---|---|---|---|---|---|---|---|---|---|
+| Enron | ENE, ENRN | ENRNQ | 124095 | 1994-03-30 | 2001-11-19 | 32 | 24 | Yes | — |
+| WorldCom | WCOM | WCOEQ | 116364 | 1998-03-27 | 2002-05-15 | 18 | 10 | Yes | — |
+| Lehman Brothers | LEH | LEHMQ | 188897 | 1997-02-28 | 2008-07-10 | 47 | 39 | Yes | — |
+| MCI (WorldCom post-scandal reorg entity) | MCIP | MCIP | 124100 | 2004-04-29 | 2005-11-03 | 8 | 0 | **No** | fails R18's >=8-consecutive-gap-quarterly-return filter (7 valid returns from 8 filed quarters) |
+| Adelphia | — | ADELQ | 120776 | 1998-02-17 | 2006-08-14 | 23 | 12 | Yes | — |
+| Global Crossing | — | GX | 116021 | 1998-11-16 | 2001-11-14 | 13 | 5 | Yes | — |
+| Conseco | — | CNCEQ | 120617 | 1998-03-30 | 2002-08-14 | 19 | 11 | Yes | — |
+| Kmart | — | KM | 120680 | 1998-04-14 | 2002-12-23 | 20 | 12 | Yes | — |
+| Delphi | — | DPHIQ | 120592 | 1999-03-17 | 2009-08-12 | 40 | 30 | Yes | — |
+| Washington Mutual | — | WAMUQ | 197327 | 1998-01-09 | 2008-08-11 | 44 | 36 | Yes | — |
+| Bear Stearns | — | BSC1 | 123481 | 1998-03-17 | 2008-04-14 | 42 | 34 | Yes | — |
+| Circuit City | — | CCTYQ | 122735 | 1998-01-14 | 2008-09-30 | 44 | 36 | Yes | — |
+| General Growth | — | GGP | 192812 | 1998-01-16 | 2018-07-31 | 84 | 76 | Yes | — |
+| MF Global | — | MFGLQ | 188893 | 2007-11-13 | 2011-08-03 | 16 | 8 | Yes | — |
+| Peabody | — | BTUUQ | 196556 | 2001-07-03 | 2016-03-16 | 60 | 52 | Yes | — |
+| SunEdison | — | SUNEQ | 197253 | 1998-03-24 | 2015-11-09 | 70 | 60 | Yes | — |
+| Toys R Us | — | TOY | 197132 | 1998-04-24 | 2005-06-09 | 30 | 22 | Yes | — |
+| Sears | — | SHLDQ | 194967 | 2003-06-16 | 2018-09-13 | 62 | 54 | Yes | — |
+| Hertz | — | HTZGQ | 124354 | 2007-03-30 | 2020-08-10 | 51 | 42 | Yes | — |
+| Chesapeake | — | CHKAQ | 197696 | 1998-02-11 | 2020-11-09 | 93 | 84 | Yes | — |
+| Frontier Communications | — | FTRCQ | 199845 | 1997-03-17 | 2021-04-30 | 98 | 90 | Yes | — |
+| Revlon | — | REVRQ | 197775 | 1997-04-30 | 2022-08-09 | 102 | 94 | Yes | — |

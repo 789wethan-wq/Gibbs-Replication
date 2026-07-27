@@ -1,0 +1,43 @@
+========================================================================================
+F2 — Market-cap-threshold universe (CPI-adjusted, constant 2023 dollars)
+========================================================================================
+CPI base year: 2023 (CPI=304.7)
+Nominal threshold(year) = real_threshold_2023dollars * CPI(year) / CPI(2023)
+
+Base panel: N=434,016  tickers=12,449  quarters=114  range=1995Q3..2023Q4
+Lagged-cap coverage: 100.0%
+
+[$1B threshold (2023 dollars, CPI-adjusted per quarter)]
+  N=166,392  tickers=4,979  avg firms/qtr=1499.0  delisted-share=57.1%  date_range=1996Q1..2023Q3  design_hash=f141c58ab835
+  t(dS)=+0.5578  coef(dS)=+0.002140  SE(dS)=0.003837  quarters=111
+  t(dH)=+3.4988  coef(dH)=+0.003788  SE(dH)=0.001083
+
+[$5B threshold (2023 dollars, CPI-adjusted per quarter)]
+  N=71,673  tickers=2,218  avg firms/qtr=645.7  delisted-share=44.3%  date_range=1996Q1..2023Q3  design_hash=9b17b040a7c7
+  t(dS)=+0.5890  coef(dS)=+0.002425  SE(dS)=0.004117  quarters=111
+  t(dH)=+2.5432  coef(dH)=+0.002910  SE(dH)=0.001144
+
+[$10B threshold (2023 dollars, CPI-adjusted per quarter)]
+  N=44,867  tickers=1,329  avg firms/qtr=404.2  delisted-share=37.5%  date_range=1996Q1..2023Q3  design_hash=a0d17047600e
+  t(dS)=+1.0413  coef(dS)=+0.003921  SE(dS)=0.003766  quarters=111
+  t(dH)=+2.3474  coef(dH)=+0.003316  SE(dH)=0.001413
+
+========================================================================================
+F2 SUMMARY TABLE
+========================================================================================
+Threshold       t(dS)    t(dH)         N  tickers  avgN/q  delisted%
+$  1B          +0.558   +3.499   166,392    4,979  1499.0      57.1%
+$  5B          +0.589   +2.543    71,673    2,218   645.7      44.3%
+$ 10B          +1.041   +2.347    44,867    1,329   404.2      37.5%
+
+Interpretation: this universe is conditioned on size ALONE, at every quarter, with
+delisted firms retained and no index committee, membership file, or endpoint
+conditioning of any kind -- it isolates the size margin from the survivorship/
+index-membership margin that Section 4.8 concedes are not separated elsewhere.
+
+FINDING: t(DeltaS) stays near zero / insignificant at every absolute-cap threshold
+tested. This strengthens the survivorship reading: the premium does not appear
+under size conditioning alone, so the S&P 500 comparison panel's premium is not
+simply a large-cap phenomenon recoverable by capitalization screening -- it
+specifically requires the additional (index-membership or continuous-survival)
+selection margin the original panel embeds.

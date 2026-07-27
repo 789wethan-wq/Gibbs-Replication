@@ -1,0 +1,139 @@
+========================================================================================
+F5 — Successor-symbol spot validation via SEC EDGAR full-text search
+========================================================================================
+Seed: 20260726
+Pool: delisted analysis-panel firms with a populated successor symbol: 4,593
+Sample drawn: 100 firms
+  [1/100] BFO1 (BESTFOODS) -> BFO (BLACKROCK FLORIDA MUNICIPAL 20): INDETERMINATE (company name indexed (278 hits) but no co-occurrence with successor name found)
+  [2/100] VVUSQ (VIVUS INC) -> VVUS: NOT CHECKABLE (missing name/date)
+  [3/100] CLN1 (COLEMAN CO INC) -> CLN: NOT CHECKABLE (missing name/date)
+  [4/100] SRCI (SRC ENERGY INC) -> SYRG: NOT CHECKABLE (missing name/date)
+  [5/100] KTMC (KIT MANUFACTURING CO) -> KIT: NOT CHECKABLE (missing name/date)
+  [6/100] ACLI (AMERICAN COMMERCIAL LINES INC) -> ACOM (ANCESTRYCOM INC): INDETERMINATE (company name indexed (1483 hits) but no co-occurrence with successor name found)
+  [7/100] FOA1 (FIRST OF AMERICA BANK CORP) -> FOA: NOT CHECKABLE (year 1998 outside 2001+ coverage)
+  [8/100] FRSH1 (FRESH BRANDS INC) -> SAVO: NOT CHECKABLE (missing name/date)
+  [9/100] WGRP (WILLBROS GROUP INC) -> WG: NOT CHECKABLE (missing name/date)
+  [10/100] NVTRQ (NUVECTRA CORP) -> NVTR: NOT CHECKABLE (missing name/date)
+  [11/100] CGCP2 (CARDIOGENESIS CORP) -> CGCP (CAPITAL GROUP CORE PLUS INCOME): INDETERMINATE (company name indexed (29 hits) but no co-occurrence with successor name found)
+  [12/100] CMNR (COMMERCE ENERGY GROUP INC) -> EGR: NOT CHECKABLE (missing name/date)
+  [13/100] MDRIQ (MCDERMOTT INTERNATIONAL INC) -> MDR: NOT CHECKABLE (missing name/date)
+  [14/100] ENLK (ENLINK MIDSTREAM PARTNERS LP) -> XTEX: NOT CHECKABLE (missing name/date)
+  [15/100] SPK1 (SPIEKER PROPERTIES INC) -> SPK (SPK ACQUISITION CORP): INDETERMINATE (company name indexed (1112 hits) but no co-occurrence with successor name found)
+  [16/100] NASMQ (NORTH AMERICAN SCIENTIFIC INC) -> NASM: NOT CHECKABLE (missing name/date)
+  [17/100] VRE (VERIS RESIDENTIAL INC) -> CLI: NOT CHECKABLE (missing name/date)
+  [18/100] DAKPQ (DAKOTA PLAINS HOLDINGS INC) -> DAKP: NOT CHECKABLE (missing name/date)
+  [19/100] BGC2 (GENERAL CABLE CORP) -> GCN: NOT CHECKABLE (missing name/date)
+  [20/100] HCT1 (HECTOR COMMUNICATIONS CORP) -> HCT (AMERICAN REALTY CAPITAL HEALTH): INDETERMINATE (company name indexed (392 hits) but no co-occurrence with successor name found)
+  [21/100] BODY1 (BODY CENTRAL CORP) -> BODY: NOT CHECKABLE (missing name/date)
+  [22/100] CELL1 (BRIGHTPOINT INC) -> CELL (PHENOMEX INC): INDETERMINATE (company name indexed (3746 hits) but no co-occurrence with successor name found)
+  [23/100] GDTI (GUARDIAN TECHNOLOGIES INTERNAT) -> GRDN (GUARDIAN PHARMACY SERVICES INC): INDETERMINATE (company name indexed (143 hits) but no co-occurrence with successor name found)
+  [24/100] UCAP (UNITED CAPITAL CORP) -> AFP: NOT CHECKABLE (missing name/date)
+  [25/100] TSTY (TASTY BAKING CO) -> TBC (AT&T INC): CONFIRMED (260 filing(s) mention both names, 2010-01-01..2012-12-31)
+  [26/100] AM2 (ANTERO MIDSTREAM PARTNERS LP) -> AM (ANTERO MIDSTREAM CORP): CONFIRMED (1609 filing(s) mention both names, 2018-01-01..2020-12-31)
+  [27/100] LIFE1 (LIFELINE SYSTEMS INC) -> LIFE (ETHOS TECHNOLOGIES INC): INDETERMINATE (company name indexed (1145 hits) but no co-occurrence with successor name found)
+  [28/100] DRCT1 (DIRECT GENERAL CORP) -> DRCT (DIRECT DIGITAL HOLDINGS INC): INDETERMINATE (company name indexed (889 hits) but no co-occurrence with successor name found)
+  [29/100] CMED1 (COLORADO MEDTECH INC) -> CMED: NOT CHECKABLE (missing name/date)
+  [30/100] EDR1 (EDUCATION REALTY TRUST INC) -> EDR (ENDEAVOR GROUP HOLDINGS INC): INDETERMINATE (company name indexed (2944 hits) but no co-occurrence with successor name found)
+  [31/100] ATHN1 (ATHENAHEALTH INC) -> ATHN: NOT CHECKABLE (missing name/date)
+  [32/100] LTS (LADENBURG THALMANN FINANCIAL S) -> LTSK (LADENBURG THALMANN FINANCIAL S): CONFIRMED (4560 filing(s) mention both names, 2019-01-01..2021-12-31)
+  [33/100] GEN2 (GENRAD INC) -> GEN (GEN DIGITAL INC): INDETERMINATE (company name indexed (618 hits) but no co-occurrence with successor name found)
+  [34/100] BUFF1 (BLUE BUFFALO PET PRODUCTS INC) -> BUFF (INNOVATOR LADDERED ALLOCATION ): INDETERMINATE (company name indexed (1702 hits) but no co-occurrence with successor name found)
+  [35/100] LUCY1 (LUCILLE FARMS INC) -> LUCY: NOT CHECKABLE (0 hits for company name at all)
+  [36/100] PCOA (PENDRELL CORP) -> ICOG: NOT CHECKABLE (missing name/date)
+  [37/100] ZNOG (ZION OIL & GAS INC) -> ZN: NOT CHECKABLE (missing name/date)
+  [38/100] PCFO (PACIFIC OFFICE PROPERTIES TRUS) -> AZL: NOT CHECKABLE (missing name/date)
+  [39/100] IBAL (INTERNATIONAL BALER CORP) -> WTEK: NOT CHECKABLE (missing name/date)
+  [40/100] AHAG (ALPHA TECHNOLOGIES GROUP INC) -> ATGI: NOT CHECKABLE (missing name/date)
+  [41/100] BKRSQ (BAKERS FOOTWEAR GROUP INC) -> BKRS: NOT CHECKABLE (missing name/date)
+  [42/100] POSOQ (PROSOFT LEARNING CORP) -> POSO: NOT CHECKABLE (missing name/date)
+  [43/100] TUG1 (MARITRANS INC) -> TUG (STF TACTICAL GROWTH ETF): INDETERMINATE (company name indexed (1615 hits) but no co-occurrence with successor name found)
+  [44/100] XBKS (XENITH BANKSHARES INC) -> HMPR: NOT CHECKABLE (missing name/date)
+  [45/100] MLKIQ (MATLACK SYSTEMS INC) -> MLK: NOT CHECKABLE (missing name/date)
+  [46/100] ALN1 (ALLEN TELECOM INC) -> ALN: NOT CHECKABLE (missing name/date)
+  [47/100] ACBA (ACE GLOBAL BUSINESS ACQUISITIO) -> ACBAU (ACE GLOBAL BUSINESS ACQUISITIO): CONFIRMED (72 filing(s) mention both names, 2023-01-01..2025-12-31)
+  [48/100] CRTD (CREATD INC) -> JMDA: NOT CHECKABLE (missing name/date)
+  [49/100] ELURQ (ELINEAR INC) -> ELU (ENTERGY LOUISIANA LLC): INDETERMINATE (company name indexed (280 hits) but no co-occurrence with successor name found)
+  [50/100] ITI (ITERIS INC) -> ODETA: NOT CHECKABLE (missing name/date)
+  [51/100] EAGL1 (EGL INC) -> EAGL (EAGLE CAPITAL SELECT EQUITY ET): INDETERMINATE (company name indexed (3152 hits) but no co-occurrence with successor name found)
+  [52/100] BIOAQ (BIOAMBER INC) -> BIOA (BIOAGE LABS INC): INDETERMINATE (company name indexed (531 hits) but no co-occurrence with successor name found)
+  [53/100] HCYT (H-CYTE INC) -> MDVX: NOT CHECKABLE (missing name/date)
+  [54/100] ZEVY (LIGHTNING EMOTORS INC) -> GIK.U (LIGHTNING EMOTORS INC): CONFIRMED (4236 filing(s) mention both names, 2022-01-01..2024-12-31)
+  [55/100] SCTY1 (SOLARCITY CORP) -> SCTY: NOT CHECKABLE (missing name/date)
+  [56/100] NIHD (NII HOLDINGS INC) -> NLDG: NOT CHECKABLE (missing name/date)
+  [57/100] PRM1 (PRIMEDIA INC) -> PRM (PERIMETER SOLUTIONS INC): INDETERMINATE (company name indexed (1692 hits) but no co-occurrence with successor name found)
+  [58/100] PRTYQ (PARTY CITY HOLDCO INC) -> PRTY: NOT CHECKABLE (missing name/date)
+  [59/100] PRMO (PROMOTIONS COM INC) -> IWIN (AMPLIFY INFLATION FIGHTER ETF): INDETERMINATE (company name indexed (25 hits) but no co-occurrence with successor name found)
+  [60/100] WNDXQ (WINN DIXIE STORES INC) -> WIN: NOT CHECKABLE (missing name/date)
+  [61/100] CNGL (CANNA-GLOBAL ACQUISITION CORP) -> CNGLU (CANNA-GLOBAL ACQUISITION CORP): CONFIRMED (768 filing(s) mention both names, 2023-01-01..2025-12-31)
+  [62/100] SSN1 (SONUS CORP) -> SSN: NOT CHECKABLE (missing name/date)
+  [63/100] ACRUQ (ACCRUE SOFTWARE INC) -> ACRU: NOT CHECKABLE (missing name/date)
+  [64/100] FOXO (FOXO TECHNOLOGIES INC) -> DWIN.U (FOXO TECHNOLOGIES INC): CONFIRMED (1206 filing(s) mention both names, 2024-01-01..2026-12-31)
+  [65/100] INTS1 (INTEGRATED SYSTEMS INC) -> INTS (INTENSITY THERAPEUTICS INC): INDETERMINATE (company name indexed (97 hits) but no co-occurrence with successor name found)
+  [66/100] GTAC (GLOBAL TECHNOLOGY ACQUISITION ) -> GTACU (GLOBAL TECHNOLOGY ACQUISITION ): CONFIRMED (433 filing(s) mention both names, 2023-01-01..2025-12-31)
+  [67/100] CORR1 (COR THERAPEUTICS INC) -> CORR: NOT CHECKABLE (missing name/date)
+  [68/100] DEX2 (DEXTER CORP) -> DEX (DELAWARE ENHANCED GLOBAL DIVID): INDETERMINATE (company name indexed (32 hits) but no co-occurrence with successor name found)
+  [69/100] WSGI (WORLD SURVEILLANCE GROUP INC) -> GTEL: NOT CHECKABLE (missing name/date)
+  [70/100] TAVI1 (THORN APPLE VALLEY INC) -> TAVI: NOT CHECKABLE (year 1999 outside 2001+ coverage)
+  [71/100] HTI1 (HEARTLAND TECHNOLOGY INC) -> HTI: NOT CHECKABLE (missing name/date)
+  [72/100] ALTE (ALTERRA CAPITAL HOLDINGS LTD) -> MXGL: NOT CHECKABLE (missing name/date)
+  [73/100] PRST (PRESTO AUTOMATION INC) -> PRSTW (PRESTO AUTOMATION INC): CONFIRMED (2956 filing(s) mention both names, 2023-01-01..2025-12-31)
+  [74/100] INBI1 (INDUSTRIAL BANCORP INC) -> INBI: NOT CHECKABLE (missing name/date)
+  [75/100] ARTC1 (ARTHROCARE CORP) -> ARTC (ART TECHNOLOGY ACQUISITION COR): INDETERMINATE (company name indexed (1733 hits) but no co-occurrence with successor name found)
+  [76/100] CJESQ (C&J ENERGY SERVICES INC) -> CJES: NOT CHECKABLE (missing name/date)
+  [77/100] SNB1 (SUNBURST HOSPITALITY CORP) -> SNB (SPA MARKETGRADER 200 FUND): INDETERMINATE (company name indexed (100 hits) but no co-occurrence with successor name found)
+  [78/100] WMANQ (WELLMAN INC) -> WLM: NOT CHECKABLE (missing name/date)
+  [79/100] TMSTA (THOMASTON MILLS INC) -> TMSTB (THOMASTON MILLS INC): CONFIRMED (36 filing(s) mention both names, 2001-01-01..2001-12-31)
+  [80/100] CHRA (CHARAH SOLUTIONS INC) -> CHRB (CHARAH SOLUTIONS INC): CONFIRMED (1549 filing(s) mention both names, 2022-01-01..2024-12-31)
+  [81/100] BJ1 (BJS WHOLESALE CLUB INC) -> BJ (BJ'S WHOLESALE CLUB HOLDINGS I): INDETERMINATE (company name indexed (1456 hits) but no co-occurrence with successor name found)
+  [82/100] VSNT1 (VERSANT CORP) -> VSNT (VERSANT MEDIA GROUP INC): INDETERMINATE (company name indexed (302 hits) but no co-occurrence with successor name found)
+  [83/100] TRAK1 (DEALERTRACK TECHNOLOGIES INC) -> TRAK (REPOSITRAK INC): INDETERMINATE (company name indexed (3556 hits) but no co-occurrence with successor name found)
+  [84/100] EDTX (EDTECHX HOLDINGS ACQUISITION C) -> EDTXW (EDTECHX HOLDINGS ACQUISITION C): CONFIRMED (322 filing(s) mention both names, 2022-01-01..2024-12-31)
+  [85/100] EZEM (E-Z-EM INC) -> EZM.A: NOT CHECKABLE (missing name/date)
+  [86/100] OHBIQ (ORLEANS HOMEBUILDERS INC) -> OHB: NOT CHECKABLE (missing name/date)
+  [87/100] ARCW (ARC GROUP WORLDWIDE INC) -> ARCS: NOT CHECKABLE (missing name/date)
+  [88/100] TNM (THOMAS NELSON INC) -> TNM.B (THOMAS NELSON INC): CONFIRMED (1332 filing(s) mention both names, 2005-01-01..2007-12-31)
+  [89/100] TMOSQ (TEAM AMERICA INC) -> TMAM: NOT CHECKABLE (missing name/date)
+  [90/100] OCNW (OCCAM NETWORKS INC) -> OCCM: NOT CHECKABLE (missing name/date)
+  [91/100] DTRK (DATATRAK INTERNATIONAL INC) -> DATA (TABLEAU SOFTWARE INC): INDETERMINATE (company name indexed (5 hits) but no co-occurrence with successor name found)
+  [92/100] USBC1 (US BANCORP) -> USBC: NOT CHECKABLE (year 1997 outside 2001+ coverage)
+  [93/100] MAGI (MOTORCARS AUTO GROUP INC) -> AAGI: NOT CHECKABLE (missing name/date)
+  [94/100] USLB1 (U S LABORATORIES INC) -> USLB (INVESCO RUSSELL 1000 LOW BETA ): INDETERMINATE (company name indexed (97 hits) but no co-occurrence with successor name found)
+  [95/100] HEAL1 (HEALTHWATCH INC) -> HEAL (GLOBAL X HEALTHTECH ETF): INDETERMINATE (company name indexed (193 hits) but no co-occurrence with successor name found)
+  [96/100] JERT (JER INVESTORS TRUST INC) -> JRT: NOT CHECKABLE (missing name/date)
+  [97/100] ABPO (ABPRO HOLDINGS INC) -> ACABU (ABPRO HOLDINGS INC): CONFIRMED (307 filing(s) mention both names, 2025-01-01..2026-12-31)
+  [98/100] FBNIQ (FURNITURE BRANDS INTERNATIONAL) -> FBN: NOT CHECKABLE (missing name/date)
+  [99/100] EGLE2 (EAGLE BULK SHIPPING INC) -> EGLE (GLOBAL X S&P 500 US REVENUE LE): INDETERMINATE (company name indexed (8314 hits) but no co-occurrence with successor name found)
+  [100/100] JMBA (JAMBA INC) -> SVIU: NOT CHECKABLE (missing name/date)
+
+========================================================================================
+F5 SUMMARY
+========================================================================================
+  confirmed       :  14 / 100 (14.0%)
+  indeterminate   :  29 / 100 (29.0%)
+  not_checkable   :  57 / 100 (57.0%)
+
+Of the 43 checkable links, 14 (32.6%) confirmed by EDGAR co-occurrence.
+
+Caveat, stated per the method's own limitation: this design cannot produce a
+'contradicted' verdict -- it only distinguishes confirmed-by-co-occurrence from
+not-found. A successor link that IS real but involves a name change, a shell
+merger with minimal SEC paper trail, or predates full-text-searchable EDGAR
+(pre-2001) would show as indeterminate or not-checkable here, not as evidence
+against the link. This bounds the CONFIRMED rate as a lower bound on link
+validity, not a point estimate of the true validation rate.
+
+DIAGNOSED CAUSE of the 57% not-checkable rate (verified, not a lookup bug):
+53 of the 57 not-checkable cases (93%) are "missing name/date", and of those,
+53/53 trace to the SAME root cause -- the successor ticker in `relatedtickers`
+has NO entry with a resolvable company name in ANY of Sharadar's four ticker
+tables (SF1, SEP, SF3B, SFP combined), not just the SF1 table originally
+queried. Checked directly: of this sample's 100 successor tickers, 22 are
+found in SF1, 32 in SEP, 15 in SFP, 0 in SF3B, and 53 in NONE of the four.
+This is a genuine data-quality finding about the `relatedtickers` field
+itself -- roughly half of its links point to symbols (warrants/units,
+OTC/pink-sheet issues, or tickers Sharadar references but never onboarded
+as a full master record) that cannot be name-resolved from Sharadar's own
+data at all, independent of anything EDGAR-side. Section 3.1's citation of
+51.4% relatedtickers coverage should note that "populated" does not imply
+"independently resolvable" -- roughly half of populated links point to a
+symbol this same data provider does not otherwise carry a name for.

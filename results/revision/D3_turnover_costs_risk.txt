@@ -1,0 +1,69 @@
+========================================================================
+D3 — TURNOVER, TRANSACTION COSTS, RISK-ADJUSTED METRICS
+========================================================================
+
+Convention: one-way turnover = avg leg name-turnover; net_t = raw_t - turnover_t*cost_bps (cost charged once per unit turned over). See script docstring for full statement.
+
+########################################################################
+# S&P 500 MONTHLY PANEL (10 bps one-way cost)
+########################################################################
+
+  S&P 500, sort on ΔH (GPM stability)  [cost = 10 bps]
+    N periods=333  Ann one-way turnover=29.5%
+    Raw:  Ann ret=-0.03%  Ann vol=8.52%  Sharpe=-0.00  Sortino=-0.01  MaxDD=-49.3% (trough 2014-05-31 00:00:00, not recovered by end of sample)
+    Net:  Ann ret=-0.06%  Ann vol=8.53%  Sharpe=-0.01  Sortino=-0.01  MaxDD=-49.5% (trough 2014-05-31 00:00:00, not recovered by end of sample)
+    Survives 10 bps one-way cost: NO (annualized net return negative)
+
+  S&P 500, sort on ΔS (idiosyncratic vol)  [cost = 10 bps]
+    N periods=346  Ann one-way turnover=61.2%
+    Raw:  Ann ret=+14.12%  Ann vol=18.31%  Sharpe=+0.73  Sortino=+1.27  MaxDD=-31.4% (trough 2000-10-31 00:00:00, recovered 2003-07-31 00:00:00)
+    Net:  Ann ret=+14.05%  Ann vol=18.31%  Sharpe=+0.72  Sortino=+1.27  MaxDD=-31.5% (trough 2000-10-31 00:00:00, recovered 2003-07-31 00:00:00)
+    Survives 10 bps one-way cost: YES (annualized net return positive)
+
+########################################################################
+# R18 FULL-UNIVERSE QUARTERLY PANEL (50 bps one-way cost — median cap $401M)
+########################################################################
+
+  R18 full-universe, sort on ΔH (GPM stability)  [cost = 50 bps]
+    N periods=110  Ann one-way turnover=27.4%
+    Raw:  Ann ret=+3.39%  Ann vol=15.88%  Sharpe=+0.21  Sortino=+0.23  MaxDD=-64.1% (trough 2010Q3, recovered 2019Q1)
+    Net:  Ann ret=+3.25%  Ann vol=15.87%  Sharpe=+0.20  Sortino=+0.22  MaxDD=-64.4% (trough 2010Q3, recovered 2019Q2)
+    Survives 50 bps one-way cost: YES (annualized net return positive)
+
+  R18 full-universe, sort on ΔS (idiosyncratic vol)  [cost = 50 bps]
+    N periods=111  Ann one-way turnover=61.7%
+    Raw:  Ann ret=-1.35%  Ann vol=27.26%  Sharpe=-0.05  Sortino=-0.10  MaxDD=-89.4% (trough 2023Q2, not recovered by end of sample)
+    Net:  Ann ret=-1.66%  Ann vol=27.26%  Sharpe=-0.06  Sortino=-0.12  MaxDD=-90.1% (trough 2023Q2, not recovered by end of sample)
+    Survives 50 bps one-way cost: NO (annualized net return negative)
+
+########################################################################
+# R18 FULL-UNIVERSE, 10 bps ONE-WAY (for comparability with S&P panel)
+########################################################################
+
+  R18 full-universe, sort on ΔH (GPM stability)  [cost = 10 bps]
+    N periods=110  Ann one-way turnover=27.4%
+    Raw:  Ann ret=+3.39%  Ann vol=15.88%  Sharpe=+0.21  Sortino=+0.23  MaxDD=-64.1% (trough 2010Q3, recovered 2019Q1)
+    Net:  Ann ret=+3.36%  Ann vol=15.88%  Sharpe=+0.21  Sortino=+0.23  MaxDD=-64.1% (trough 2010Q3, recovered 2019Q1)
+    Survives 10 bps one-way cost: YES (annualized net return positive)
+
+  R18 full-universe, sort on ΔS (idiosyncratic vol)  [cost = 10 bps]
+    N periods=111  Ann one-way turnover=61.7%
+    Raw:  Ann ret=-1.35%  Ann vol=27.26%  Sharpe=-0.05  Sortino=-0.10  MaxDD=-89.4% (trough 2023Q2, not recovered by end of sample)
+    Net:  Ann ret=-1.42%  Ann vol=27.26%  Sharpe=-0.05  Sortino=-0.10  MaxDD=-89.6% (trough 2023Q2, not recovered by end of sample)
+    Survives 10 bps one-way cost: NO (annualized net return negative)
+
+########################################################################
+# S&P 500, 50 bps ONE-WAY (for symmetry)
+########################################################################
+
+  S&P 500, sort on ΔH (GPM stability)  [cost = 50 bps]
+    N periods=333  Ann one-way turnover=29.5%
+    Raw:  Ann ret=-0.03%  Ann vol=8.52%  Sharpe=-0.00  Sortino=-0.01  MaxDD=-49.3% (trough 2014-05-31 00:00:00, not recovered by end of sample)
+    Net:  Ann ret=-0.18%  Ann vol=8.53%  Sharpe=-0.02  Sortino=-0.03  MaxDD=-50.1% (trough 2014-05-31 00:00:00, not recovered by end of sample)
+    Survives 50 bps one-way cost: NO (annualized net return negative)
+
+  S&P 500, sort on ΔS (idiosyncratic vol)  [cost = 50 bps]
+    N periods=346  Ann one-way turnover=61.2%
+    Raw:  Ann ret=+14.12%  Ann vol=18.31%  Sharpe=+0.73  Sortino=+1.27  MaxDD=-31.4% (trough 2000-10-31 00:00:00, recovered 2003-07-31 00:00:00)
+    Net:  Ann ret=+13.77%  Ann vol=18.30%  Sharpe=+0.71  Sortino=+1.25  MaxDD=-31.6% (trough 2000-10-31 00:00:00, recovered 2003-07-31 00:00:00)
+    Survives 50 bps one-way cost: YES (annualized net return positive)

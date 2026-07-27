@@ -1,0 +1,16 @@
+========================================================================================
+F1 supplement — raw return-SD proxy (broader coverage than the FF3 proxy)
+========================================================================================
+The 4-quarter FF3-residual proxy is INFEASIBLE, not just unreported: a 4-
+parameter regression (const + Mkt_RF + SMB + HML) on exactly 4 observations
+has zero residual degrees of freedom, so no residual variance is defined.
+This is a mathematical fact, not a data-availability gap -- reported as such
+rather than substituting a nearby window that happens to run.
+
+Raw quarterly-return SD (no factor model, min 2 obs):
+  Excluded tickers: N=2,738  mean=0.2516  p10=0.0106  p25=0.0828  p50=0.2215  p75=0.3666  p90=0.5233
+  Included tickers: N=12,449  mean=0.2980  p10=0.1248  p25=0.1803  p50=0.2739  p75=0.3827  p90=0.4937
+  Excluded-minus-included mean difference: -0.0464 (-15.6% relative)
+
+  Very-short-lived excluded firms only (<=4 valid quarters, N=959): mean raw SD=0.2472
+  vs included mean: -0.0508 (-17.1% relative)

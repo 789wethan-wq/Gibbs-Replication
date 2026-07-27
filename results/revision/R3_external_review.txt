@@ -1,0 +1,57 @@
+R3 — EXTERNAL REVIEW ROUND 3 (2026-07-13)
+Scripts: robustness/R3_date_fe.py, robustness/R3_confirm_2_5.py (+ inline lag sweep)
+=================================================================================
+
+[R3-1 | SP500 | date-FE] coef_TxdS=+0.131333, t=+2.4566, p=0.0140, coef_dS=-0.000449, t_dS=-0.1969, N=118,014
+        coef_dH=+0.001124, t_dH=+2.7896 | dates=335, firms=457
+        within-design rank=3/3, cond=52.38, corr(ΔS,T·ΔS)_within=+0.8938
+[R3-1 | FullU | date-FE] coef_TxdS=+0.540069, t=+2.5375, p=0.0112, coef_dS=-0.025450, t_dS=-2.8492, N=392,557
+        coef_dH=+0.006013, t_dH=+3.6931 | dates=112, firms=10,699
+        within-design rank=3/3, cond=52.42, corr(ΔS,T·ΔS)_within=+0.8939
+  Spec: r ~ ΔS_z + T·ΔS_z + ΔH_z + C(date), date FE via within-date demeaning (FWL),
+  SE two-way clustered (firm×date), FF5+UMD dropped (absorbed by date FE).
+  VERDICT: T·ΔS holds near/above +2.5 WITH date FE in both panels. Identified
+  (rank 3/3; T·ΔS varies cross-sectionally within date because ΔS_z is within-month
+  z-scored). The Table-2 Panel-C weak-controls caveat can be strengthened.
+
+[R3-2] sweep_N=372,936, t7_N=392,557, symdiff=19,621, subset(sweep⊂T7)=True, extra=0, mechanism_confirmed=True
+  Rebuild-primary(min_periods=24) reproduces the saved Table-7 panel EXACTLY (|Δkeys|=0)
+  ⇒ no other construction difference besides min_periods. Excluded 19,621 rows all have
+  GPM-history count in [24,29] (100%): exactly the rows the sweep's max(8,w/2)=30 rule
+  drops vs the primary fixed-24 rule. Manuscript Table-5b note is correct and complete.
+  (Exact excluded = 19,621; manuscript "~19,600" ✓.)
+
+[R3-3] V3 rig controls: NONE (bivariate cross-sectional FM: const + ΔH_gpm_z + ΔS_z;
+        no FF5+UMD, no MAX). NW lag=6, min_cs=15.
+       winsorization: MATCHES primary (1st/99th within-month winsorize → z-score, cs_wz)
+        on the standardized arm; raw arm uses unwinsorized dH_gpm/DS_raw.
+       differs_from_T2_by: NW LAG LENGTH, not the control set. Both V3 and Table 2 are
+        the SAME control-free bivariate FM, same winsorization, same N=118,014. NW-lag
+        sweep on the identical sample: NW-0=+2.452, NW-1=+2.449, NW-5=+2.703, NW-6=+2.774.
+        ⇒ V3's +2.77 is NW-6; printed Table-2 +2.45 = NW-0/1 (NOT the labeled NW-5, which
+        gives +2.70; R17 already logs code +2.70 vs paper +2.45 as a loose "MATCH").
+       FLAG: the manuscript's "control set differs from the Table 2 primary specification"
+        is INCORRECT — there is no control-set difference. State instead: "the diagnostic
+        uses NW lag 6 vs Table 2's near-simple (lag 0-1) t-stat; the entire 2.45→2.77 gap
+        is the Newey-West lag choice." (Also: Table 2 is labeled NW-5 but 2.45=lag 0/1.)
+
+[R3-4] 83.4% measures: H3 (genuinely). R22_v19_battery.py line 223:
+        H3 direction = %(|β_ΔS high-T| > |β_ΔS low-T|), from SEPARATE high-T/low-T regime
+        FM regressions of ret ~ [ΔH_z, ΔS_z] per bootstrap draw. This is a regime-loading
+        magnitude comparison = H3, NOT the interaction sign.
+       99.5% = H2 direction: %(t>0) of the pooled T·ΔS Wald t (line 221).
+       ⇒ §4.7 "direction of H3 holds in 83.4%" is CORRECT as written. External review's
+        suspicion (should be H2) is NOT supported by the code.
+
+[R3-5] Table3 PanelA clustering: DATE-clustered for price & GPM (confirmed); ROE does not reproduce.
+        price-based ΔH (DH_z):     date-cluster p=0.0135 (claim .013 ✓)  double-cluster 0.0096
+        accounting GPM (dH_gpm_z): date-cluster p=0.0171 (claim .017 ✓)  double-cluster 0.0128
+        accounting ROE (dH_acc_z): date-cluster p=0.0178                 double-cluster 0.0134
+       FF5+UMD (as date-level factor returns) do not move any of the three.
+       ⇒ Table-6 note ("date-clustered accounting Wald in Table 3 Panel A is p=0.017") is
+        EXACTLY right; price (0.013) and GPM (0.017) are date-clustered, same convention.
+       FLAG: the ROE cell's printed 0.024 reproduces as NEITHER date (0.018) NOR double
+        (0.013) clustering on the standard ROE-stability construction — it is stale
+        (R17 never validated the ROE Wald). The only 0.024 in the codebase is the β_ΔS~T
+        HAC test (t=2.25), a coincidence. Correct the ROE cell to p≈0.018 (date-clustered)
+        for internal consistency before labeling Panel A "date-clustered".

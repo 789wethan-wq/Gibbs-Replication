@@ -1,0 +1,68 @@
+========================================================================================
+E7 — Monotone-hazard variant of R19 (rank-linear hazard in DeltaS, full distribution)
+========================================================================================
+Primary panel: N=126,990  tickers=462  months=347  (1995-01-31..2023-11-30)
+
+----------------------------------------------------------------------------------------
+(a) R19 baseline (uniform-in-top-quartile step hazard) -- rerun fresh for the
+    TRUE implied top-quartile per-firm hazard at the zero-crossing
+----------------------------------------------------------------------------------------
+  delta(full-xsec)= 0.00%/mo  ->  implied top-quartile per-firm hazard =  0.00%/mo   disorder L/S= +13.36%/yr (t=+3.93)
+  delta(full-xsec)= 0.50%/mo  ->  implied top-quartile per-firm hazard =  2.00%/mo   disorder L/S=  +0.30%/yr (t=+0.10)
+  delta(full-xsec)= 1.00%/mo  ->  implied top-quartile per-firm hazard =  4.00%/mo   disorder L/S=  -8.55%/yr (t=-2.91)
+  delta(full-xsec)= 1.50%/mo  ->  implied top-quartile per-firm hazard =  6.00%/mo   disorder L/S= -20.53%/yr (t=-6.24)
+  delta(full-xsec)= 2.00%/mo  ->  implied top-quartile per-firm hazard =  8.00%/mo   disorder L/S= -27.03%/yr (t=-7.39)
+  delta(full-xsec)= 2.50%/mo  ->  implied top-quartile per-firm hazard = 10.00%/mo   disorder L/S= -28.48%/yr (t=-7.08)
+  delta(full-xsec)= 3.00%/mo  ->  implied top-quartile per-firm hazard = 12.00%/mo   disorder L/S= -40.23%/yr (t=-6.87)
+  delta(full-xsec)= 5.00%/mo  ->  implied top-quartile per-firm hazard = 20.00%/mo   disorder L/S= -80.17%/yr (t=-12.94)
+
+R19 uniform design crosses zero at delta=1.00%/mo (full cross-section basis)
+  -> TRUE implied per-firm hazard WITHIN the top quartile at crossing = 4.00%/mo
+  (R19's own text describes this crossing delta directly as '~2.0%/mo among
+  high-disorder firms' -- but delta is defined relative to the FULL
+  cross-section, and only the top quartile is eligible, so the TRUE per-firm
+  hazard within that quartile is delta/0.25, i.e. 4.0x higher than the raw delta.
+  Flagging this precision point: '~2.0%/mo' in the existing R19 write-up appears
+  to describe the raw delta grid value near the crossing, not the true per-firm
+  hazard among the eligible (top-quartile) firms, which is 4.0%/mo.)
+
+----------------------------------------------------------------------------------------
+(b) Monotone rank-linear hazard (full distribution), calibrated to 0.482%/month
+    panel-wide average, then swept to find the zero-crossing
+----------------------------------------------------------------------------------------
+  avg_hazard(full-xsec)=0.000%/mo  ->  implied AVERAGE hazard within top quartile =  0.00%/mo   disorder L/S= +13.36%/yr (t=+3.93)
+  avg_hazard(full-xsec)=0.241%/mo  ->  implied AVERAGE hazard within top quartile =  0.42%/mo   disorder L/S= +10.20%/yr (t=+2.97)
+  avg_hazard(full-xsec)=0.482%/mo  ->  implied AVERAGE hazard within top quartile =  0.84%/mo   disorder L/S=  +8.68%/yr (t=+2.58)
+  avg_hazard(full-xsec)=0.750%/mo  ->  implied AVERAGE hazard within top quartile =  1.31%/mo   disorder L/S=  +6.48%/yr (t=+1.80)
+  avg_hazard(full-xsec)=1.000%/mo  ->  implied AVERAGE hazard within top quartile =  1.75%/mo   disorder L/S=  +7.85%/yr (t=+2.14)
+  avg_hazard(full-xsec)=1.500%/mo  ->  implied AVERAGE hazard within top quartile =  2.62%/mo   disorder L/S=  +4.32%/yr (t=+1.02)
+  avg_hazard(full-xsec)=2.000%/mo  ->  implied AVERAGE hazard within top quartile =  3.50%/mo   disorder L/S=  +0.86%/yr (t=+0.20)
+  avg_hazard(full-xsec)=3.000%/mo  ->  implied AVERAGE hazard within top quartile =  5.25%/mo   disorder L/S= -15.78%/yr (t=-3.06)
+
+Baseline calibration point (avg_hazard=0.00482=0.482%/mo, matches the measured rate):
+  disorder L/S = +8.68%/yr (t=+2.58)  [at this calibration, implied top-quartile average hazard = 0.84%/mo]
+
+Monotone design crosses zero at panel-wide avg_hazard=3.000%/mo
+  -> implied AVERAGE hazard within the top quartile at crossing = 5.25%/mo
+
+========================================================================================
+PREMISE CHECK: the spec describes the uniform draw as implying '~2.0%/month'.
+R19's OWN fresh output (robustness/R19_delisting_bias_bound.py, rerun this session,
+2026-07-25) actually states the crossing at '~1.0%/mo' (raw delta -- its own grid
+finds disorder L/S<=0 first at delta=1.0%, not 2.0%). This E7 run's independent
+grid agrees exactly: crossing at delta=1.00%/mo. The '~2.0%/month' premise in the
+spec does not match either R19's code or its own reported text -- flagged as a
+discrepancy in the SPEC's premise, not in this run's methodology. The comparison
+below uses the CODE-VERIFIED figure (delta=1.0%/mo raw, 4.0%/mo true top-quartile
+hazard), not the assumed 2.0%.
+========================================================================================
+E7 COMPARISON
+========================================================================================
+R19 (uniform-in-quartile) implied top-quartile hazard at crossing: 4.00%/mo
+E7 (monotone rank-linear) implied top-quartile AVERAGE hazard at crossing: 5.25%/mo
+Ratio (monotone / uniform): 1.31x
+
+VERDICT: the monotone-hazard design requires a HIGHER top-quartile hazard to
+eliminate the premium than R19's uniform design implied -- the required rate is
+less easily reconciled with the ~2.0%/mo empirical range this is meant to bound
+against, and R19's robustness claim should be softened accordingly.

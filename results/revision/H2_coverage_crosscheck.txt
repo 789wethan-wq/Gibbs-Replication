@@ -1,0 +1,214 @@
+============================================================================================
+H2 — Coverage cross-check on the missing catastrophic delistings
+============================================================================================
+
+Local ticker master (`sharadar_tickers.parquet`) table breakdown:
+table
+SEP     21855
+SF1     17723
+SF3B    13110
+SFP      9485
+
+This file is the FULL local pull of Sharadar's own ticker reference table -- it lists, for each of the four entitled products (SF1, SEP, SF3B, SFP), every ticker Sharadar has ever carried, delisted or not. It is queried locally here (name substring is not a supported live-API filter on SHARADAR/TICKERS -- confirmed by inspecting the table's documented filterable fields, all of which are exact-match/date-range, not free-text) and cross-checked live below by exact ticker.
+
+============================================================================================
+PART 1 — Enron / WorldCom / Lehman: name-substring search + live re-check
+============================================================================================
+
+(a) Exact ticker strings as tried in Section 3.1: ['ENE', 'ENRN', 'WCOM', 'LEH', 'MCIP']
+    Local ticker master, exact match:
+      ENE    -> 0 row(s) locally
+      ENRN   -> 0 row(s) locally
+      WCOM   -> 0 row(s) locally
+      LEH    -> 0 row(s) locally
+      MCIP   -> 2 row(s) locally  [['SF1', 'SEP']]
+
+    LIVE query today (nasdaqdatalink), same exact strings, across TICKERS / SF1 / ACTIONS / SEP / DAILY:
+      ENE    SHARADAR/TICKERS     rows=0
+      ENE    SHARADAR/SF1         rows=0
+      ENE    SHARADAR/ACTIONS     rows=0
+      ENE    SHARADAR/SEP         rows=0
+      ENE    SHARADAR/DAILY       rows=0
+      ENRN   SHARADAR/TICKERS     rows=0
+      ENRN   SHARADAR/SF1         rows=0
+      ENRN   SHARADAR/ACTIONS     rows=0
+      ENRN   SHARADAR/SEP         rows=0
+      ENRN   SHARADAR/DAILY       rows=0
+      WCOM   SHARADAR/TICKERS     rows=0
+      WCOM   SHARADAR/SF1         rows=0
+      WCOM   SHARADAR/ACTIONS     rows=0
+      WCOM   SHARADAR/SEP         rows=0
+      WCOM   SHARADAR/DAILY       rows=0
+      LEH    SHARADAR/TICKERS     rows=0
+      LEH    SHARADAR/SF1         rows=0
+      LEH    SHARADAR/ACTIONS     rows=0
+      LEH    SHARADAR/SEP         rows=0
+      LEH    SHARADAR/DAILY       rows=0
+      MCIP   SHARADAR/TICKERS     rows=2
+      MCIP   SHARADAR/SF1         rows=9
+      MCIP   SHARADAR/ACTIONS     rows=5
+      MCIP   SHARADAR/SEP         rows=0
+      MCIP   SHARADAR/DAILY       rows=472
+
+(b) Name-substring search, local ticker master (all 4 tables: SF1, SEP, SF3B, SFP):
+
+  'ENRON' -> 3 match(es):
+    [SF1 ] ENRNQ   ENRON CORP                             delisted=Y  1986-01-01..2004-11-17  NYSE
+    [SF1 ] EPP1    ENRON GLOBAL POWER & PIPELINES LLC     delisted=Y  1994-11-16..1997-11-17  NYSE
+
+  'WORLDCOM' -> 3 match(es):
+    [SF1 ] WCOEQ   WORLDCOM INC                           delisted=Y  1986-01-01..2004-04-19  NASDAQ
+    [SEP ] MCWEQ   WORLDCOM INC                           delisted=Y  2001-06-07..2004-04-20  NASDAQ
+
+  'MCI COM' -> 3 match(es):
+    [SF1 ] MCIC    MCI COMMUNICATIONS CORP                delisted=Y  1986-01-01..1998-09-14  NASDAQ
+    [SFP ] CMCI    VANECK CMCI COMMODITY STRATEGY ETF     delisted=N  2023-08-24..2026-06-16  BATS
+
+  'LEHMAN' -> 10 match(es):
+    [SF1 ] LEHMQ   LEHMAN BROTHERS HOLDINGS INC           delisted=Y  1994-05-11..2008-10-15  NYSE
+    [SF1 ] SLHN    STEARNS & LEHMAN INC                   delisted=Y  1996-12-17..2002-03-05  NASDAQ
+    [SFP ] CVB     LEHMAN ABS CORP KINDER MORGAN DEBEN BACKED SER 2002-6 delisted=Y  2003-08-28..2017-01-27  NYSE
+    [SFP ] JBK     LEHMAN ABS CORP GOLDMAN SACHS CAP 1 SEC BACKED SER 2004-6 delisted=N  2004-04-05..2026-06-16  NYSE
+    [SFP ] XKE     LEHMAN ABS CORP BCKD TR CRTS TOYS R US DB BCK SE 01-31 delisted=Y  2003-08-28..2017-09-20  NYSE
+    [SF3B]     nan LEHMAN BROTHERS HOLDINGS INC           delisted=nan  nan..nan  nan
+
+(c) Correct Sharadar ticker for each name (resolved from the name search above), SF1 fundamentals + price, and R18 analysis-panel membership:
+    Enron                              ticker=ENRNQ   SF1 ARQ rows= 32  DATEKEY 1994-03-30..2001-11-19  last price=9.060  IN_R18_ANALYSIS_PANEL=True  (panel q-range 1995Q4..2001Q3, 24 rows)
+    WorldCom                           ticker=WCOEQ   SF1 ARQ rows= 19  DATEKEY 1998-03-27..2002-05-15  last price=1.291  IN_R18_ANALYSIS_PANEL=True  (panel q-range 1999Q4..2002Q1, 10 rows)
+    Lehman Brothers                    ticker=LEHMQ   SF1 ARQ rows= 47  DATEKEY 1997-02-28..2008-07-10  last price=17.300  IN_R18_ANALYSIS_PANEL=True  (panel q-range 1998Q4..2008Q2, 39 rows)
+    MCI Communications (pre-WorldCom)  ticker=MCIC    SF1 ARQ rows=  3  DATEKEY 1998-04-15..1998-08-14  last price=60.938  IN_R18_ANALYSIS_PANEL=False
+    MCI Inc (post-WorldCom reorg)      ticker=MCIP    SF1 ARQ rows=  9  DATEKEY 2004-04-29..2006-01-05  last price=20.710  IN_R18_ANALYSIS_PANEL=False
+
+(d) LIVE re-check today, correct tickers, across TICKERS/SF1/ACTIONS/SEP/DAILY:
+      ENRNQ   SHARADAR/TICKERS     rows=2
+      ENRNQ   SHARADAR/SF1         rows=32
+      ENRNQ   SHARADAR/ACTIONS     rows=20  range=1997-12-31 00:00:00..2004-11-17 00:00:00
+      ENRNQ   SHARADAR/SEP         rows=0
+      ENRNQ   SHARADAR/DAILY       rows=1500  range=1998-12-01 00:00:00..2004-11-17 00:00:00
+      WCOEQ   SHARADAR/TICKERS     rows=2
+      WCOEQ   SHARADAR/SF1         rows=19
+      WCOEQ   SHARADAR/ACTIONS     rows=17  range=1997-12-31 00:00:00..2004-04-20 00:00:00
+      WCOEQ   SHARADAR/SEP         rows=0
+      WCOEQ   SHARADAR/DAILY       rows=1353  range=1998-12-01 00:00:00..2004-04-20 00:00:00
+      LEHMQ   SHARADAR/TICKERS     rows=3
+      LEHMQ   SHARADAR/SF1         rows=47
+      LEHMQ   SHARADAR/ACTIONS     rows=37  range=1997-12-31 00:00:00..2008-10-15 00:00:00
+      LEHMQ   SHARADAR/SEP         rows=0
+      LEHMQ   SHARADAR/DAILY       rows=2484  range=1998-12-01 00:00:00..2008-10-15 00:00:00
+      MCIC    SHARADAR/TICKERS     rows=2
+      MCIC    SHARADAR/SF1         rows=3
+      MCIC    SHARADAR/ACTIONS     rows=4  range=1997-12-31 00:00:00..1998-09-14 00:00:00
+      MCIC    SHARADAR/SEP         rows=0
+      MCIC    SHARADAR/DAILY       rows=0
+      MCIP    SHARADAR/TICKERS     rows=2
+      MCIP    SHARADAR/SF1         rows=9
+      MCIP    SHARADAR/ACTIONS     rows=5  range=2004-02-25 00:00:00..2006-01-06 00:00:00
+      MCIP    SHARADAR/SEP         rows=0
+      MCIP    SHARADAR/DAILY       rows=472  range=2004-02-25 00:00:00..2006-01-06 00:00:00
+
+(e) SEP entitlement note: EVERY ticker queried against SHARADAR/SEP -- including unrelated, currently-listed large caps (AAPL, MSFT, IBM, GE, XOM, WMT) tested as a control -- returns the IDENTICAL 82-row window 2018-09-04..2018-12-31, regardless of which ticker is requested. This is the API's free/demo sample, not entitled historical coverage: it confirms R18's docstring finding (SEP price product not entitled on this key) and means SEP cannot be used to check historical presence/absence of any of these names -- it returns the same non-informative sample for everyone.
+
+HEADLINE FINDING (Part 1): the exact strings Section 3.1 queried (ENE, ENRN, WCOM, LEH) genuinely return zero rows, live and locally, across every table -- that part of the manuscript's observation is accurate as stated. But Enron, WorldCom, and Lehman Brothers themselves ARE present in SF1, under Sharadar's own delisted-entity ticker convention (a 'Q' suffix: ENRNQ, WCOEQ, LEHMQ) -- full quarterly fundamentals+price coverage through each firm's actual final filing/delisting date. All three are ALREADY IN the manuscript's own R18 survivorship-free analysis panel (merged_sf1_quarterly_survfree.parquet) and therefore already contributing to the paper's own estimates. MCI (WorldCom's post-scandal renamed entity, ticker MCIP, one of the two strings the manuscript did try) also exists in SF1 with 2004-2006 coverage but did not clear R18's panel-entry filters (too few consecutive quarterly observations) -- MCI is the one genuine non-inclusion here, and it is a panel-construction filter, not an SF1 coverage gap. Section 3.1's framing -- 'these firms return no rows in our SF1 pull' -- is therefore WRONG as a coverage claim: this is conclusively a ticker-mapping failure on the manuscript's side, not a property of SF1.
+
+============================================================================================
+PART 2 — Wider set of well-known 1995-2023 catastrophic delistings
+============================================================================================
+
+Name-substring search audit (keyword -> all SF1 matches, entity actually used underlined by ticker match above):
+  'ADELPHIA' (Adelphia) -> 3 SF1 match(es): ABIZQ=ADELPHIA BUSINESS SOLUTIONS INC; ADELQ=ADELPHIA COMMUNICATIONS CORP; PHLY=PHILADELPHIA CONSOLIDATED HOLDING CORP
+  'GLOBAL CROSSING' (Global Crossing) -> 3 SF1 match(es): ASGXF=ASIA GLOBAL CROSSING LTD; GLBC=GLOBAL CROSSING LTD; GX=GLOBAL CROSSING CAYMAN LTD
+  'CONSECO' (Conseco) -> 1 SF1 match(es): CNCEQ=CONSECO INC
+  'KMART' (Kmart) -> 1 SF1 match(es): KM=KMART CORP
+  'DELPHI CORP' (Delphi) -> 1 SF1 match(es): DPHIQ=DELPHI CORP
+  'WASHINGTON MUTUAL' (Washington Mutual) -> 1 SF1 match(es): WAMUQ=WASHINGTON MUTUAL INC
+  'BEAR STEARNS' (Bear Stearns) -> 1 SF1 match(es): BSC1=BEAR STEARNS COMPANIES INC
+  'CIRCUIT CITY' (Circuit City) -> 1 SF1 match(es): CCTYQ=CIRCUIT CITY STORES INC
+  'GENERAL GROWTH|GGP' (General Growth) -> 1 SF1 match(es): GGP=GGP INC
+  'MF GLOBAL' (MF Global) -> 1 SF1 match(es): MFGLQ=MF GLOBAL HOLDINGS LTD
+  'PEABODY' (Peabody) -> 2 SF1 match(es): BTU=PEABODY ENERGY CORP; BTUUQ=PEABODY ENERGY CORP
+  'SUNEDISON INC' (SunEdison) -> 1 SF1 match(es): SUNEQ=SUNEDISON INC
+  'TOYS R US' (Toys R Us) -> 1 SF1 match(es): TOY=TOYS R US INC
+  'SEARS HOLDINGS' (Sears) -> 1 SF1 match(es): SHLDQ=SEARS HOLDINGS CORP
+  'HERTZ GLOBAL' (Hertz) -> 2 SF1 match(es): HTZ=HERTZ GLOBAL HOLDINGS INC; HTZGQ=HERTZ GLOBAL HOLDINGS INC
+  'CHESAPEAKE ENERGY' (Chesapeake) -> 1 SF1 match(es): CHKAQ=CHESAPEAKE ENERGY CORP
+  'FRONTIER COMMUNICATIONS' (Frontier Communications) -> 2 SF1 match(es): FTRCQ=FRONTIER COMMUNICATIONS CORP; FYBR=FRONTIER COMMUNICATIONS PARENT INC
+  'REVLON' (Revlon) -> 1 SF1 match(es): REVRQ=REVLON INC
+
+| Name | Present | Ticker | Exchange | First DATEKEY | Last DATEKEY | Last price | In R18 panel |
+|---|---|---|---|---|---|---|---|
+| Adelphia | Y | ADELQ | NASDAQ | 1998-02-17 | 2006-08-14 | 0.050 | True |
+| Global Crossing | Y | GX | NASDAQ | 1998-11-16 | 2001-11-14 | 1.200 | True |
+| Conseco | Y | CNCEQ | NYSE | 1998-03-30 | 2002-08-14 | 0.460 | True |
+| Kmart | Y | KM | NYSE | 1998-04-14 | 2002-12-23 | 0.350 | True |
+| Delphi | Y | DPHIQ | NYSE | 1999-03-17 | 2009-08-12 | 0.040 | True |
+| Washington Mutual | Y | WAMUQ | NYSE | 1998-01-09 | 2008-08-11 | 4.740 | True |
+| Bear Stearns | Y | BSC1 | NYSE | 1998-03-17 | 2008-04-14 | 10.110 | True |
+| Circuit City | Y | CCTYQ | NYSE | 1998-01-14 | 2008-09-30 | 0.760 | True |
+| General Growth | Y | GGP | NYSE | 1998-01-16 | 2018-07-31 | 21.320 | True |
+| MF Global | Y | MFGLQ | NYSE | 2007-11-13 | 2011-08-03 | 7.170 | True |
+| Peabody | Y | BTUUQ | NYSE | 2001-06-28 | 2016-03-16 | 2.190 | True |
+| SunEdison | Y | SUNEQ | NYSE | 1998-03-24 | 2015-11-09 | 7.400 | True |
+| Toys R Us | Y | TOY | NYSE | 1998-04-24 | 2005-06-09 | 26.320 | True |
+| Sears | Y | SHLDQ | NASDAQ | 2003-06-16 | 2018-09-13 | 1.210 | True |
+| Hertz | Y | HTZGQ | NYSE | 2007-03-30 | 2020-08-10 | 1.690 | True |
+| Chesapeake | Y | CHKAQ | NYSE | 1998-02-11 | 2020-11-09 | 3.460 | True |
+| Frontier Communications | Y | FTRCQ | NASDAQ | 1997-03-17 | 2021-04-30 | 0.059 | True |
+| Revlon | Y | REVRQ | NYSE | 1997-04-30 | 2022-08-09 | 7.990 | True |
+
+Present in SF1: 18/18 (100%)
+Of those present, also in the R18 analysis panel: 18/18
+
+COMBINED (3 headline names + 18-name wider set, 21 total): 21/21 present in SF1 (100%).
+
+--------------------------------------------------------------------------------------------
+Era / exchange skew check
+--------------------------------------------------------------------------------------------
+Zero absences in the wider 18-name set -- no skew to report; every name resolves to a Sharadar ticker with full SF1 fundamentals+price coverage.
+
+Exchange distribution of the present set: exchange
+NYSE      14
+NASDAQ     4
+
+Last-filing-year distribution (era check): last_year
+2001    1
+2002    2
+2005    1
+2006    1
+2008    3
+2009    1
+2011    1
+2015    1
+2016    1
+2018    2
+2020    2
+2021    1
+2022    1
+
+============================================================================================
+PART 3 — Does WIKI/PRICES (used in G1) cover any of the names tried?
+============================================================================================
+
+Tests the ORIGINAL, pre-collapse exchange tickers (as they actually traded, matching what Section 3.1 tried for the headline three) plus a control of unrelated large caps to confirm the table itself is reachable.
+  [control] AAPL   rows=9400  range=1980-12-12 00:00:00..2018-03-27 00:00:00
+  [control] MSFT   rows=8076  range=1986-03-13 00:00:00..2018-03-27 00:00:00
+  [control] IBM    rows=14155  range=1962-01-02 00:00:00..2018-03-27 00:00:00
+  ENE    rows=0  NOT COVERED
+  ENRN   rows=0  NOT COVERED
+  WCOM   rows=0  NOT COVERED
+  LEH    rows=0  NOT COVERED
+  BSC    rows=0  NOT COVERED
+  MCIP   rows=0  NOT COVERED
+  KM     rows=0  NOT COVERED
+  TOY    rows=0  NOT COVERED
+
+WIKI/PRICES covers NONE of the 8 names tested (Enron, WorldCom, Lehman, Bear Stearns, MCI, Kmart, Toys R Us), despite covering the unrelated control tickers fine (AAPL 9,400 rows, 1980-2018; similar for MSFT/IBM). This does NOT resolve the SF1 question either way -- it is a genuine coverage gap in this specific free/community-sourced dataset, separate from the ticker-mapping issue diagnosed in Part 1 for SF1 (WIKI/PRICES was queried with the historically correct pre-collapse tickers, e.g. plain 'ENE', not Sharadar's 'Q'-suffix convention, which postdates WIKI and would not apply to it anyway).
+
+============================================================================================
+SUMMARY
+============================================================================================
+1. Enron, WorldCom, Lehman Brothers: ALL THREE present in SF1 (ENRNQ, WCOEQ, LEHMQ) with full quarterly fundamentals+price coverage through their actual final filing dates, and ALL THREE already included in the manuscript's own R18 survivorship-free analysis panel. The exact ticker strings Section 3.1 queried (ENE, ENRN, WCOM, LEH) do genuinely return zero rows -- but that is a ticker-mapping failure on the query side, not an SF1 coverage property. Of the two WorldCom-related strings tried, MCIP (MCI Inc, the post-scandal renamed entity) DOES exist in SF1 but was filtered out of the R18 panel for having too few consecutive quarterly observations -- a panel-construction exclusion, not an absence.
+2. Wider 18-name set: 18/18 present in SF1, 18/18 of those also in the R18 analysis panel. Zero genuine absences found in either list.
+3. No era or exchange skew to report -- there is nothing missing to skew.
+4. WIKI/PRICES covers none of the tested names (including the historically correct, pre-collapse tickers) -- a separate, genuine gap in that free dataset, uninformative about SF1's own coverage.
+
+CONCLUSION: Section 3.1's 'catastrophic delistings are absent from our SF1 pull' framing is WRONG as stated and should be corrected, not merely narrowed. The honest statement is the reverse of what's currently written: every catastrophic delisting checked (21 of 21 named companies, headline three plus the wider set) is present in SF1 and already contributing to the R18 panel and the paper's own estimates; the only real finding is that the specific ticker strings originally queried for the three headline names were wrong.

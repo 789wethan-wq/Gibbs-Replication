@@ -1,0 +1,32 @@
+================================================================
+M2 — SIZE-ORTHOGONALIZED SURVIVORSHIP TEST
+================================================================
+
+R18 corrected panel: N=434,016  tickers=12,449  quarters=114
+Market-cap coverage in panel: 100.0%
+
+----------------------------------------------------------------
+PRIMARY ARM — top-500 by market cap each quarter (delisted kept in)
+  N=52,261  avg firms/quarter=487  quarters=111
+  delisted share: 26.4% of obs, 46.1% of firms
+  median mkt cap: $14.5B
+  Model B FM: t(ΔS)=+0.58  t(ΔH)=+1.94
+  ΔS quintile L/S: +2.9%/yr  t=+0.77
+
+[M2] R18 top-500-by-cap: N=52,261, avg firms/quarter=487, delisted share=26.4%, FM t(ΔS)=+0.58, FM t(ΔH)=+1.94, quintile L/S=+2.9%/yr (t=+0.77)
+
+----------------------------------------------------------------
+SIZE-ONLY LADDER — each quarter, by cap, NO survival requirement
+  cut             Nfirms   t(ΔS)   t(ΔH)  L/S%/yr  medMC$B
+  top-quintile       762   +0.65   +2.61     +1.9      8.3
+    [M2-ladder | cut=top-quintile] N firms=762, FM t(ΔS)=+0.65, FM t(ΔH)=+2.61, median mktcap=$8.3B
+  top-decile         381   +1.09   +2.09     +4.1     18.9
+    [M2-ladder | cut=top-decile] N firms=381, FM t(ΔS)=+1.09, FM t(ΔH)=+2.09, median mktcap=$18.9B
+  top-500            487   +0.58   +1.94     +2.9     14.5
+    [M2-ladder | cut=top-500] N firms=487, FM t(ΔS)=+0.58, FM t(ΔH)=+1.94, median mktcap=$14.5B
+  top-150            149   +1.08   +2.70     +3.9     48.2
+    [M2-ladder | cut=top-150] N firms=149, FM t(ΔS)=+1.08, FM t(ΔH)=+2.70, median mktcap=$48.2B
+
+----------------------------------------------------------------
+BASELINE — full-universe R18 (no size cut), same re-run
+  full-universe: avg firms/q=3807  t(ΔS)=+0.02  t(ΔH)=+3.46  L/S=-1.0%/yr (t=-0.20)  medMC=$0.40B

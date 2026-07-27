@@ -1,0 +1,37 @@
+==================================================================
+M9-M2 — ENTROPY SIZE-ORTHOGONALIZED SURVIVORSHIP TEST
+==================================================================
+
+Rebuilding R18 quarterly returns and computing fixed-grid entropy H...
+  pooled support [-0.7000,+1.3764], 10-bin grid; H coverage 84.0%
+R18 corrected panel: N=434,016  tickers=12,449  quarters=114  H coverage in panel=100.0%
+Market-cap coverage in panel: 100.0%
+
+------------------------------------------------------------------
+PRIMARY ARM — top-500 by market cap each quarter (delisted kept in)
+  N=52,261  avg firms/quarter=487  quarters=111
+  delisted share: 26.4% of obs, 46.1% of firms
+  median mkt cap: $14.5B
+  Model B FM: t(H)=+0.75  t(ΔH_GPM)=+1.79
+  H quintile L/S: +3.2%/yr  t=+0.88
+
+[M9-M2] R18 top-500-by-cap, entropy H: FM t(H)=+0.75, FM t(ΔH_GPM)=+1.79, quintile L/S=+3.2%/yr (t=+0.88), N=52,261, avg firms/qtr=487, delisted share=26.4%, median cap=$14.5B
+
+------------------------------------------------------------------
+SIZE-ONLY LADDER — each quarter by cap, NO survival requirement
+  cut               Nfirms    t(H)   t(ΔH)  L/S%/yr  medMC$B
+  top-quintile         762   +0.84   +2.45     +2.7      8.3
+    [M9-M2-ladder | cut=top-quintile] N firms=762, FM t(H)=+0.84, L/S=+2.7%/yr, median cap=$8.3B
+  top-decile           381   +1.12   +1.97     +4.5     18.9
+    [M9-M2-ladder | cut=top-decile] N firms=381, FM t(H)=+1.12, L/S=+4.5%/yr, median cap=$18.9B
+  top-500              487   +0.75   +1.79     +3.2     14.5
+    [M9-M2-ladder | cut=top-500] N firms=487, FM t(H)=+0.75, L/S=+3.2%/yr, median cap=$14.5B
+  top-150              149   +0.75   +2.30     +3.1     48.2
+    [M9-M2-ladder | cut=top-150] N firms=149, FM t(H)=+0.75, L/S=+3.1%/yr, median cap=$48.2B
+
+------------------------------------------------------------------
+BASELINE — full-universe R18 (no size cut), same re-run
+  full-universe: avg firms/q=3807  t(H)=+0.66  t(ΔH)=+3.54  L/S=+0.5%/yr (t=+0.09)  medMC=$0.40B
+    [M9-M2-ladder | cut=full-universe] N firms=3807, FM t(H)=+0.66, L/S=+0.5%/yr, median cap=$0.40B
+
+[M9-M2-note] H = fixed-grid 10-bin Shannon entropy (M9b faithful measure, Corr(H,ΔS)=+0.73), 12q window; Model B controls for ΔH_GPM exactly as M2's Model B controls for it. Size rungs, re-standardization, delisted-inclusion, and L/S annualization (×400) are byte-identical to M2_size_orthogonalized.py.

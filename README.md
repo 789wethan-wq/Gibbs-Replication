@@ -203,6 +203,8 @@ the numbering above is current for the OLDER rows too.
 
 6. **Robustness battery**: `code/robustness/R01–R11` form the 576-specification battery (master summary: `derived-data/master_robustness_table.csv`); R12–R17 are referee-response rounds (R17 alone runs 20+ validation checks); logs are in `results/robustness_battery/`. None of these is required to reproduce Tables 1–8.
 
+7. **Terminal-return sensitivity and SF1 coverage (H1/H2/I1)**: `code/robustness/H1_terminal_return_cell.py` applies the Shumway delisting-return convention directly to the R18 panel as a return-denominated sensitivity grid (δ ∈ {0, −10%, −30%, −55%, −100%}) — even a 100% terminal loss on every delisted firm does not by itself push t(ΔS) to conventional significance within this direct correction. `code/robustness/H2_coverage_crosscheck.py` and `I1_s6_coverage_table.py` resolve whether well-known catastrophic delistings (Enron, WorldCom, Lehman Brothers, and 18 further names) are genuinely absent from SF1: they are not — the earlier "no rows returned" observation was a ticker-mapping mismatch (Sharadar applies a terminal "Q" suffix to delisted-entity tickers), and all three headline names are already inside the R18 analysis panel. `results/revision/I1_s6_coverage_table.txt` is the citable Supporting Information table (S6) a reader can check this against directly, including the one name (MCI) that is present in SF1 but excluded from the panel by its own ≥8-consecutive-quarter history requirement.
+
 ---
 
 ### Repository Layout
@@ -218,7 +220,7 @@ the numbering above is current for the OLDER rows too.
 │   │   ├── 02..10_*.py             # summary stats, sorts, FM, validity, regimes, OOS, plots, tables
 │   │   ├── run_stock_analysis.py   # helper: runs modules 02-10 on the stock panel
 │   │   └── utils.py
-│   ├── robustness/                 # R01-R25 batteries + diagnostics
+│   ├── robustness/                 # R01-I1 batteries + diagnostics (D/E/F/G/H/I referee-response rounds)
 │   │   ├── R01..R11_*.py           # 576-spec robustness battery
 │   │   ├── R12..R17_*.py           # referee-response / comprehensive validation
 │   │   ├── R18_sf1_quarterly_survfree.py   # Step 7: Tables 6+7 (survivorship-free panel)
@@ -226,6 +228,13 @@ the numbering above is current for the OLDER rows too.
 │   │   ├── R20..R24_*.py           # revision batteries (R20 = §4.4 HAC test)
 │   │   ├── R25_post_review_experiments.py  # Step 10: Table 8 (survival conditioning) + V-series
 │   │   ├── A1_panel_count_reconciliation.py# §3.1 ticker-count reconciliation
+│   │   ├── D1..D6_*.py              # V34 referee-response cells (survival x size, reliability, placebos)
+│   │   ├── E1..E7_*.py              # V38 referee-response battery (placebo/dispersion normalization)
+│   │   ├── F1..F5c_*.py             # V39 referee-response battery (excluded-ticker audit, EDGAR checks)
+│   │   ├── G1_yfinance_wiki_crosscheck.py  # independent price cross-check (WIKI/PRICES)
+│   │   ├── H1_terminal_return_cell.py      # V46: terminal-return sensitivity grid on R18
+│   │   ├── H2_coverage_crosscheck.py       # V46: SF1 coverage cross-check (catastrophic delistings)
+│   │   ├── I1_s6_coverage_table.py         # V49: S6 Supporting Information coverage table
 │   │   └── DIAG_*.py               # one-variable-at-a-time decomposition ladder
 │   ├── generate_derived_data.py    # rebuilds derived-data/ from the private raw panels
 │   ├── requirements.txt

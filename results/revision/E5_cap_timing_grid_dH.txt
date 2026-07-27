@@ -1,0 +1,74 @@
+========================================================================================
+E5 — Cap-timing grid for DeltaH, all four Table-12 size cuts, both conventions
+========================================================================================
+
+[top-quintile | contemporaneous]
+  N=83,171  avg firms/qtr=749.3  date_range=1996Q1..2023Q3  design_hash=fa28d04e72da
+  t(dH)=+2.6157  coef(dH)=+0.003086  SE(dH)=0.001180  quarters=111
+  t(dS)=+0.6485  coef(dS)=+0.002828  SE(dS)=0.004361
+
+[top-quintile | lagged(t-1)]
+  N=83,246  avg firms/qtr=750.0  date_range=1996Q1..2023Q3  design_hash=9bc1137e634e
+  t(dH)=+2.4251  coef(dH)=+0.002944  SE(dH)=0.001214  quarters=111
+  t(dS)=+0.9939  coef(dS)=+0.004239  SE(dS)=0.004265
+
+[top-decile | contemporaneous]
+  N=41,996  avg firms/qtr=378.3  date_range=1996Q1..2023Q3  design_hash=c729107fbd0f
+  t(dH)=+2.0988  coef(dH)=+0.003034  SE(dH)=0.001445  quarters=111
+  t(dS)=+1.0966  coef(dS)=+0.005075  SE(dS)=0.004628
+
+[top-decile | lagged(t-1)]
+  N=42,019  avg firms/qtr=378.5  date_range=1996Q1..2023Q3  design_hash=561ec8de72e8
+  t(dH)=+1.9718  coef(dH)=+0.002791  SE(dH)=0.001416  quarters=111
+  t(dS)=+0.9768  coef(dS)=+0.003817  SE(dS)=0.003908
+
+[top-500 | contemporaneous]
+  N=52,261  avg firms/qtr=466.6  date_range=1995Q4..2023Q3  design_hash=4b7491fad079
+  t(dH)=+1.9426  coef(dH)=+0.002320  SE(dH)=0.001194  quarters=111
+  t(dS)=+0.5833  coef(dS)=+0.002475  SE(dS)=0.004243
+
+[top-500 | lagged(t-1)]
+  N=52,310  avg firms/qtr=467.1  date_range=1995Q4..2023Q3  design_hash=b61e63fe0bcf
+  t(dH)=+1.8969  coef(dH)=+0.002403  SE(dH)=0.001267  quarters=111
+  t(dS)=+1.0279  coef(dS)=+0.004186  SE(dS)=0.004073
+
+[top-150 | contemporaneous]
+  N=16,194  avg firms/qtr=145.9  date_range=1996Q1..2023Q3  design_hash=bd3f6388d0b1
+  t(dH)=+2.7010  coef(dH)=+0.003828  SE(dH)=0.001417  quarters=111
+  t(dS)=+1.0781  coef(dS)=+0.004659  SE(dS)=0.004322
+
+[top-150 | lagged(t-1)]
+  N=16,197  avg firms/qtr=145.9  date_range=1996Q1..2023Q3  design_hash=043500204188
+  t(dH)=+3.0664  coef(dH)=+0.004612  SE(dH)=0.001504  quarters=111
+  t(dS)=+1.0330  coef(dS)=+0.004287  SE(dS)=0.004150
+
+========================================================================================
+E5 GRID — t(ΔH) with SEs, all four cuts x both cap conventions
+========================================================================================
+Cut           Timing              t(dH)    SE(dH)         N  avgN/q
+top-quintile  contemporaneous    +2.616  0.001180    83,171   749.3
+top-quintile  lagged(t-1)        +2.425  0.001214    83,246   750.0
+top-decile    contemporaneous    +2.099  0.001445    41,996   378.3
+top-decile    lagged(t-1)        +1.972  0.001416    42,019   378.5
+top-500       contemporaneous    +1.943  0.001194    52,261   466.6
+top-500       lagged(t-1)        +1.897  0.001267    52,310   467.1
+top-150       contemporaneous    +2.701  0.001417    16,194   145.9
+top-150       lagged(t-1)        +3.066  0.001504    16,197   145.9
+
+Contemporaneous-cap t(ΔH) range across all 4 cuts: [+1.94, +2.70]
+  -> Table 12's cited '+1.94 to +2.70': MATCHES
+Lagged-cap t(ΔH) range across all 4 cuts: [+1.90, +3.07]
+  -> Section 5.3's cited '+1.90 to +3.06': MATCHES
+
+========================================================================================
+Top-150 / HLZ threshold check (|t| > 3.0)
+========================================================================================
+  top-150, contemporaneous : t(ΔH)=+2.701  clears |t|>3.0? NO
+  top-150, lagged(t-1)     : t(ΔH)=+3.066  clears |t|>3.0? YES
+
+CONCLUSION: Table 13's 'top-150 fails HLZ' is correct under CONTEMPORANEOUS cap
+(t=+2.70, does not clear); Section 5.3's 'top-150 clears' is correct under LAGGED
+cap (t=+3.06, clears by 0.06). The two claims are not actually in conflict -- each
+is right on its own convention -- but the manuscript needs to state WHICH
+convention each table/section uses, since a reader following either claim in
+isolation would reproduce it and think the other one is wrong.

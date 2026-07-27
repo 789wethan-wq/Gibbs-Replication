@@ -1,0 +1,31 @@
+========================================================================
+D4.4 RERUN — LAGGED VS CONTEMPORANEOUS MARKET CAP, SIZE-CUT LADDER
+========================================================================
+
+R18 panel: N=434,016  tickers=12,449  quarters=114
+Contemporaneous market-cap coverage: 100.0%
+Lagged (t-1) market-cap coverage:    100.0%
+
+--------------------------------------------------------------------------------------------------------
+Cut                 Cap timing  N firms/q  N obs (FM)  Quarters    t(ΔS)    t(ΔH)   L/S %/yr  medMC $B
+--------------------------------------------------------------------------------------------------------
+top-quintile   contemporaneous        762      83,171       111    +0.65    +2.61       +1.9       8.3
+top-quintile      lagged (t-1)        762      83,246       111    +0.99    +2.42       +2.8       8.1
+top-decile     contemporaneous        381      41,996       111    +1.09    +2.09       +4.1      18.9
+top-decile        lagged (t-1)        381      42,019       111    +0.98    +1.97       +2.8      18.5
+top-500        contemporaneous        487      52,261       111    +0.58    +1.94       +2.9      14.5
+top-500           lagged (t-1)        487      52,310       111    +1.03    +1.90       +3.8      14.2
+top-150        contemporaneous        149      16,194       111    +1.08    +2.70       +3.9      48.2
+top-150           lagged (t-1)        149      16,197       111    +1.03    +3.06       +2.8      47.2
+------------------------------------------------------------------------------------------
+
+Full universe baseline (no size cut, no cap column needed):
+  full-universe: t(ΔS)=+0.02  t(ΔH)=+3.46  L/S=-1.0%/yr (t=-0.20)
+
+########################################################################
+# CONTEMPORANEOUS VS LAGGED, SIDE BY SIDE
+########################################################################
+  top-quintile   t(ΔS) contemporaneous=+0.65  lagged=+0.99  Δ=+0.35  (similar)
+  top-decile     t(ΔS) contemporaneous=+1.09  lagged=+0.98  Δ=-0.12  (similar)
+  top-500        t(ΔS) contemporaneous=+0.58  lagged=+1.03  Δ=+0.44  (similar)
+  top-150        t(ΔS) contemporaneous=+1.08  lagged=+1.03  Δ=-0.05  (similar)

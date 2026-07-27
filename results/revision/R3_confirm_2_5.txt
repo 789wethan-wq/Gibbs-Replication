@@ -1,0 +1,21 @@
+##############################################################################
+# R3-2  Table 5b sweep-60 vs Table 7 Model-B: sample difference
+##############################################################################
+  [saved panel] Table 7 Model-B N = 392,557  (unique keys 392,557)
+  [rebuild mp=24] primary/T7     N = 392,557
+  [rebuild mp=30] sweep-60       N = 372,936
+
+  rebuild-primary(mp24) N=392,557  vs saved-Table7 N=392,557  match=True (|Δ|=0)
+  sweep_N=372,936  t7_N=392,557  symdiff=19,621  subset(sweep⊂primary)=True  extra(sweep∖primary)=0
+  excluded rows: 19,621  gpm_cnt range=[24,29]  share in [24,29]=100.0000%
+  mechanism_confirmed=True
+
+##############################################################################
+# R3-5  Table 3 Panel A: clustering convention of the 3 Wald p-values
+##############################################################################
+  price-based ΔH   N=126,990  date-cluster: t=+2.4708 p=0.0135  |  double-cluster: t=+2.5906 p=0.0096   (Table3 PanelA claims p=0.013)
+  accounting GPM   N=118,014  date-cluster: t=+2.3851 p=0.0171  |  double-cluster: t=+2.4881 p=0.0128   (Table3 PanelA claims p=0.017)
+  accounting ROE   N=114,711  date-cluster: t=+2.3694 p=0.0178  |  double-cluster: t=+2.4739 p=0.0134   (Table3 PanelA claims p=0.024)
+
+  date-clustered p: price=0.0135 (claim .013), GPM=0.0171 (claim .017), ROE=0.0178 (claim .024)
+  all three reproduced as DATE-clustered within .001: False

@@ -1,0 +1,59 @@
+========================================================================================
+F3 — Expanding-window T for the regime split
+========================================================================================
+
+----------------------------------------------------------------------------------------
+(A) Expanding-window T_norm -- built for completeness; confirmed not to feed
+    the Markov classification
+----------------------------------------------------------------------------------------
+Seed date (T_raw's own start): 1964-06
+Expanding-window minimum: 24 months
+First month with a valid expanding-window T_norm: 1966-05 (24 months after the seed date)
+Corr(current full-sample T_z, expanding-window T_z) over the panel's own 347 months: 0.961238
+(Near-1.0 expected and confirmed: by 1995 the expanding window already has 30+
+years of prior T_raw history, so its mean/std are close to stable; the two
+normalizations differ mainly in the tails, not in a way that would move any FM
+t-statistic meaningfully, and none of that matters anyway since OLS on T_z is
+affine-invariant to which constants were used.)
+
+CONFIRMED: fit_markov() in 06_regime_analysis.py operates on T_RAW (`T_ts = panel.groupby('date')['T_raw'].first()`), not on T or T_norm_expanding.
+Therefore rebuilding T's normalization, expanding-window or otherwise, changes
+NOTHING about the Markov classification, Table 5, Section 4.7's high/low-T split,
+or Table 1's high-T month share. The actual look-ahead mechanism for those is (B).
+
+----------------------------------------------------------------------------------------
+(B) Filtered (no-look-ahead) vs smoothed (current) Markov classification --
+    re-running Table 5's regime-conditional FM loadings under BOTH
+----------------------------------------------------------------------------------------
+
+SMOOTHED (current): 213 of 347 months high-T (61.4%)
+FILTERED (no-look-ahead): 210 of 347 months high-T (60.5%)
+Agreement rate: 96.3%
+
+[SMOOTHED (current, Table 5 as published)] date_range=1995-01-31..2023-11-30  N_low=47,264  N_high=79,726
+  beta_DH: Low-T=-0.0025(t=-0.88)  High-T=-0.0034(t=-1.24)
+  beta_DS: Low-T=+0.0012(t=+0.42)  High-T=+0.0025(t=+1.62)
+  |beta_DS| ratio (High/Low): 2.089
+
+[FILTERED (no-look-ahead)] date_range=1995-01-31..2023-11-30  N_low=48,645  N_high=78,345
+  beta_DH: Low-T=-0.0016(t=-0.55)  High-T=-0.0039(t=-1.39)
+  beta_DS: Low-T=+0.0018(t=+0.61)  High-T=+0.0021(t=+1.39)
+  |beta_DS| ratio (High/Low): 1.175
+
+========================================================================================
+F3 SUMMARY — Table 5 regime-conditional loadings, smoothed vs filtered
+========================================================================================
+                                  Smoothed (current)   Filtered (no-look-ahead)
+High-T month share                             61.4%                      60.5%
+t(beta_DH), Low-T                              -0.88                      -0.55
+t(beta_DH), High-T                             -1.24                      -1.39
+t(beta_DS), Low-T                              +0.42                      +0.61
+t(beta_DS), High-T                             +1.62                      +1.39
+
+H3 (regime-dependent stability/entropy loadings) is already unsupported under
+the current (smoothed, look-ahead) classification per prior rounds. Checking
+whether the filtered classification changes that conclusion:
+RESULT: the null on H3 is NOT an artifact of the look-ahead classification --
+the filtered (no-look-ahead) classification gives the same qualitative
+conclusion as the smoothed one. This closes the item as expected: H3 remains
+unsupported under a genuinely no-look-ahead regime split.

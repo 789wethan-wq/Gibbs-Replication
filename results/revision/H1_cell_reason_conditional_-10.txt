@@ -1,0 +1,18 @@
+========================================================================================
+H1 — terminal-return sensitivity, variant=reason_conditional, delta=-10%
+========================================================================================
+Loaded panel: N=434,016  tickers=12,449  quarters=114  range=1995Q3..2023Q4
+Delisted firms in analysis panel: 8,937  (MATCH vs cited 8,937)
+EDGAR-confirmed acquisitions (F5b) within delisted-in-panel set: 611  (MATCH vs cited 611)
+
+Terminal (last-quarter) rows to receive an assumed delisting return: 8,937
+  of these, 611 are EDGAR-confirmed acquisitions -> ret_next=0.0 regardless of delta; 8,326 get delta=-0.10
+
+----------------------------------------------------------------------------------------
+Model B FM (quarterly, NW-4):  design shape=(400474, 3)  SHA-1=ede01c023fb3966d8b0f10a2108c10307a823d3b
+  N=400,474  tickers=11,067  avg firms/qtr=3544.0  date_range=1995Q4..2023Q4
+  t(IVOL)=t(delta_s_z) = -0.1456   coef=-0.000670  SE=0.004600  quarters=112
+  t(STAB)=t(delta_h_z) = +3.5612   coef=+0.005683  SE=0.001596  quarters=112
+
+Quintile sort on ΔS (pure entropy/iVol, entropy-only panel N=429,649):
+  L/S (Q5-Q1) = -1.89%/yr   t=-0.39   (Tq=114)

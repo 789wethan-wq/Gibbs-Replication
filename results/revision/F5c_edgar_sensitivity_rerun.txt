@@ -1,0 +1,43 @@
+========================================================================================
+F5c — Entropy-premium collapse: sensitivity to EDGAR-confirmed M&A exclusion
+========================================================================================
+Loaded EDGAR classification: 4,593 delisted firms classified
+status
+not_checkable    2571
+indeterminate    1411
+confirmed         611
+
+EDGAR-confirmed successor/M&A tickers: 611
+
+----------------------------------------------------------------------------------------
+
+[(a) FULL panel, as published]
+  N=392,557  tickers=10,699  avg firms/qtr=3505.0  date_range=1995Q4..2023Q3
+  t(dS)=+0.0181  coef(dS)=+0.000087  SE(dS)=0.004814  quarters=111
+  t(dH)=+3.4606  coef(dH)=+0.005769  SE(dH)=0.001667
+
+[(b) EXCLUDING EDGAR-confirmed M&A/successor firms]
+  N=376,381  tickers=10,293  avg firms/qtr=3360.5  date_range=1995Q4..2023Q3
+  t(dS)=-0.0212  coef(dS)=-0.000102  SE(dS)=0.004807  quarters=111
+  t(dH)=+3.3196  coef(dH)=+0.005651  SE(dH)=0.001702
+
+[(c) EDGAR-confirmed M&A firms ONLY (their own entropy-return relationship)]
+  N=16,176  tickers=406  avg firms/qtr=144.4  date_range=1995Q4..2023Q3
+  t(dS)=+0.2043  coef(dS)=+0.001252  SE(dS)=0.006129  quarters=99
+  t(dH)=+2.6729  coef(dH)=+0.007923  SE(dH)=0.002964
+
+========================================================================================
+F5c SUMMARY
+========================================================================================
+Spec                                             t(dS)    t(dH)         N
+(a) Full panel                                  +0.018   +3.461   392,557
+(b) Excl. EDGAR-confirmed M&A                   -0.021   +3.320   376,381
+(c) EDGAR-confirmed M&A only                    +0.204   +2.673    16,176
+
+|t(dS) full - t(dS) excl-confirmed-M&A| = 0.039
+
+VERDICT: the collapse is STABLE to excluding EDGAR-confirmed M&A/successor firms
+from the delisted population. The near-zero entropy premium is not an artifact of
+conflating healthy acquisitions with genuine failures under the blanket 'delisted'
+label -- removing the firms we can positively confirm were acquired/reorganized
+(rather than failed) leaves the collapse intact.

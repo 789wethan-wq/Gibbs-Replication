@@ -1,0 +1,110 @@
+========================================================================================
+F1 — Excluded-ticker audit (R18's 15,522 -> 12,449 waterfall)
+========================================================================================
+Stage 0 -- universe: 15,522 tickers (11,178 delisted)
+Stage 1 -- tickers with >=1 valid ARQ price record: 15,461 (no price record at all: 61)
+Stage 2 -- tickers with >=8 valid consecutive-gap quarterly returns: 12,750  (excluded here: 2,711)
+Stage 3 -- tickers with >=1 valid DeltaS estimate: 12,750  (had >=8 returns but NO valid DeltaS -- non-consecutive run -- excluded here: 0)
+Stage 4 -- tickers surviving the T-quarter join: 12,449  (lost to T-window mismatch: 301)
+
+FINAL PANEL TICKER COUNT (this audit's reconstruction): 12,449  vs the cited 12,449 -- MATCHES
+
+Total excluded from universe: 3,073  (spec cites ~3,073)
+
+========================================================================================
+(1) Exclusion-reason breakdown
+========================================================================================
+  No valid ARQ price record at all:                  61
+  Some price data, but <8 valid consecutive returns:  2,711
+  >=8 returns, but no valid DeltaS (non-consecutive):  0
+  Valid DeltaS, but no T-quarter overlap:              301
+  SUM of the above 4 categories: 3,073  (should equal total excluded 3,073: MATCHES)
+
+  [separate, does NOT gate panel entry -- R18 left-joins GPM]
+  Of the 12,449 tickers THAT DO enter the panel, 1,065 (8.6%) never have a valid GPM/DeltaH
+  observation and are therefore excluded from the FULL-CHANNEL (Model B/C) FM sample
+  specifically, while still counting toward the 12,449 entropy-only panel tickers.
+
+========================================================================================
+(2) Insufficient-history exclusions (no-price + <8-return groups): delisted share, lifespan
+========================================================================================
+Insufficient-history excluded tickers: 2,772
+  Of these, delisted: 2,185 (78.8%)
+Lifespan (distinct quarters with a valid price record) distribution, N=2,772:
+  mean=5.43  median=6.0
+  p10 = 2.0 quarters
+  p25 = 4.0 quarters
+  p50 = 6.0 quarters
+  p75 = 7.0 quarters
+  p90 = 8.0 quarters
+  share with 0 quarters (no price record at all): 2.2%
+
+[checkpoint] wrote ../results/revision/F1_excluded_ticker_audit.txt.partial1 (continuing to parts 3-4)
+
+========================================================================================
+(3) Short-window DeltaS proxy (4q and 8q, clearly labelled, NOT the panel construction)
+========================================================================================
+
+4-quarter proxy, EXCLUDED tickers (N=0 computable):
+  mean=nan  p10=nan  p25=nan  p50=nan  p75=nan  p90=nan
+INCLUDED tickers' actual panel DeltaS (12q rolling, N=469,405, NOT the same window -- reported for context, not a like-for-like test):
+  mean=0.1994  p10=0.0714  p25=0.1031  p50=0.1624  p75=0.2573  p90=0.3742
+  Excluded-minus-included mean difference: +nan (+nan% relative)
+
+8-quarter (min 6 obs) proxy, EXCLUDED tickers (N=1,415 computable):
+  mean=0.1665  p10=0.0061  p25=0.0380  p50=0.1356  p75=0.2484  p90=0.3641
+INCLUDED tickers' actual panel DeltaS (12q rolling, N=469,405, NOT the same window -- reported for context, not a like-for-like test):
+  mean=0.1994  p10=0.0714  p25=0.1031  p50=0.1624  p75=0.2573  p90=0.3742
+  Excluded-minus-included mean difference: -0.0329 (-16.5% relative)
+
+========================================================================================
+(4) Terminal-quarter return: excluded-delisted vs included-delisted firms
+========================================================================================
+Excluded-delisted terminal return (N=2,147): mean=-0.91%  median=+1.05%
+Included-delisted terminal return (N=8,937): mean=+3.96%  median=+1.81%
+Difference (excluded - included): -4.87 percentage points
+========================================================================================
+F1 supplement — raw return-SD proxy (broader coverage than the FF3 proxy)
+========================================================================================
+The 4-quarter FF3-residual proxy is INFEASIBLE, not just unreported: a 4-
+parameter regression (const + Mkt_RF + SMB + HML) on exactly 4 observations
+has zero residual degrees of freedom, so no residual variance is defined.
+This is a mathematical fact, not a data-availability gap -- reported as such
+rather than substituting a nearby window that happens to run.
+
+Raw quarterly-return SD (no factor model, min 2 obs):
+  Excluded tickers: N=2,738  mean=0.2516  p10=0.0106  p25=0.0828  p50=0.2215  p75=0.3666  p90=0.5233
+  Included tickers: N=12,449  mean=0.2980  p10=0.1248  p25=0.1803  p50=0.2739  p75=0.3827  p90=0.4937
+  Excluded-minus-included mean difference: -0.0464 (-15.6% relative)
+
+  Very-short-lived excluded firms only (<=4 valid quarters, N=959): mean raw SD=0.2472
+  vs included mean: -0.0508 (-17.1% relative)
+
+========================================================================================
+F1 OVERALL SYNTHESIS
+========================================================================================
+Direction check against the spec's hypothesis ("if the excluded firms are higher-DeltaS
+than the panel average, say so and give the magnitude"): NOT CONFIRMED. Both the
+8-quarter FF3-residual proxy (-16.5% relative) and the raw-SD proxy (-15.6% overall,
+-17.1% for the very-shortest-lived subset) show excluded firms have LOWER measured
+volatility than included firms, not higher. This does not fit the anticipated
+narrative and is reported as found rather than reframed to fit it. Two candidate
+explanations, neither resolved here: (a) many excluded firms are thinly-traded/
+illiquid over their brief life, which can artificially compress measured return
+volatility (a stale-pricing artifact, not a genuine low-risk signal) -- distinct
+from the entropy story either way; (b) the excluded population may be dominated by
+small, quickly-acquired-or-delisted firms whose short life reflects something other
+than classic high-disorder distress.
+
+The terminal-quarter return finding points the OTHER direction: excluded-delisted
+firms' terminal returns average -0.91% vs included-delisted firms' +3.96% (a 4.87pp
+gap), consistent with a worse-outcome population. The two proxies (ex-ante volatility
+level vs ex-post terminal outcome) are not measuring the same thing and give a mixed
+picture -- report both, do not force a single-direction story.
+
+Combined with E6 (filing-vs-listing survivorship, monotone in DeltaS quintile) and the
+0.482%/month terminal-return proxy's own M&A caveat (prior rounds), this IS a third
+exclusion margin worth naming, but its direction on DeltaS LEVEL is not simply
+confirmatory -- the honest framing is 'three named exclusion margins, mixed evidence
+on direction for this one,' not 'three margins all pointing the same way.'
+

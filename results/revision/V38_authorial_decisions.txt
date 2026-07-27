@@ -1,0 +1,47 @@
+V38 — Authorial decisions (delegated to [CODE] by explicit user instruction
+"you decide" on both, in response to referee_runs_v38.md)
+=====================================================================
+
+DECISION 1: RETITLE away from the Gibbs/thermodynamic framing to the
+survivorship-clause framing; compress Sections 2.1-2.4.
+
+Reasoning: after E1 (dispersion-normalized placebos), no empirical content
+motivated by the Gibbs equation survives:
+  - H3 (regime-conditional loadings) already unsupported (prior rounds)
+  - the enthalpy/entropy unit-consistency ratio already untestable (prior rounds)
+  - the structural ΔG = ΔH - TΔS interpretation already withdrawn in V31
+  - the residual "directional conditional-pricing observation" (the last
+    surviving piece) shown by E1 to be a generic property shared by (and in
+    several cases stronger in) unrelated placebo characteristics -- not
+    specific to entropy/disorder.
+The ΔH/ΔS decomposition remains useful as a pair of empirical variables; the
+survivorship-correction finding (the paper's actual strongest, most novel
+contribution) does not need thermodynamic framing to motivate or state. A
+title promising a theoretical framework that the paper's own internal tests
+have withdrawn every empirical claim for is a framing risk a referee will
+flag. Consistent with the chat instance's own restored recommendation
+(reversing its round-3 decision to keep the framing, on the grounds that
+that judgment assumed one surviving pattern, which no longer holds).
+
+DECISION 2: CUT R19's synthetic-delisting stress-test/sufficiency framing.
+KEEP the E7 calibrated finding (at the measured 0.482%/month delisting rate,
+the premium attenuates from +13.36%/yr to +8.68%/yr, t=+3.93 to +2.58 --
+realistic delisting explains roughly a third of the unconditional premium).
+
+Reasoning: the original V38 spec pre-committed a decision rule for this
+exact scenario -- "if it does not [lower the required rate], that is also
+worth knowing, and R19 should probably be cut rather than defended a fourth
+time." E7 found the monotone-hazard design requires a HIGHER top-quartile
+hazard (5.25%/mo) than R19's uniform-quartile design implied (4.00%/mo,
+itself already ~8x the measured rate, not the ~4x the manuscript's text
+claims due to an arithmetic error caught in E7). A sufficiency bound built
+on an assumed hazard rate is inherently more contestable than a point
+estimate at the actually-measured rate, and this is the fourth round of
+exactly that contestation. The E7 calibrated number needs no assumption-
+stacking and stands on its own.
+
+Scope note: manuscript edits remain the chat instance's responsibility per
+the established division of labor (Executor: [CODE] does not edit the
+.docx). This file records the decision and its rationale for provenance;
+the cascading prose edits (§2.5, §4.4, §5.5, §6, abstract, §3.2 T-methods
+correction, R19 section rewrite, E2/E5/E6 insertions) are out of scope here.

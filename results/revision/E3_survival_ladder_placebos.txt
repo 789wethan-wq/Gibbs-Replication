@@ -1,0 +1,107 @@
+========================================================================================
+E3 — Survival ladder applied to placebo characteristics (size, B/M, momentum, beta)
+========================================================================================
+
+[k=0] N_tickers=12449  avg_firms/qtr=3807.2  N_obs=434,016
+  DeltaH (control)       t=+2.127  coef=+0.006085  quarters=111
+  DeltaS (control)       t=-0.278  coef=-0.001406  quarters=112
+  Size                   t=-0.128  coef=-0.000586  quarters=112
+  Book-to-market         t=+1.069  coef=+0.003474  quarters=112
+  Momentum               t=-0.051  coef=-0.000182  quarters=112
+  Beta                   t=-0.388  coef=-0.001222  quarters=112
+
+[k=5] N_tickers=6777  avg_firms/qtr=3372.2  N_obs=384,436
+  DeltaH (control)       t=+1.877  coef=+0.005213  quarters=111
+  DeltaS (control)       t=+0.246  coef=+0.001265  quarters=112
+  Size                   t=-0.580  coef=-0.002677  quarters=112
+  Book-to-market         t=+1.207  coef=+0.004171  quarters=112
+  Momentum               t=-0.537  coef=-0.001905  quarters=112
+  Beta                   t=-0.461  coef=-0.001353  quarters=112
+
+[k=10] N_tickers=3958  avg_firms/qtr=2617.8  N_obs=298,430
+  DeltaH (control)       t=+1.432  coef=+0.003463  quarters=111
+  DeltaS (control)       t=+0.680  coef=+0.003350  quarters=112
+  Size                   t=-1.069  coef=-0.004714  quarters=112
+  Book-to-market         t=+1.679  coef=+0.005968  quarters=112
+  Momentum               t=-0.938  coef=-0.003125  quarters=112
+  Beta                   t=+0.015  coef=+0.000042  quarters=112
+
+[k=15] N_tickers=2627  avg_firms/qtr=2041.1  N_obs=232,689
+  DeltaH (control)       t=+1.006  coef=+0.002181  quarters=111
+  DeltaS (control)       t=+0.963  coef=+0.004429  quarters=112
+  Size                   t=-1.461  coef=-0.005932  quarters=112
+  Book-to-market         t=+1.895  coef=+0.006752  quarters=112
+  Momentum               t=-1.315  coef=-0.004235  quarters=112
+  Beta                   t=+0.239  coef=+0.000675  quarters=112
+
+[k=20] N_tickers=1678  avg_firms/qtr=1470.7  N_obs=167,664
+  DeltaH (control)       t=+0.483  coef=+0.001005  quarters=111
+  DeltaS (control)       t=+1.280  coef=+0.005613  quarters=112
+  Size                   t=-1.945  coef=-0.007435  quarters=112
+  Book-to-market         t=+2.022  coef=+0.007062  quarters=112
+  Momentum               t=-1.526  coef=-0.004788  quarters=112
+  Beta                   t=+0.236  coef=+0.000704  quarters=112
+
+[k=25] N_tickers=1047  avg_firms/qtr=975.2  N_obs=111,175
+  DeltaH (control)       t=-0.022  coef=-0.000047  quarters=111
+  DeltaS (control)       t=+1.710  coef=+0.007030  quarters=112
+  Size                   t=-2.437  coef=-0.008559  quarters=112
+  Book-to-market         t=+2.216  coef=+0.008072  quarters=112
+  Momentum               t=-1.839  coef=-0.005809  quarters=112
+  Beta                   t=+0.731  coef=+0.002083  quarters=112
+
+[k=27] N_tickers=336  avg_firms/qtr=328.3  N_obs=37,424
+  DeltaH (control)       t=-1.122  coef=-0.001612  quarters=111
+  DeltaS (control)       t=+3.333  coef=+0.010223  quarters=112
+  Size                   t=-2.543  coef=-0.008167  quarters=112
+  Book-to-market         t=+1.838  coef=+0.007150  quarters=112
+  Momentum               t=-1.394  coef=-0.003813  quarters=112
+  Beta                   t=+1.811  coef=+0.005588  quarters=112
+
+========================================================================================
+E3 SUMMARY LADDER TABLE — FM t by characteristic, by k
+========================================================================================
+ k(yrs)DeltaH (control)DeltaS (control)            Size  Book-to-market        Momentum            Beta
+      0           +2.13           -0.28           -0.13           +1.07           -0.05           -0.39
+      5           +1.88           +0.25           -0.58           +1.21           -0.54           -0.46
+     10           +1.43           +0.68           -1.07           +1.68           -0.94           +0.01
+     15           +1.01           +0.96           -1.46           +1.89           -1.32           +0.24
+     20           +0.48           +1.28           -1.94           +2.02           -1.53           +0.24
+     25           -0.02           +1.71           -2.44           +2.22           -1.84           +0.73
+     27           -1.12           +3.33           -2.54           +1.84           -1.39           +1.81
+
+========================================================================================
+Monotonicity check: does t rise (in the DeltaS direction) monotonically with k
+for the placebos too, or is DeltaS distinctive?
+========================================================================================
+(Using |t| MAGNITUDE, not signed t, as the criterion: a placebo becoming MORE
+negative-and-significant is just as much evidence that survival conditioning
+inflates unrelated slopes as becoming more positive. A first pass here using
+signed net-move produced a misleading 1/4 count by missing Size's and Momentum's
+large moves in the negative direction -- corrected below.)
+DeltaH (control)      : |t|(k=0)=2.13 -> |t|(k=27)=1.12  net_|t|_move=-1.01  monotone_nondecreasing_|t|=no  (raw t: +2.13 -> -1.12)
+DeltaS (control)      : |t|(k=0)=0.28 -> |t|(k=27)=3.33  net_|t|_move=+3.06  monotone_nondecreasing_|t|=YES  (raw t: -0.28 -> +3.33)
+Size                  : |t|(k=0)=0.13 -> |t|(k=27)=2.54  net_|t|_move=+2.42  monotone_nondecreasing_|t|=YES  (raw t: -0.13 -> -2.54)
+Book-to-market        : |t|(k=0)=1.07 -> |t|(k=27)=1.84  net_|t|_move=+0.77  monotone_nondecreasing_|t|=no  (raw t: +1.07 -> +1.84)
+Momentum              : |t|(k=0)=0.05 -> |t|(k=27)=1.39  net_|t|_move=+1.34  monotone_nondecreasing_|t|=no  (raw t: -0.05 -> -1.39)
+Beta                  : |t|(k=0)=0.39 -> |t|(k=27)=1.81  net_|t|_move=+1.42  monotone_nondecreasing_|t|=no  (raw t: -0.39 -> +1.81)
+
+DeltaS |t| net move (k=0 -> k=27): +3.06
+Placebo |t| net moves: Size=+2.42, Book-to-market=+0.77, Momentum=+1.34, Beta=+1.42
+Placebos with |t| net move > 1.0 (magnitude, either sign): 3/4
+Placebos with a monotone-nondecreasing |t| trajectory across the full ladder: 1/4
+
+VERDICT: survival conditioning inflates MULTIPLE placebo slopes in magnitude too,
+not just DeltaS -- Size (|t| 0.13->2.54) and Beta (|t| 0.39->1.81) both show moves
+comparable in size to DeltaS's own (|t| 0.28->3.33), and Momentum (|t| 0.05->1.39)
+shows a smaller but real move in the same direction. R20 demonstrates a property of
+survival-conditioned panels more broadly (shrinking, longer-surviving samples
+systematically move MULTIPLE unrelated cross-sectional slopes toward larger
+|t|-statistics, not just DeltaS) rather than something specific to disorder/entropy.
+The exhibit survives as a description of the DeltaS collapse-and-recovery pattern,
+but the causal interpretation needs to narrow from 'survival conditioning
+manufactures THE premium' (singular, disorder-specific) to 'survival conditioning
+manufactures premiums' (plural, a property of the conditioning, not the
+characteristic) -- exactly the restatement the spec anticipated as the less
+favorable but real possible outcome. Book-to-market is the partial exception
+(already borderline-significant at k=0, t=+1.07, and moves only modestly further).

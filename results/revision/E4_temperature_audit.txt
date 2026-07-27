@@ -1,0 +1,75 @@
+========================================================================================
+E4 — Temperature normalization date-boundary audit
+========================================================================================
+
+----------------------------------------------------------------------------------------
+(1) Daily series for the 12-month (252-trading-day) realized variance
+----------------------------------------------------------------------------------------
+sp500_daily.parquet (built from Ken French FF5-daily Mkt_RF+RF, per data_pipeline.py):
+  first date = 1963-07-01   last date = 2026-04-30   N = 15,813 trading days
+  rolling(252).sum() of squared daily log returns: first NON-NULL value at 1964-06-30 (252 trading days after the daily series starts, i.e. burn-in of 252 obs, ~365 calendar days)
+
+market_temperature.parquet (T_raw, resample('ME').last() of the above):
+  first month = 1964-06   last month = 2026-04   N = 743 months
+  -> T_raw (and therefore T, however normalized) is defined from 1964-06, which predates the equity panel's 1995 start by 30 years.
+
+----------------------------------------------------------------------------------------
+(2) T normalization -- what the code actually does (project/01b_stock_variables.py)
+----------------------------------------------------------------------------------------
+prices.index (stock_prices_monthly.parquet): 1988-01 .. 2023-12  (N=432)
+factors.index (factors_monthly.parquet):     1963-07 .. 2026-04  (N=754)
+monthly_idx = intersection(prices, factors, T_raw): 1988-01 .. 2023-12  (N=432)
+
+CODE (verbatim, project/01b_stock_variables.py):
+    T_norm = (T_raw_m - T_raw_m.mean()) / T_raw_m.std() * 0.02 + 0.04
+
+This is a FULL-SAMPLE rescale: T_raw_m.mean() and T_raw_m.std() are each a SINGLE
+scalar computed ONCE over the ENTIRE monthly_idx span above (1988-01..2023-12, N=432 months),
+applied identically to every month. THIS IS NOT AN EXPANDING WINDOW. There is no
+24-month minimum, no expanding accumulation, and no month-by-month recomputation
+anywhere in this normalization step -- confirmed by reading the code, not inferred.
+mean(T_raw_m) = 0.033851   std(T_raw_m) = 0.034429
+
+Consequence: EVERY month's normalized T value (not just the early ones) uses
+information from the full sample, including months AFTER that observation --
+this is look-ahead for the entire series, not merely an early-sample burn-in
+issue as an expanding-window design would produce. This is a DIFFERENT and MORE
+SEVERE issue than the one hypothesized in the spec (which assumed an expanding
+window with a binding 24-month minimum -- no such construction exists in this
+codebase for T; searched project/*.py and robustness/*.py for 'expanding' in the
+context of T and found none).
+
+Note for calibration: because T only enters as a STANDARDIZED (near-linear)
+rescaling of T_raw applied UNIFORMLY across the sample, and the FM regressions of
+interest condition on T contemporaneously within a given month (not on the
+normalization constants themselves), the practical channel for bias is mainly
+through the T-interaction/Markov-regime classification analyses (Table 4/5) that
+use T's LEVEL to split or weight the sample -- exactly the look-ahead concern the
+filtered-vs-smoothed Markov probability finding (prior round, DOC1) already
+flagged from a different angle. A linear rescale by fixed constants does not, by
+itself, change any FM t-statistic that regresses returns on T_z or T*ΔS (since
+OLS is invariant to a fixed affine transform of a regressor) -- but it DOES matter
+for any split/threshold defined on T's level (regime classification, high/low-T
+subsample tests), which use the full-sample mean/std as their reference point.
+
+----------------------------------------------------------------------------------------
+(3) Panel date range and the exact accounting for dropped observations
+----------------------------------------------------------------------------------------
+variables_monthly.parquet: 1995-01 .. 2023-11  (N=347 distinct months)
+merged_with_accounting.parquet (headline panel): 1995-01 .. 2023-11  (N=347 distinct months)
+FM estimation sample (dropna on ret_next_month, dH_gpm_z, DS_z, primary rig): 1996-01 .. 2023-11  (N=335 months)
+
+Months in variables_monthly.parquet but NOT in the FM sample: 12
+  ['1995-01', '1995-02', '1995-03', '1995-04', '1995-05', '1995-06', '1995-07', '1995-08', '1995-09', '1995-10', '1995-11', '1995-12']
+Months in merged_with_accounting.parquet but NOT in the FM sample: 12
+  ['1995-01', '1995-02', '1995-03', '1995-04', '1995-05', '1995-06', '1995-07', '1995-08', '1995-09', '1995-10', '1995-11', '1995-12']
+
+Reconciling the spec's '347 months in the panel, 335 used' claim against what
+is actually on disk:
+  variables_monthly.parquet has 347 months -- MATCHES the cited 347
+  merged_with_accounting.parquet has 347 months -- MATCHES the cited 347
+  FM sample has 335 months -- MATCHES the cited 335
+
+dH_gpm (accounting ΔH, merged separately via sharadar_pipeline.py) is non-null in merged_with_accounting.parquet from 1995-12 (N=336 months with any non-null dH_gpm)
+Months in merged_with_accounting.parquet with NO non-null dH_gpm anywhere: 11
+  ['1995-01', '1995-02', '1995-03', '1995-04', '1995-05', '1995-06', '1995-07', '1995-08', '1995-09', '1995-10', '1995-11']

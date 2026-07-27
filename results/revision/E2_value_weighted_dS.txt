@@ -1,0 +1,33 @@
+========================================================================================
+E2 — Value-weighted t(DeltaS), corrected (R18) panel, four Section 5.3 variants
+========================================================================================
+Merged coverage: price 100.0%  marketcap_lag1 100.0%  exchange 100.0%
+  baseline (unweighted, all firms)  : t(dH)=+3.461  t(dS)=+0.018  coef(dH)=+0.005769  coef(dS)=+0.000087  N=392,557  avgN/q=3505  tickers=10699  quarters=111  range=1995Q4..2023Q3
+  (i) NYSE 20th-pct size breakpoint (lagged cap): t(dH)=+3.443  t(dS)=+0.529  coef(dH)=+0.004571  coef(dS)=+0.002486  N=198,338  avgN/q=1771  tickers=6098  quarters=111  range=1995Q4..2023Q3
+  (ii) price >= $1 at formation     : t(dH)=+3.959  t(dS)=-0.085  coef(dH)=+0.006219  coef(dS)=-0.000407  N=378,624  avgN/q=3381  tickers=10523  quarters=111  range=1995Q4..2023Q3
+  (iii) price >= $5 at formation    : t(dH)=+4.620  t(dS)=-0.942  coef(dH)=+0.007245  coef(dS)=-0.004378  N=321,379  avgN/q=2869  tickers=9410  quarters=111  range=1995Q4..2023Q3
+  (iv) value-weighted FM (WLS by lagged cap): t(dH)=+2.581  t(dS)=+1.289  coef(dH)=+0.004946  coef(dS)=+0.007813  N=392,557  avgN/q=3505  tickers=10699  quarters=111  range=1995Q4..2023Q3
+  (iv-contemp) value-weighted FM (WLS by CONTEMPORANEOUS cap): t(dH)=+2.766  t(dS)=+1.147  coef(dH)=+0.004563  coef(dS)=+0.007026  N=392,557  avgN/q=3505  tickers=10699  quarters=111  range=1995Q4..2023Q3
+
+========================================================================================
+E2 SUMMARY TABLE
+========================================================================================
+Variant                                         t(dH)    t(dS)         N  avgN/q  tickers
+baseline (unweighted, all firms)                +3.46    +0.02   392,557    3505   10,699
+(i) NYSE 20th-pct size breakpoint (lagged cap)    +3.44    +0.53   198,338    1771    6,098
+(ii) price >= $1 at formation                   +3.96    -0.09   378,624    3381   10,523
+(iii) price >= $5 at formation                  +4.62    -0.94   321,379    2869    9,410
+(iv) value-weighted FM (WLS by lagged cap)      +2.58    +1.29   392,557    3505   10,699
+(iv-contemp) value-weighted FM (WLS by CONTEMPORANEOUS cap)    +2.77    +1.15   392,557    3505   10,699
+
+Manuscript comparator (Section 5.3, ΔH): value-weighted t(ΔH) = +2.76.
+  Lagged cap:         t(ΔH)=+2.581  t(ΔS)=+1.289
+  Contemporaneous cap: t(ΔH)=+2.766  t(ΔS)=+1.147  -- MATCHES the cited +2.76 essentially exactly
+
+Reconciliation (D3-style): Section 5.3's value-weighted ΔH figure was computed with
+CONTEMPORANEOUS market cap (matches +2.76 to 2 decimals), not lagged cap. Per ground rule 4
+lagged cap is the corrected-panel default, so both are reported; the substantive finding is
+unaffected by which convention is used -- value-weighted t(ΔS) stays far from significance
+either way (+1.29 lagged, +1.15 contemporaneous).
+
+The headline missing number: value-weighted t(ΔS) = +1.15 (contemporaneous cap, coef=+0.007026) / +1.29 (lagged cap, coef=+0.007813). This is the number Section 5.3 does not currently report anywhere.

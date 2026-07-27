@@ -1,0 +1,28 @@
+{
+  "variant": "reason_conditional",
+  "delta_pct": 0,
+  "pid": 75841,
+  "N": 392557,
+  "n_tickers": 10699,
+  "avg_firms_q": 3504.973214285714,
+  "first_q": "1995Q4",
+  "last_q": "2023Q3",
+  "design_shape": [
+    392557,
+    3
+  ],
+  "design_hash": "872dd066c1a8e9bc585693f6669968d9b7a79c4c",
+  "t_ivol": 0.01813929508987621,
+  "coef_ivol": 8.732606899031126e-05,
+  "se_ivol": 0.004814193085102251,
+  "nq_ivol": 111,
+  "t_stab": 3.4605930975292756,
+  "coef_stab": 0.005769298920910792,
+  "se_stab": 0.0016671416599165732,
+  "nq_stab": 111,
+  "quintile_ls_ann": -0.010194511733010132,
+  "quintile_t": -0.2003508915814045,
+  "quintile_tq": 113,
+  "n_target_rows": 8937,
+  "n_confirmed_zeroed": 0
+}

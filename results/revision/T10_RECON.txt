@@ -1,0 +1,18 @@
+========================================================================
+[T10-RECON] Table 10 firm-count reconciliation (all = R18 panel)
+========================================================================
+  ladder_baseline: firms/qtr=3807, N=434,016, quarters=114
+                   filters = NONE (every firm-quarter row in the R18 panel,
+                             incl. rows with missing forward return / ΔH)
+  sort_panel:      firms/qtr=3723, N=420,712, quarters=113, firms=12,022
+                   filters = ret_next & delta_s non-missing
+  fm_sample:       firms/qtr=3505, N=392,557, quarters=112, firms=10,699
+                   filters = ret_next & delta_h_z & delta_s_z non-missing (ΔH-complete)
+  filter diff 3807->3723: -13,304 firm-qtrs lacking forward return (ret_next); last quarter drops out (nq 114->113)
+  filter diff 3723->3505: -28,155 firm-qtrs lacking ΔH history (delta_h_z); firms 12,022->10,699
+
+  baseline reproduces Table 7/8 k=0?
+    FM Model B (NW-4, saved z): t(dH)=+3.46  t(dS)=+0.02
+    ΔS quintile L/S: -1.0%/yr (t=-0.20, quarters=113)
+    TARGET (Table 6/7/8 k=0): t(dH)=+3.46, t(dS)=+0.02, L/S=-1.0%/yr
+    reproduces T7 k=0: YES

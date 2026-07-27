@@ -1,0 +1,33 @@
+E8 — Constant-measurement test: price source confirmation
+=====================================================================
+Question: does the 462-name constant-measurement test (Section 4.8, "rebuilding
+ΔS...using the identical 12-quarter filing-date-spaced construction") use
+yfinance monthly prices sampled at SF1 filing dates, or SF1 filing-date prices
+for those 462 names?
+
+Located the script: robustness/M1_sp500_quarterly_ds.py ("M1 — Constant-
+measurement survivorship test (R4 gate item, HIGHEST PRIORITY)"). Checked
+M1b_estimator_reconciliation.py too (the companion estimator-grid script) --
+it consumes M1's already-built panel and does not independently source prices,
+so M1_sp500_quarterly_ds.py is the single source of truth for this question.
+
+CODE (verbatim, M1_sp500_quarterly_ds.py, STEP 2):
+    say("Loading SF1 ARQ price series (identical R18 construction)...")
+    sf1 = pd.read_parquet(f"{DATA}/sharadar_SF1_full.parquet",
+                          columns=["ticker","dimension","calendardate","datekey",
+                                   "price","dps"])
+    arq = sf1[(sf1["dimension"] == "ARQ") & sf1["ticker"].isin(uni_set)].copy()
+
+CONFIRMED: the constant-measurement test uses SF1's own `price` field (the
+split-adjusted price stored alongside each ARQ fundamentals filing), NOT
+yfinance. Returns are computed between consecutive SF1 filing dates for the
+462 S&P names, "identical R18 construction" as the docstring states -- this
+is a real byte-for-byte match, not just a description. Universe restricted
+to the 462 S&P names via `uni_set = set(v["stock_id"].unique())` read from
+variables_monthly.parquet (the S&P monthly panel).
+
+RESULT: the concern in the spec (price source is a confound the test doesn't
+close) does NOT apply -- the test already holds price source fixed (SF1
+throughout), not yfinance. No re-run with substituted SF1 prices is needed
+since SF1 prices are what M1 already uses. Nothing to report as a discrepancy
+here; this is a clean confirmation, not a finding requiring a fix.

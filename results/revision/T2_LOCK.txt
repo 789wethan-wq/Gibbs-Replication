@@ -1,0 +1,19 @@
+========================================================================
+BLOCK 1b/1c — Table 2 Model B (accounting dH_gpm_z + DS_z), primary cut
+========================================================================
+
+[T2-LOCK] patched primary rig (utils.fama_macbeth, cut=len+2)  (min-obs cut=4)
+  lag=0: t(dH)=+2.61, t(dS)=+4.70
+  lag=4: t(dH)=+2.74, t(dS)=+4.69
+  lag=5: t(dH)=+2.85, t(dS)=+4.75
+  lag=6: t(dH)=+2.92, t(dS)=+4.72
+  N=118,014, T=335, min-obs cut=4
+
+[T2-LOCK] R17/R3-3 verification rig (fm_nw, cut=15)  (min-obs cut=15)
+  lag=0: t(dH)=+2.45, t(dS)=+4.62
+  lag=4: t(dH)=+2.59, t(dS)=+4.62
+  lag=5: t(dH)=+2.70, t(dS)=+4.67
+  lag=6: t(dH)=+2.77, t(dS)=+4.64
+  N=118,007, T=334, min-obs cut=15
+
+Reference (R3-3 lag sweep, cut=15): t(dH)=+2.45@lag0, +2.70@lag5, +2.77@lag6

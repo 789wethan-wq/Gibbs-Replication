@@ -10,8 +10,8 @@ authors:
     # orcid: "https://orcid.org/0000-0000-0000-0000"
 repository-code: "https://github.com/789wethan-wq/Gibbs-Replication"
 license: MIT
-version: "v34-plos-submission"
-date-released: "2026-07-24"
+version: "v49-plos-submission"
+date-released: "2026-07-27"
 keywords:
   - cross-sectional returns
   - idiosyncratic volatility

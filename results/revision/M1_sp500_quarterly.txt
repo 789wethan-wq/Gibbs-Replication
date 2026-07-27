@@ -1,0 +1,40 @@
+================================================================
+M1 — S&P 500 QUARTERLY-ΔS PANEL (constant-measurement test)
+================================================================
+
+S&P monthly-panel universe: 462 names (survivorship held at max)
+  [benchmark] monthly-panel Model B FM (36m iVol, accounting ΔH, NW-6): t(ΔS)=+4.64  t(ΔH)=+2.77  (Tm=334)
+
+Loading SF1 ARQ price series (identical R18 construction)...
+Quarterly return obs: 49,488 | tickers: 457 | quarters: 131
+
+Computing quarterly iVol (12q rolling FF3)...
+ΔS obs: 46,289 | tickers: 457
+
+Full-channel panel: N=40,917  tickers=457  quarters=111  avg/q=369
+Date range: 1996Q1 .. 2023Q3
+
+----------------------------------------------------------------
+FAMA-MACBETH — Model B (ΔH + ΔS), quarterly NW-4
+  β_ΔH         β=+0.00187  t=+1.43  (Tq=111)
+  β_ΔS         β=+0.01167  t=+3.65  (Tq=111)
+
+----------------------------------------------------------------
+ΔS QUINTILE SORT (Q5−Q1 long-short)
+  Sort on ΔS (12q iVol)
+    Q1: +2.45%/q (+9.8%/yr)
+    Q2: +3.06%/q (+12.2%/yr)
+    Q3: +3.80%/q (+15.2%/yr)
+    Q4: +4.17%/q (+16.7%/yr)
+    Q5: +5.59%/q (+22.3%/yr)
+    L/S (Q5−Q1): +12.5%/yr  t=+4.05  (Tq=112)
+
+================================================================
+[M1] SP500 quarterly-ΔS panel: N=40,917, T=111, FM t(ΔS)=+3.65, FM t(ΔH)=+1.43, quintile L/S=+12.5%/yr (t=+4.05)
+================================================================
+
+Reference points:
+  Primary S&P monthly panel (36m iVol): ΔS premium significant (headline).
+  R18 full-universe quarterly panel:    FM t(ΔS)≈0 (collapse).
+  M1 isolates measurement frequency: same 462 firms, max survivorship,
+  ONLY monthly->quarterly iVol. t(ΔS) here discriminates the two stories.

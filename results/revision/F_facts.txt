@@ -1,0 +1,32 @@
+========================================================================
+[F3] GPM winsorization at ±1 (clip site sharadar_pipeline.py:202)
+========================================================================
+  MONTHLY / S&P panel: N_annual_obs=12,970
+    clipped upper (>+1): 0.015%   clipped lower (<-1): 0.085%
+    pre-winsor gpm 5-num: min=-4.701 Q1=+0.286 med=+0.431 Q3=+0.644 max=+12.048
+  QUARTERLY / full-universe panel: N_annual_obs=147,271
+    clipped upper (>+1): 0.093%   clipped lower (<-1): 0.555%
+    pre-winsor gpm 5-num: min=-215745.833 Q1=+0.269 med=+0.458 Q3=+0.776 max=+260.514
+
+========================================================================
+[F4] AR(1) of monthly returns — S&P panel (merged_with_accounting)
+========================================================================
+  aggregate (cross-sectional mean return) AR(1) = +0.021  (T=347)
+  firm-level AR(1): median=-0.049, mean=-0.048 (n_firms=455, ≥36 obs)
+  context: Panel B Monte Carlo note references a 0.809 ratio
+
+========================================================================
+[F5] Distinct annual GPM filings underlying ΔH by window (both panels)
+========================================================================
+  MONTHLY / S&P panel:
+    w=24m: mean distinct filings=2.78, median=3  (n_obs=125,254)
+    w=36m: mean distinct filings=3.71, median=4  (n_obs=119,770)
+    w=48m: mean distinct filings=4.64, median=5  (n_obs=114,286)
+    w=60m: mean distinct filings=5.57, median=6  (n_obs=108,802)
+    w=72m: mean distinct filings=6.50, median=7  (n_obs=103,353)
+  QUARTERLY / full-universe panel:
+    w=24m: mean distinct filings=1.82, median=1  (n_obs=2,551,536)
+    w=36m: mean distinct filings=2.24, median=1  (n_obs=2,416,346)
+    w=48m: mean distinct filings=2.64, median=1  (n_obs=2,285,972)
+    w=60m: mean distinct filings=3.03, median=1  (n_obs=2,157,538)
+    w=72m: mean distinct filings=3.42, median=1  (n_obs=2,031,592)

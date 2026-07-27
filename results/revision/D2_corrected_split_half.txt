@@ -1,0 +1,52 @@
+========================================================================
+D2 RERUN — CORRECTED SPLIT-HALF RELIABILITY OF QUARTERLY ΔS (R18)
+========================================================================
+
+Universe: 15,522 tickers
+Rebuilding quarterly return series...
+Quarterly return obs (>=8/ticker): 558,655 | tickers: 12,750
+
+Computing split-half ΔS on full 12-quarter windows (this takes a few minutes)...
+  0/12750...
+  2000/12750...
+  4000/12750...
+  6000/12750...
+  8000/12750...
+  10000/12750...
+  12000/12750...
+
+Full-12-quarter-window observations available for split-half test: 420,850
+Total live ΔS-estimate observations (any window length 8-12): 469,405
+
+--------------------------------------------------------------------------------
+ Decile  N obs (full-12)  Corr(odd,even)  SB-corrected   Mean obs/window (all)   Med Cap ($M)
+--------------------------------------------------------------------------------
+      1           42,085           0.137         0.241                   11.64            9.6
+      2           42,085           0.227         0.370                   11.62           34.8
+      3           42,085           0.276         0.433                   11.64           78.6
+      4           42,085           0.271         0.426                   11.68          160.6
+      5           42,085           0.290         0.449                   11.71          309.4
+      6           42,085           0.296         0.457                   11.73          585.5
+      7           42,085           0.319         0.484                   11.77        1,116.6
+      8           42,085           0.337         0.504                   11.80        2,220.3
+      9           42,085           0.353         0.522                   11.85        5,029.7
+     10           42,085           0.363         0.533                   11.92       21,169.9
+--------------------------------------------------------------------------------
+
+Top-5-decile (largest) avg SB-corrected reliability: 0.500
+Bottom-5-decile (smallest) avg SB-corrected reliability: 0.384
+Spread (top5 - bottom5): +0.116
+
+Verdict: reliability is roughly FLAT across size deciles under the corrected (within-window) split-half design.
+
+########################################################################
+# RERUN 3 — LOOK-AHEAD-FREE DECILE ASSIGNMENT (trailing median cap through t)
+########################################################################
+
+Full sample (same as before): t(ΔH)=+3.46  t(ΔS)=+0.02  (N=392,557)
+Top-5-decile (TRAILING median cap, look-ahead-free): t(ΔH)=+2.78  t(ΔS)=+0.65  (N=196,278, tickers=5,234)
+Top-5-decile (trailing cap), re-z-scored within subsample: t(ΔH)=+2.98  t(ΔS)=+0.75  (N=196,274)
+
+For comparison, the original (all-time median cap) pass found: t(ΔS)=+2.18 raw / +2.30 re-z-scored.
+
+Verdict: resurrection DISAPPEARS OR WEAKENS under look-ahead-free decile assignment -> consistent with survival conditioning rather than size composition (report it that way)

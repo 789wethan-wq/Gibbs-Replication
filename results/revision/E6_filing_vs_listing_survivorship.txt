@@ -1,0 +1,56 @@
+========================================================================================
+E6 — Filing survivorship vs listing survivorship
+========================================================================================
+Analysis-panel tickers: 12,449
+Delisted (isdelisted=Y) within analysis panel: 8,937  (MATCHES the cited 8,937)
+With both lastpricedate and lastquarter available: 8,937
+With non-negative gap (delisting on/after last filing): 8,687
+
+----------------------------------------------------------------------------------------
+(1) Distribution of gap between last filing and delisting, in quarters
+----------------------------------------------------------------------------------------
+  N=8,687
+  mean=2.64  median=2.0  std=4.80
+  p10 = 1.0 quarters
+  p25 = 1.0 quarters
+  p50 = 2.0 quarters
+  p75 = 2.0 quarters
+  p90 = 4.0 quarters
+  p95 = 8.0 quarters
+  p99 = 26.0 quarters
+  distribution of gap (quarters): {0: 135, 1: 3679, 2: 3654, 3: 305, 4: 165, 5: 121, 6: 86, 7: 57, 8: 52, 9: 46, 10: 40, 11: 28, 12: 44, 13: 24, 14: 18}
+
+----------------------------------------------------------------------------------------
+(2) Fraction stopping filing more than 2 quarters before delisting
+----------------------------------------------------------------------------------------
+  gap > 2 quarters: 14.0% (1,219 of 8,687)
+  gap = 0 quarters (filed through the delisting quarter): 1.6%
+  gap in (0,2] quarters: 84.4%
+
+----------------------------------------------------------------------------------------
+(3) Broken out by DeltaS quintile (firm's LAST observed delta_s_z in the panel)
+----------------------------------------------------------------------------------------
+Delisted firms with a computable last-observed DeltaS: 8,687
+
+DS quintile      N firms   mean gap(q)  median gap   %gap>2q
+1                  1,738          2.11         2.0      5.8%
+2                  1,737          2.14         2.0      8.5%
+3                  1,737          2.67         2.0     13.2%
+4                  1,737          2.86         2.0     17.7%
+5                  1,738          3.42         2.0     25.0%
+
+Q1 (lowest DeltaS) mean gap = 2.11 quarters
+Q5 (highest DeltaS) mean gap = 3.42 quarters
+Q5 - Q1 = +1.30 quarters
+
+FINDING: the gap between last filing and actual delisting IS systematically
+LONGER for high-DeltaS firms. R18's filing-date-spaced construction therefore
+still conditions on survival in the direction the paper is correcting for --
+high-disorder firms that stop filing early are removed from the panel BEFORE
+their true delisting date, understating how long the panel 'sees' distress in
+exactly the firms whose absence would matter most for the entropy premium.
+Section 3.1 should state this explicitly. The direction is conservative for the
+headline collapse (it would, if anything, make the corrected panel's ΔS premium
+MORE attenuated toward the survivorship-biased result, not less -- so it does not
+undermine the '+4.70 -> +0.02' collapse itself) but the manuscript should not
+describe R18 as a full listing-survivorship correction without this caveat.

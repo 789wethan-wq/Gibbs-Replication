@@ -1,0 +1,19 @@
+##########################################################################
+# (a) Is the double-cluster Wald design matrix IDENTIFIED (pooled)?
+##########################################################################
+[S&P500] POOLED design [1,ΔH,ΔS,T·ΔS]: rank=4/4  cond=52.38  corr(ΔS,T·ΔS)_pooled=+0.8939
+         distinct monthly T values across sample = 335 (T varies across months ⇒ ΔS and T·ΔS de-collinearised once pooled)
+         S&P Wald T·ΔS [date-cluster              ] coef=+0.13535  t=+2.3851  p=0.0171
+         S&P Wald T·ΔS [double-cluster(firm×date) ] coef=+0.13535  t=+2.4881  p=0.0128
+[FullUniv] POOLED design [1,ΔH,ΔS,T·ΔS]: rank=4/4  cond=52.45  corr(ΔS,T·ΔS)_pooled=+0.8939
+         Full Wald T·ΔS [date-cluster              ] coef=+0.46539  t=+2.4973  p=0.0125
+         Full Wald T·ΔS [double-cluster(firm×date) ] coef=+0.46539  t=+2.4921  p=0.0127
+
+##########################################################################
+# (b) 'β_ΔS survives HXZ, t=4.97' — Model B + HXZ, NO interaction term
+##########################################################################
+  spec = ΔH_z + ΔS_z + q(ME,IA,ROE)  [no T·ΔS]  rank=6/6  cond=51.26  N=118,014
+  [date-cluster              ] β_ΔH=+0.00107 t=+2.321   β_ΔS=+0.00513 t=+4.975   (q t: ME=+0.15 IA=-0.04 ROE=-0.35)
+  [double-cluster(firm×date) ] β_ΔH=+0.00107 t=+2.875   β_ΔS=+0.00513 t=+5.225   (q t: ME=+0.15 IA=-0.04 ROE=-0.35)
+  NB: no T·ΔS in this spec ⇒ ΔS is separately identified (full rank); the 4.97
+      figure is the DATE-clustered Model B+HXZ ΔS level on the S&P 500 panel.

@@ -1,0 +1,41 @@
+========================================================================
+D2 — SIZE-DECILE RELIABILITY OF QUARTERLY ΔS (R18 FULL-UNIVERSE)
+========================================================================
+
+R18 panel: N=434,016  tickers=12,449  quarters=114
+Market-cap coverage in panel: 100.0%
+
+Firms with >=2 odd AND >=2 even quarterly ΔS observations: 10,930 (of 12,449 total tickers with any ΔS)
+
+------------------------------------------------------------------------
+ Decile   N firms  Avg N/qtr   Med Cap ($M)  Corr(odd,even)
+------------------------------------------------------------------------
+      1      1093       24.9            9.3           0.989
+      2      1093       31.1           25.5           0.990
+      3      1093       33.5           51.5           0.992
+      4      1093       33.1           95.0           0.990
+      5      1093       36.2          172.9           0.983
+      6      1093       39.2          318.2           0.987
+      7      1093       42.3          594.2           0.986
+      8      1093       45.8        1,154.2           0.991
+      9      1093       48.3        2,544.5           0.987
+     10      1093       59.9        9,194.5           0.992
+------------------------------------------------------------------------
+
+Top-5-decile (largest, deciles 6-10) avg reliability: 0.989
+Bottom-5-decile (smallest, deciles 1-5) avg reliability: 0.989
+Spread (top5 - bottom5): -0.000
+
+Verdict: reliability is roughly FLAT across deciles (bottom-decile threshold check: min=0.983 vs >0.75 top-end reference)
+
+########################################################################
+# t(ΔS) ON TOP-5-DECILE SUBSAMPLE VS FULL SAMPLE
+########################################################################
+
+Full sample:      t(ΔH)=+3.46  t(ΔS)=+0.02  (N=392,557, Tq=111)
+Top-5-decile only: t(ΔH)=+1.24  t(ΔS)=+2.18  (N=240,442, Tq=111, tickers=5,465)
+Top-5-decile, re-z-scored within subsample: t(ΔH)=+1.53  t(ΔS)=+2.30  (N=240,442)
+
+========================================================================
+VERDICT
+  §4.8/§5.4 gets one sentence; collapse unaffected by attenuation.

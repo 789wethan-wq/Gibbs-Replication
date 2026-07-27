@@ -1,0 +1,117 @@
+==========================================================================
+M9-R — ORMOS-ZIBRICZKY ENTROPY MEASURE + SURVIVAL-CONDITIONING LADDER
+==========================================================================
+
+Rebuilding R18 quarterly return series (universe + prices)...
+Quarterly return obs: 558,655 | tickers: 12,750
+
+[STEP 1] Computing rolling entropy (window=12q, min_obs=8, bins=5, per-asset support)...
+entropy computed. coverage (non-null / total return obs):
+  H_shannon       : 469,405/558,655 (84.0%)   mean=1.3594 sd=0.1886 [min=0.000, max=1.609]
+  H_renyi05       : 469,405/558,655 (84.0%)   mean=1.4316 sd=0.1642 [min=0.000, max=1.609]
+  H_renyi2        : 469,405/558,655 (84.0%)   mean=1.2499 sd=0.2257 [min=0.000, max=1.609]
+  H_shannon_b10   : 469,405/558,655 (84.0%)   mean=1.8020 sd=0.2074 [min=0.000, max=2.303]
+  H_shannon_b8    : 469,405/558,655 (84.0%)   mean=1.6763 sd=0.2062 [min=0.000, max=2.079]
+
+R18 panel: N=434,016, tickers=12,449, quarters=114 (1995Q3..2023Q4)
+H_shannon coverage within R18 panel: 434,016/434,016 (100.0%)
+
+[M9-1 sanity] Corr(H, ΔS):
+  H_shannon       : pooled=-0.3823   mean_XS=-0.2922
+  H_renyi05       : pooled=-0.3736   mean_XS=-0.2868
+  H_renyi2        : pooled=-0.3661   mean_XS=-0.2803
+  H_shannon_b10   : pooled=-0.3225   mean_XS=-0.2422
+  H_shannon_b8    : pooled=-0.3456   mean_XS=-0.2613
+
+##########################################################################
+# [STEP 2] Unconditional entropy premium on the R18 corrected panel
+##########################################################################
+
+[M9-2] full-universe (Shannon H, bins=5):
+  FM Model B  t(H) = +2.257   beta(H) = +0.002849   T_q = 111
+  quintile L/S = +3.43%/yr  (t_simple=+2.61, t_NW4=+2.44, T_q=113)
+
+##########################################################################
+# [STEP 3] Survival-conditioning ladder (Table-8 rungs) with entropy H
+##########################################################################
+
+[M9-3 | k=0]
+  N_tickers=12,449  N_obs=420,712  T_q=111
+  FM t(H)=+2.257  beta(H)=+0.002849   FM t(ΔH)=+2.044
+  quintile L/S=+3.43%/yr (t_simple=+2.61, t_NW4=+2.44)   median_cap=$401.1M
+
+[M9-3 | k=5]
+  N_tickers=6,777  N_obs=377,441  T_q=111
+  FM t(H)=+1.841  beta(H)=+0.002165   FM t(ΔH)=+1.796
+  quintile L/S=+3.14%/yr (t_simple=+2.58, t_NW4=+2.38)   median_cap=$466.4M
+
+[M9-3 | k=10]
+  N_tickers=3,958  N_obs=294,452  T_q=111
+  FM t(H)=+1.313  beta(H)=+0.001621   FM t(ΔH)=+1.363
+  quintile L/S=+2.00%/yr (t_simple=+1.55, t_NW4=+1.47)   median_cap=$574M
+
+[M9-3 | k=15]
+  N_tickers=2,627  N_obs=230,058  T_q=111
+  FM t(H)=+0.9216  beta(H)=+0.001216   FM t(ΔH)=+0.9337
+  quintile L/S=+1.14%/yr (t_simple=+0.85, t_NW4=+0.79)   median_cap=$753.9M
+
+[M9-3 | k=20]
+  N_tickers=1,678  N_obs=165,982  T_q=111
+  FM t(H)=+0.8472  beta(H)=+0.001060   FM t(ΔH)=+0.3891
+  quintile L/S=+1.06%/yr (t_simple=+0.77, t_NW4=+0.75)   median_cap=$959.1M
+
+[M9-3 | k=25]
+  N_tickers=1,047  N_obs=110,124  T_q=111
+  FM t(H)=-0.0353  beta(H)=-0.000042   FM t(ΔH)=-0.07068
+  quintile L/S=-0.38%/yr (t_simple=-0.28, t_NW4=-0.28)   median_cap=$1362M
+
+[M9-3 | k=27]
+  N_tickers=336  N_obs=37,084  T_q=111
+  FM t(H)=-1.057  beta(H)=-0.001492   FM t(ΔH)=-1.142
+  quintile L/S=-0.56%/yr (t_simple=-0.37, t_NW4=-0.34)   median_cap=$4082M
+
+--------------------------------------------------------------------------
+[M9-3 | SUMMARY LADDER]  (entropy H = Shannon, per-asset 5-bin, 12q window)
+k(yr)  FM t(H)  FM t(dH)   L/S ann   L/S t  L/S tNW  N_tick    N_obs   medMC$M
+    0    +2.26     +2.04    +3.43%   +2.61    +2.44  12,449  420,712     401.1
+    5    +1.84     +1.80    +3.14%   +2.58    +2.38   6,777  377,441     466.4
+   10    +1.31     +1.36    +2.00%   +1.55    +1.47   3,958  294,452       574
+   15    +0.92     +0.93    +1.14%   +0.85    +0.79   2,627  230,058     753.9
+   20    +0.85     +0.39    +1.06%   +0.77    +0.75   1,678  165,982     959.1
+   25    -0.04     -0.07    -0.38%   -0.28    -0.28   1,047  110,124      1362
+   27    -1.06     -1.14    -0.56%   -0.37    -0.34     336   37,084      4082
+
+Cap tilt: median cap k=27 = $4,082M vs k=0 = $401.1M (ratio 10.18x)
+
+--------------------------------------------------------------------------
+[M9-3 robustness] Endpoint ladder with alternative entropy definitions
+(FM t at k=0 vs k=27; checks the pattern is not a bins/alpha artifact)
+  Renyi a=2         : k=0: t=+2.24   k=27: t=-1.24   
+  Renyi a=0.5       : k=0: t=+2.25   k=27: t=-0.88   
+  Shannon bins=10   : k=0: t=+1.96   k=27: t=-1.70   
+
+##########################################################################
+# [M9-note] Definitional ambiguities in O-Z's estimator + defaults chosen
+##########################################################################
+
+- FREQUENCY: O-Z estimate entropy on DAILY returns. R18's corrected universe
+  is QUARTERLY only (SEP daily/monthly not entitled — the reason R18 exists).
+  DEFAULT: entropy on the same quarterly return series feeding ΔS, over the
+  same 12-quarter rolling window. This is a coarse-frequency analog, stated.
+  Consequence: with <=12 obs/window, entropy is a coarse dispersion statistic
+  and is expected to correlate fairly strongly with ΔS (iVol) — reported above.
+- WINDOW: matched to ΔS (12 quarters, min_obs=8) for an apples-to-apples ladder.
+- DISCRETIZATION / BINS: O-Z bin per asset over its return support; bin count
+  not pinned to a single universal rule in their method text (they discuss
+  histogram and kernel estimators). DEFAULT: fixed 5 bins (Sturges for n=12:
+  ceil(log2(12)+1)=5) over each asset's own [min,max] within the window.
+  Robustness to bins=8/10 and to Rényi alpha in {0.5, 2} printed above.
+- ENTROPY FAMILY: O-Z report a Rényi family and emphasize Shannon (alpha->1)
+  as the headline; Rényi/Tsallis appear as robustness. We take Shannon as the
+  primary ladder variable and report Rényi(0.5, 2) alongside. (This recollection
+  of their emphasis is NOT verified against the paper text per the standing
+  rule; the ladder is reported for all three so the conclusion does not depend
+  on which family O-Z emphasize.)
+- KERNEL vs HISTOGRAM: O-Z discuss kernel-density entropy; with <=12 obs a
+  kernel bandwidth is not well identified, so a fixed-bin histogram is the
+  defensible small-sample choice, stated.

@@ -1,0 +1,58 @@
+========================================================================================
+F4 — DeltaH filing density: distinct filings inside the 60-month estimation window
+========================================================================================
+monthly_fundamentals.parquet: 3,247,749 rows, 14,600 tickers (full source; restricted to each panel's own ticker set below)
+Corrected (R18) panel tickers: 12,449  |  Monthly (SP500) panel tickers: 462
+
+[Corrected (R18) panel, W=60mo (pre-restriction)] N observations (quarter-end sampled, matching R18) = 865,063, tickers = 11,384
+
+[Monthly (SP500) panel, W=60mo] N observations (monthly rows, matching the SP500 panel) = 125,254, tickers = 457
+
+Restricted to actual R18 panel (ticker,quarter) observations: N=404,387 (R18 panel's own total row count: 434,016; gap is quarters where GPM has
+a valid rolling estimate but DeltaS/return does not, or vice versa)
+
+Corrected (R18) panel, W=60mo:
+  median=6.0  Q1=3.0  Q3=6.0  mean=4.62
+  share at exactly 1 filing(s): 17.0%
+  share at exactly 2 filing(s): 1.2%
+  share at exactly 3 filing(s): 8.1%
+  share at 4+ filings: 73.7%
+  share at <=2 filings (coarse instrument threshold): 18.1%
+
+Monthly (SP500) panel, W=60mo:
+  median=6.0  Q1=5.0  Q3=6.0  mean=5.33
+  share at exactly 1 filing(s): 7.1%
+  share at exactly 2 filing(s): 0.5%
+  share at exactly 3 filing(s): 3.9%
+  share at 4+ filings: 88.5%
+  share at <=2 filings (coarse instrument threshold): 7.6%
+
+========================================================================================
+F4 SUMMARY
+========================================================================================
+                                 Corrected (R18)   Monthly (SP500)
+Median n_distinct filings                    6.0               6.0
+Q1                                           3.0               5.0
+Q3                                           6.0               6.0
+Mean                                        4.62              5.33
+Share at <=2 filings                       18.1%              7.6%
+
+Note on methodology (self-caught, reported for transparency): an earlier pass of
+this script restricted only by TICKER membership in the R18 panel (not by the exact
+(ticker,quarter) OBSERVATION pairs that actually appear in it), giving N=865,063 --
+nearly double the panel's real row count (434,016) -- and a median of 2 filings /
+47% at n_distinct=1, matching R21's own UNRESTRICTED full-14,600-ticker output but
+NOT matching what the R18 panel's actual observations look like. Restricting to the
+exact (ticker,quarter) pairs in merged_sf1_quarterly_survfree.parquet (N=404,387,
+93% of the panel's 434,016 rows -- the gap is quarters where GPM has a valid rolling
+estimate but the return/DeltaS side of that observation does not) gives the numbers
+above, which DO match the manuscript's cited ~17% at n_distinct=1 closely (17.0%).
+
+FINDING: the median corrected-panel observation rests on 6 distinct
+filings -- essentially the SAME as the monthly SP500 panel's median (6).
+DeltaH is NOT a coarse instrument for most of the corrected panel; the coarseness is
+concentrated in the ~17-18% mass-point tail the manuscript's existing mass-point
+analysis already covers. Section 3.2's framing through the mass-point lens is
+adequate as-is for the median/typical observation; no broader coarseness caveat is
+needed beyond what's already there. (Q1=3 filings is worth noting alongside the
+mass-point figure, since a quarter of observations sit at 3 or fewer.)

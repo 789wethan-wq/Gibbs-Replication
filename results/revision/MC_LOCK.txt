@@ -1,0 +1,9 @@
+========================================================================
+BLOCK 1 — Model C (accounting dH_gpm_z + T·ΔS, no raw ΔS), primary cut
+========================================================================
+[MC-LOCK] lag=0: t(dH)=+2.61, t(TxdS)=+4.60, coef_dH=+0.00113, coef_TxdS=+0.1248
+[MC-LOCK] lag=4: t(dH)=+2.74, t(TxdS)=+4.62, coef_dH=+0.00113, coef_TxdS=+0.1248
+[MC-LOCK] lag=5: t(dH)=+2.85, t(TxdS)=+4.68, coef_dH=+0.00113, coef_TxdS=+0.1248
+[MC-LOCK] lag=6: t(dH)=+2.92, t(TxdS)=+4.65, coef_dH=+0.00113, coef_TxdS=+0.1248
+[MC-LOCK] N=118,014, T=335, rank=3/3, cond=21.6  (full rank = True)
+[MC-LOCK] MANUSCRIPT Table 2 Panel A Model C: dH=+0.0010 (+2.61), T·ΔS=+0.121 (+4.59)
