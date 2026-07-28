@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or replication package, please cite it as below."
-title: "Thermodynamic Non-Equilibrium and the Cross-Section of Equity Returns: A Gibbs Free Energy Decomposition — Replication Package"
+title: "Idiosyncratic Volatility and Survival Conditioning: A Matched-Convention Comparison of Biased and Delisting-Inclusive US Equity Panels — Replication Package"
 type: software
 authors:
   - family-names: "Wuang"
@@ -10,17 +10,16 @@ authors:
     # orcid: "https://orcid.org/0000-0000-0000-0000"
 repository-code: "https://github.com/789wethan-wq/Gibbs-Replication"
 license: MIT
-version: "v49-plos-submission"
-date-released: "2026-07-27"
+version: "v54-plos-submission"
+date-released: "2026-07-28"
 keywords:
   - cross-sectional returns
   - idiosyncratic volatility
   - survivorship bias
   - quality premium
   - gross profit margin stability
-  - market temperature
+  - market variance
   - Fama-MacBeth
-  - thermodynamic analogy
   - asset pricing
   - replication
-abstract: "Replication code and derived-data aggregates for a study showing that the apparent positive relationship between idiosyncratic volatility (entropy) and returns in large-cap equity panels is a survivorship artifact, using a survivorship-corrected full-universe panel constructed from Sharadar SF1. Raw third-party fundamental data (Sharadar SF1) are not redistributed; see README for data-access terms."
+abstract: "Replication code and derived-data aggregates for a study comparing idiosyncratic volatility estimates between a current-constituent S&P 500 panel and a delisting-inclusive full-universe panel constructed from Sharadar SF1. The two panels differ significantly under a matched convention, but the corrected panel's own estimate is an imprecise near-zero rather than a confirmed zero, and a survival-conditioning ladder initially read as independent confirmation of the survivorship mechanism is shown to be predominantly a birth-cohort artifact. Raw third-party fundamental data (Sharadar SF1) are not redistributed; see README for data-access terms."

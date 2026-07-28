@@ -1,6 +1,6 @@
 {
-  "title": "Thermodynamic Non-Equilibrium and the Cross-Section of Equity Returns: A Gibbs Free Energy Decomposition — Replication Package",
-  "description": "Replication code and derived-data aggregates for a study showing that the apparent positive relationship between idiosyncratic volatility (entropy) and returns in large-cap equity panels is a survivorship artifact, using a survivorship-corrected full-universe panel of 12,449 firms constructed from Sharadar SF1. Raw third-party fundamental data (Sharadar SF1) are not redistributed in this deposit; the derived-data directory contains only cross-sectional aggregates (regression coefficients, portfolio-mean returns, and summary panels). See README.md for full data-access terms and a table-to-script mapping.",
+  "title": "Idiosyncratic Volatility and Survival Conditioning: A Matched-Convention Comparison of Biased and Delisting-Inclusive US Equity Panels — Replication Package",
+  "description": "Replication code and derived-data aggregates for a study comparing idiosyncratic volatility estimates between a current-constituent S&P 500 panel and a delisting-inclusive full-universe panel of 12,449 firms constructed from Sharadar SF1. The two panels differ significantly under a matched convention, but the corrected panel's own estimate is an imprecise near-zero rather than a confirmed zero, and a survival-conditioning ladder initially read as independent confirmation of the survivorship mechanism is shown to be predominantly a birth-cohort artifact. Raw third-party fundamental data (Sharadar SF1) are not redistributed in this deposit; the derived-data directory contains only cross-sectional aggregates (regression coefficients, portfolio-mean returns, and summary panels). See README.md for full data-access terms and a table-to-script mapping.",
   "creators": [
     {
       "name": "Wuang, Ethan",
@@ -16,9 +16,8 @@
     "survivorship bias",
     "quality premium",
     "gross profit margin stability",
-    "market temperature",
+    "market variance",
     "Fama-MacBeth",
-    "thermodynamic analogy",
     "asset pricing",
     "replication package"
   ],
