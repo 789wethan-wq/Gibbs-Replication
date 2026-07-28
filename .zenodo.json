@@ -8,7 +8,7 @@
     }
   ],
   "access_right": "open",
-  "license": "MIT",
+  "license": "mit",
   "upload_type": "software",
   "keywords": [
     "cross-sectional returns",
@@ -20,13 +20,5 @@
     "Fama-MacBeth",
     "asset pricing",
     "replication package"
-  ],
-  "related_identifiers": [
-    {
-      "identifier": "https://github.com/789wethan-wq/Gibbs-Replication",
-      "relation": "isSupplementTo",
-      "resource_type": "software"
-    }
-  ],
-  "notes": "ORCID for the creator is not on file in this repository; add via the Zenodo web UI before publishing if available."
+  ]
 }
