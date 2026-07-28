@@ -1,0 +1,51 @@
+================================================================================================
+REV4 E1 — LEFT-TRUNCATION-ONLY COHORT vs. THE k=27 SURVIVAL LADDER RUNG
+================================================================================================
+
+Full panel: N=434,016  tickers=12,449  q_ord range=[102,215]  (1995Q3..2023Q4, 114 quarters)
+
+First-quarter-in-panel distribution: min=102 max=215
+Tickers with first_q == qmin (panel's very first quarter): 7
+Tickers surviving to qmax (last quarter): 4,176
+
+------------------------------------------------------------------------------------------------
+REFERENCE: k=27 survival ladder rung (run-length >= 108 consecutive quarters)
+------------------------------------------------------------------------------------------------
+  N=36,402  tickers=336  Tq=111  t(IVOL)=+3.2289  beta=+0.009865  (manuscript/D1a reference: +3.23, 336 tickers)
+
+------------------------------------------------------------------------------------------------
+REFERENCE: unconditional full panel (no cohort/survival restriction)
+------------------------------------------------------------------------------------------------
+  N=392,557  tickers=10,699  Tq=111  t(IVOL)=+0.0181  beta=+0.000087  (manuscript reference: +0.02)
+
+================================================================================================
+EXPERIMENT: left-truncation-only cohorts (early-listed, deaths allowed)
+================================================================================================
+
+Cohort: first 4 quarters (q_ord<=qmin+3)
+  N tickers in cohort: 312
+  Of these, 251 (80.4%) also happen to survive to the panel's last quarter (NOT conditioned on here)
+  Model B FM (dH + dS), all quarters this cohort actually has (deaths allowed):
+    N=28,850  tickers=311  Tq=111  t(IVOL)=+3.0170  beta(IVOL)=+0.010132  SE=0.003358
+
+Cohort: first 8 quarters (q_ord<=qmin+7)
+  N tickers in cohort: 500
+  Of these, 386 (77.2%) also happen to survive to the panel's last quarter (NOT conditioned on here)
+  Model B FM (dH + dS), all quarters this cohort actually has (deaths allowed):
+    N=43,708  tickers=491  Tq=111  t(IVOL)=+2.9009  beta(IVOL)=+0.009084  SE=0.003132
+
+================================================================================================
+DECOMPOSITION SUMMARY
+================================================================================================
+  Unconditional (full panel):                 t(IVOL) = +0.0181   (N tickers=10,699)
+  Left-truncation only, first 4 quarters (q_ord<=qmin+3): t(IVOL) = +3.0170   (N tickers=311)  -> +93% of the +0.02->+3.23 ladder movement
+  Left-truncation only, first 8 quarters (q_ord<=qmin+7): t(IVOL) = +2.9009   (N tickers=491)  -> +90% of the +0.02->+3.23 ladder movement
+  k=27 survival ladder rung (108q run, deaths NOT allowed):  t(IVOL) = +3.2289   (N tickers=336)
+
+Interpretation: if the left-truncation-only t(IVOL) values above already
+recover most of the movement from +0.02 to +3.23 WITHOUT requiring survival to
+the end of the sample, the ladder's resurrection is at least partly a birth-cohort
+(old/large-at-listing) artifact rather than a survivorship effect specifically.
+If the left-truncation-only cohorts stay close to the unconditional +0.02 and the
+full jump to +3.23 requires the additional 108-quarter run-length (survival)
+restriction, survival conditioning is doing the separable work the paper claims.

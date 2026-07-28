@@ -1,0 +1,84 @@
+====================================================================================================
+SPEC G2 — REVIEW-2 EXPERIMENTS: known-premium validation, paired-diff test, disattenuation
+====================================================================================================
+
+Corrected R18 panel: N=434,016  tickers=12,449  quarters=114
+
+====================================================================================================
+(1) KNOWN-PREMIUM VALIDATION
+====================================================================================================
+Characteristic coverage (ticker-quarters): 650,022
+Momentum coverage (4 contiguous prior quarters): 384,255 obs
+  Size (-log mktcap)       beta=+0.001594  t=+0.332  N=420,712  T_q=112  ann=+0.64%/yr   [lit: small-minus-big, positive but small/noisy post-1980s, order a few %/yr]
+  Book-to-market           beta=+0.006698  t=+2.654  N=420,623  T_q=112  ann=+2.68%/yr   [lit: value premium, commonly cited ~4-5%/yr]
+  Momentum (4q, skip-0)    beta=+0.001787  t=+0.443  N=373,298  T_q=108  ann=+0.71%/yr   [lit: 12-1 momentum ~8-12%/yr historically, weak/negative many post-2000 subperiods]
+  Gross profitability      beta=+0.012060  t=+8.190  N=409,044  T_q=112  ann=+4.82%/yr   [lit: Novy-Marx (2013), comparable order to value, ~4-5%/yr]
+
+Assessment: report sign and rough order-of-magnitude match to the literature honestly (see summary).
+
+====================================================================================================
+(2) PAIRED QUARTERLY DIFFERENCE TEST — cross-panel IVOL comparison
+====================================================================================================
+NOTE: this experiment is ALREADY COMPUTED, exactly as requested, by
+D4_crosspanel_table.py, which forms diff_t = beta_FU,t - beta_SP,t (both at
+harmonized quarterly frequency, NW lag 4 on BOTH arms) and Newey-Wests the
+difference series directly -- this is precisely the reviewer's suggested fix
+for the independence assumption, already reported in the manuscript as the
+'FM-family' comparison. Re-running it fresh here for confirmation:
+See D4_crosspanel_table.py for full derivation; summary of its fresh re-run:
+  Biased (SP500) panel, harmonized quarterly (36m IVOL, 3-month compounded fwd return):
+    t(dS) = +4.3868  (monthly primary: +4.6951)
+  Corrected (FU/R18) panel, quarterly (accounting-period-native):
+    t(dS) = +0.0181
+  Paired difference diff_t = beta_FU,t - beta_SP,t, NW-4 on diff_t directly (no
+  independence assumption between arms): mean=-0.014897  t=-5.1935
+  95% CI=(-0.020520,-0.009275)  over 111 common quarters, rho(beta_sp,beta_fu)=+0.4246
+  Stacked pooled two-way-clustered (firm x quarter) equivalent: t=-4.1144
+
+IMPORTANT ANCILLARY FINDING (relevant to the manuscript's separate Major Weakness 1,
+the '+4.39 vs +3.65' apparent inconsistency -- flagging for the parent to reconcile,
+out of this fork's scope): +4.39 and +3.65 are BOTH real, reproducible numbers, but
+from two different 'quarterly' constructions, not the same one:
+  +4.39 (D4_crosspanel_table.py) = SAME 36-month monthly-IVOL measure, only the
+         RETURN horizon is compounded to 3 months (isolates return-horizon effect alone).
+  +3.65 (M1_sp500_quarterly_ds.py / Table 12) = IVOL ITSELF re-measured using a 12-quarter
+         window on lower-quality SF1 accounting-period prices (isolates the effect of
+         re-measuring IVOL at low frequency/quality, i.e. closer to the R18 construction).
+  Both scripts run cleanly and reproduce their manuscript-quoted values exactly (+4.39 and
+  +3.65 respectively) as of this run. The manuscript conflates them by calling both simply
+  'quarterly' without stating which change (return horizon vs. remeasured IVOL) each isolates.
+
+====================================================================================================
+(3) DISATTENUATION
+====================================================================================================
+Reliability-related data files found: ['R26_firm_reliability.parquet']
+R26_firm_reliability.parquet columns: ['ticker', 'n_obs', 'corr', 'reliability'], shape=(9026, 4)
+             n_obs         corr  reliability
+count  9026.000000  9026.000000  9026.000000
+mean     45.753601    -0.040778    -0.742131
+std      33.934690     0.342769     5.252695
+min       8.000000    -0.995122  -407.968884
+25%      18.000000    -0.271363    -0.744852
+50%      34.000000    -0.023069    -0.047228
+75%      68.000000     0.202430     0.336702
+max     119.000000     0.887390     0.940336
+R26 scripts found: ['R26_reliability_stratified.py', 'R26_build_reliability.py']
+
+Using corrected-panel per-SD quarterly coefficient beta_FU = +0.000087 (annualized +0.035%/yr) and biased-panel per-SD monthly coefficient beta_SP = +0.005183 (annualized +6.219%/yr), both from the fresh D4 re-run above.
+
+Manuscript-stated corrected-panel IVOL reliability range: 0.37-0.53 (source: search below)
+Disattenuated corrected coefficient (dividing by reliability):
+  reliability=0.37: beta_disatt=+0.000235  ann=+0.095%/yr  (vs raw corrected ann=+0.035%/yr, vs biased ann=+6.219%/yr)
+  reliability=0.45: beta_disatt=+0.000193  ann=+0.078%/yr  (vs raw corrected ann=+0.035%/yr, vs biased ann=+6.219%/yr)
+  reliability=0.53: beta_disatt=+0.000164  ann=+0.066%/yr  (vs raw corrected ann=+0.035%/yr, vs biased ann=+6.219%/yr)
+
+No biased-panel (S&P 500, 36-month monthly IVOL) reliability estimate was found in the
+repo -- the 0.37-0.53 figure appears to be specific to the corrected/R18 quarterly
+construction (fewer, coarser observations). Disattenuating ONLY the corrected side (as
+above, since that is what the manuscript's reliability claim actually covers) leaves the
+point estimate at roughly 7-9% of the biased panel's annualized magnitude even at the most
+favorable (upper-bound, 0.53) reliability assumption -- nowhere close to closing the gap.
+This is an approximate scaling (dividing the point estimate by reliability), not a formal
+delta-method CI; the corrected coefficient's own 95% CI (from D4: annualized SE=1.926pp)
+scaled the same way would be roughly +-3.6pp to +-5.2pp at reliability 0.53-0.37, i.e. still
+statistically indistinguishable from zero after disattenuation.

@@ -20,13 +20,15 @@ For a long-horizon idiosyncratic volatility measure (36-month rolling Fama-Frenc
 
 ### ⚠ Repository sync status — read before citing table numbers
 
-This repository is synced through the pre-print round corresponding to CITATION.cff's `v49-plos-submission` tag. The submitted manuscript is a later revision (internally, V54) that added a full round of response to external review after this repository was last synced, including three new analyses **not yet present as scripts in this repository**:
+This repository is synced through the final (V54) submitted manuscript, `v54-plos-submission` (CITATION.cff). The round-4 external-review response added three analyses that are now included under `code/robustness/`:
 
-1. **Left-truncation-only ladder** — tests whether the survival-conditioning ladder (Table 11) is driven by continuous survival specifically or by birth-cohort/early-listing selection. Finding: firms merely listed early recover 90–93% of the ladder's movement with no survival requirement at all — this materially changed how the manuscript characterizes that evidence.
-2. **Known-premium validation on the biased panel** — re-runs the size/momentum/value/profitability recovery check on the S&P 500 panel at matched quarterly spacing, to separate a generic quarterly-construction artifact from a corrected-panel-specific instrument-power problem.
-3. **Split-sample instrumental-variable correction** — a Shanken (1992)-style errors-in-variables correction for IVOL's measurement noise, sharper than the informal disattenuation bound used earlier.
+1. **`REV4_E1_left_truncation_ladder.py`** — tests whether the survival-conditioning ladder is driven by continuous survival specifically or by birth-cohort/early-listing selection. Finding: firms merely listed early recover 90–93% of the ladder's movement with no survival requirement at all — this materially changed how the manuscript characterizes that evidence. Output: `results/revision/REV4_E1_left_truncation_ladder.txt`.
+2. **`REV4_E2_known_premium_biased_panel.py`** — re-runs the size/momentum/value/profitability recovery check on the S&P 500 panel at matched quarterly spacing, to separate a generic quarterly-construction artifact from a corrected-panel-specific instrument-power problem. Output: `results/revision/REV4_E2_known_premium_biased_panel.txt`.
+3. **`REV4_E3_eiv_correction.py`** — a Shanken (1992)-style split-sample errors-in-variables correction for IVOL's measurement noise, sharper than the informal disattenuation bound. Output: `results/revision/REV4_E3_eiv_correction.txt`.
 
-The manuscript's title, abstract, and several sections were revised in light of these results (in particular, the title no longer asserts the premium "is a survivorship artifact," and the survival-ladder discussion now explicitly flags the birth-cohort confound). **Before the archival Zenodo release is cut, this repository's `code/robustness/` should be synced with the three scripts implementing the above** (working titles: `REV4_E1_left_truncation_ladder.py`, `REV4_E2_known_premium_biased_panel.py`, `REV4_E3_eiv_correction.py`), and the table-numbering map below should be re-checked against the actual submitted PDF/DOCX, not assumed from this file. Manuscript table numbers have shifted across every major drafting round; treat the map below as a script-to-topic index, not a guaranteed table-number lookup.
+Also added: `SPEC_G2_review2_experiments.py` (known-premium validation on the corrected panel: gross profitability, book-to-market, size, momentum) and `SPEC_T6_reliability_ladder.py` (reliability ladder by size tercile at k=27), both referenced in Section 4.6 of the manuscript.
+
+The manuscript's title, abstract, and several sections were revised in light of the REV4 results — in particular, the title no longer asserts the premium "is a survivorship artifact," and the survival-ladder discussion now explicitly flags the birth-cohort confound. **One caveat remains**: manuscript table numbers have shifted across every major drafting round, so the table-numbering map below is a script-to-*topic* index, not a guaranteed table-number lookup — cross-check exact "Table N" labels against the submitted PDF/DOCX before citing them.
 
 ---
 
@@ -171,9 +173,11 @@ This is an index by **topic**, not a verified table-number lookup — see the sy
 | Size × survival interaction | `code/robustness/R28_size_survival_2x2.py`, `D1a_2x2_cell.py`, `D1b_triple_interaction.py` | `results/revision/R28_size_survival_2x2.txt`, `D1a_2x2_cells.txt`, `D1b_triple_interaction.txt` |
 | Terminal-return sensitivity / SF1 delisting-coverage cross-check | `code/robustness/H1_terminal_return_cell.py`, `H2_coverage_crosscheck.py`, `I1_s6_coverage_table.py` | `results/revision/I1_s6_coverage_table.txt` |
 | Independent price validation (yfinance/WIKI cross-check) | `code/robustness/G1_yfinance_wiki_crosscheck.py` | `results/revision/G1_yfinance_wiki_crosscheck.txt` |
-| Known-premium validation (gross profitability, B/M, size, momentum) | `code/robustness/SPEC_G2_review2_experiments.py` *(not yet synced — see note above)* | — |
-| Reliability ladder by size tercile | `code/robustness/SPEC_T6_reliability_ladder.py` *(not yet synced — see note above)* | — |
-| Left-truncation-only ladder / biased-panel known-premium / EIV correction | `REV4_E1/E2/E3_*.py` *(not yet synced — see note above)* | — |
+| Known-premium validation (gross profitability, B/M, size, momentum), corrected panel | `code/robustness/SPEC_G2_review2_experiments.py` | `results/revision/SPEC_G2_review2_experiments.txt` |
+| Reliability ladder by size tercile | `code/robustness/SPEC_T6_reliability_ladder.py` | `results/revision/SPEC_T6_reliability_ladder.txt` |
+| Left-truncation-only ladder (birth-cohort vs. survival) | `code/robustness/REV4_E1_left_truncation_ladder.py` | `results/revision/REV4_E1_left_truncation_ladder.txt` |
+| Known-premium validation, biased panel at matched spacing | `code/robustness/REV4_E2_known_premium_biased_panel.py` | `results/revision/REV4_E2_known_premium_biased_panel.txt` |
+| Split-sample instrumental-variable (EIV) correction | `code/robustness/REV4_E3_eiv_correction.py` | `results/revision/REV4_E3_eiv_correction.txt` |
 
 ---
 
@@ -183,9 +187,9 @@ This is an index by **topic**, not a verified table-number lookup — see the sy
 
 2. **SEP (price) entitlement gap**: Sharadar SEP (daily prices incl. delisted tickers) was not accessible under the author's subscription. R18 therefore uses SF1 quarterly filing prices, so the survivorship-free IVOL is quarterly, coarser than the monthly measure in the primary S&P 500 analysis. The manuscript's harmonization decomposition (Section 4.6) separates the effect of this frequency change from the effect of survivorship correction itself.
 
-3. **The survival-conditioning ladder is not clean survivorship evidence.** As of the manuscript's final revision, a dedicated test shows that firms merely listed early in the sample (no continuous-survival requirement) already recover 90–93% of the ladder's t(IVOL) movement from the unconditional null to the 27-year-survivor rung. The ladder is predominantly a birth-cohort/left-truncation effect, not clean confirmation of the survivorship mechanism specifically. This finding is not yet reflected in this repository's scripts (see sync-status note above).
+3. **The survival-conditioning ladder is not clean survivorship evidence.** A dedicated test (`REV4_E1_left_truncation_ladder.py`) shows that firms merely listed early in the sample (no continuous-survival requirement) already recover 90–93% of the ladder's t(IVOL) movement from the unconditional null to the 27-year-survivor rung. The ladder is predominantly a birth-cohort/left-truncation effect, not clean confirmation of the survivorship mechanism specifically.
 
-4. **IVOL–momentum/size instrument-power caveat.** A known-premium validation shows the corrected panel recovers gross profitability and book-to-market but not size or momentum. A follow-up check on the biased S&P 500 panel at matched quarterly spacing shows momentum's failure is generic to the quarterly construction (fails in both panels), but size's failure is specific to the corrected panel — an unresolved instrument-power concern for the corrected panel's IVOL null. Not yet reflected in this repository's scripts.
+4. **IVOL–momentum/size instrument-power caveat.** A known-premium validation (`SPEC_G2_review2_experiments.py`) shows the corrected panel recovers gross profitability and book-to-market but not size or momentum. A follow-up check on the biased S&P 500 panel at matched quarterly spacing (`REV4_E2_known_premium_biased_panel.py`) shows momentum's failure is generic to the quarterly construction (fails in both panels), but size's failure is specific to the corrected panel — an unresolved instrument-power concern for the corrected panel's IVOL null.
 
 5. **T·IVOL FM non-identification**: MV is constant within a month, so MV·IVOL and IVOL are perfectly collinear in every cross-sectional OLS — the FM estimator cannot identify the interaction. The manuscript uses the pooled two-way-clustered interaction and the cluster-robust Wald test instead.
 

@@ -1,0 +1,27 @@
+====================================================================================================
+REV4 E2 — KNOWN-PREMIUM VALIDATION ON THE BIASED (S&P 500) PANEL, MATCHED QUARTERLY SPACING
+====================================================================================================
+
+Biased S&P 500 quarterly panel: N=42,179  tickers=457  quarters=114  range=1995Q3..2023Q4
+
+Control check -- unconditional IVOL premium on this panel: t=+3.5993  beta=+0.011599  N=41,677  Tq=112  (should match D4_crosspanel_table.py's harmonized-quarterly biased-side t~+4.39)
+
+Characteristic merge coverage: negsize=100.0%  bm=100.0%  gp_at=100.0%
+Momentum coverage (4 contiguous prior quarters): 40,194 obs
+
+----------------------------------------------------------------------------------------------------
+RESULTS
+----------------------------------------------------------------------------------------------------
+  Size (-log mktcap)       beta=+0.014359  t=+5.634  N=41,677  T_q=112  ann=+5.74%/yr   [corrected-panel reference: t=+0.33]
+  Book-to-market           beta=+0.002601  t=+0.733  N=41,676  T_q=112  ann=+1.04%/yr   [corrected-panel reference: t=+2.65]
+  Momentum (4q, skip-0)    beta=+0.000574  t=+0.166  N=39,697  T_q=108  ann=+0.23%/yr   [corrected-panel reference: t=+0.44]
+  Gross profitability      beta=+0.006756  t=+3.671  N=41,674  T_q=112  ann=+2.70%/yr   [corrected-panel reference: t=+8.19]
+
+----------------------------------------------------------------------------------------------------
+VERDICT
+----------------------------------------------------------------------------------------------------
+Size |t|>=2 on biased panel: True  (t=+5.634 vs corrected-panel t=+0.33)
+Momentum |t|>=2 on biased panel: False  (t=+0.166 vs corrected-panel t=+0.44)
+
+Mixed: one of size/momentum is recovered on the biased panel and the other is not. Report the
+split explicitly rather than treating the instrument-power question as resolved either way.
